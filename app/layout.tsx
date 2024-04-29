@@ -1,12 +1,10 @@
 import './styles/globals.css';
-import '@radix-ui/themes/styles.css';
 import type { Metadata } from 'next';
 import { Theme, ThemePanel } from '@radix-ui/themes';
 import Header from './components/Header';
 import { ThemeProvider } from 'next-themes';
 import { Jersey, inter } from './assets/fonts';
 import Sidebar from './components/SideBar';
-import Searchbar from './components/Searchbar';
 
 const metadata: Metadata = {
   title: 'Create Next App',
@@ -28,7 +26,7 @@ export default function RootLayout({
             radius='large'
             scaling='95%'>
             <Header />
-            <div className='relative h-[calc(100vh-63px)] flex bg-blackA1 '>
+            <div className='relative h-[calc(100vh-60px)] flex  '>
               <Sidebar />
               <div className='flex-1 flex flex-col bg-gradient-to-br from-[#131017] to-[#131017]'>
                 {children}

@@ -9,26 +9,31 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Jersey } from '../assets/fonts';
 import { CgAdd } from 'react-icons/cg';
-import { IoIosAdd } from 'react-icons/io';
+import { IoIosAdd, IoIosHeartEmpty } from 'react-icons/io';
+import { Button, IconButton, ScrollArea, Text } from '@radix-ui/themes';
+import MellowSvg from '../assets/mellow.svg';
 
 type navTypes = {
   handleClick?: Function;
 };
 
+// className={` ${
+//   item.to == pathname ? 'active-Link' : 'unActive-Link'
+// } flex flex-row my-6 justify-start items-center text-sm font-medium hover:text-cyan-500 text-gray-300 `}
+
 const NavLinks = ({ handleClick }: navTypes) => {
   const pathname = usePathname();
   return (
-    <div className=''>
-      {links.map((item) => (
-        <Link
-          key={item.name}
-          href={item.to}
-          className={` ${
-            item.to == pathname ? 'active-Link' : 'unActive-Link'
-          } flex flex-row my-6 justify-start items-center text-sm font-medium hover:text-cyan-500 text-gray-300 `}
-          onClick={() => handleClick && handleClick()}>
-          <item.icon className='w-6 h-6 mr-2' />
-          {item.name}
+    <div className='flex flex-col gap-2 w-full'>
+      {links.map(({ icon: Icon, name, to }) => (
+        <Link key={name} href={to} className='w-full '>
+          <Button
+            onClick={() => handleClick && handleClick()}
+            variant='soft'
+            className='w-full justify-between'>
+            <Icon />
+            {name}
+          </Button>
         </Link>
       ))}
     </div>
@@ -37,21 +42,41 @@ const NavLinks = ({ handleClick }: navTypes) => {
 
 const Sidebar = () => {
   return (
-    <div className='h-full'>
-      <div className='md:flex hidden py-4 flex-col w-[200px]  px-4 bg-[#000000]  m-1 rounded-lg'>
+    <div className=' w-[200px] flex flex-col h-full gap-1 p-1 '>
+      <div className='md:flex hidden py-2 flex-col px-4 border-border border-2 rounded-lg'>
         <div className='text-2xl ' style={Jersey.style}>
           BROWSE
         </div>
         <NavLinks />
       </div>
-      <div className='md:flex hidden py-4 flex-col w-[200px]  px-4 bg-[#000000]  m-1 rounded-lg'>
-        <div className='flex items-center justify-between bg-pink-300 '>
+      <div className='md:flex hidden py-4 flex-col  border-border border-2 h-full rounded-lg relative'>
+        <div className='flex items-center px-4   justify-between'>
           <div className='text-2xl ' style={Jersey.style}>
             PLAYLIST
           </div>
-          <IoIosAdd className='w-8 h-8 ' />
+          <IconButton radius='full' className='cursor-pointer' variant='soft'>
+            <IoIosAdd className=' w-6 h-6' />
+          </IconButton>
         </div>
-        <NavLinks />
+        <ScrollArea
+          type='hover'
+          scrollbars='vertical'
+          className='h-[calc(100vh_-_316px)] px-4 mt-4'>
+          <div className='flex flex-col  gap-2'>
+            {Array.apply(1, Array(1)).map((_, i) => {
+              return (
+                <Button key={i} variant='soft' className='justify-between'>
+                  <IoIosHeartEmpty />
+                  Liked Songs
+                </Button>
+              );
+            })}
+          </div>
+        </ScrollArea>
+
+        <div className='bottom-[5px] z-[-1] fixed'>
+          <MellowSvg className='w-[160px] h-full' alt='Marsh mallow' />
+        </div>
       </div>
     </div>
   );
