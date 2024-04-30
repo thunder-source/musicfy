@@ -1,19 +1,8 @@
-import { ReactNode } from "react";
-import dynamic from "next/dynamic";
-import { Montserrat } from "next/font/google";
+import { ReactNode } from 'react';
 
-import Navbar from "@/layout/navbar";
-import { routes } from "@/data/navigationRoutes";
-import { classNames } from "@/utility/classNames";
-
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/react";
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-});
-
-const Footer = dynamic(() => import("@/layout/footer"), { ssr: true });
+import { classNames } from '@/utility/classNames';
+import Header from '../components/Header';
+import Sidebar from '../components/SideBar';
 
 export interface MainLayoutProps {
   children: ReactNode;
@@ -22,15 +11,15 @@ export interface MainLayoutProps {
 export default function MainLayout(props: MainLayoutProps) {
   return (
     <>
-      <div className={classNames("min-h-screen", montserrat.className)}>
-        <Navbar routes={routes} />
-        <main>
-          {props.children}
-          <SpeedInsights />
-          <Analytics />
-        </main>
+      <div className={classNames('min-h-screen')}>
+        <Header />
+        <div className='relative h-[calc(100vh-60px)] flex  '>
+          <Sidebar />
+          <div className='flex-1 flex flex-col bg-gradient-to-br from-[#131017] to-[#131017]'>
+            <main>{props.children}</main>
+          </div>
+        </div>
       </div>
-      <Footer />
     </>
   );
 }

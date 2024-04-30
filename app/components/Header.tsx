@@ -26,7 +26,7 @@ export default function Header() {
   return (
     <Flex
       justify='between'
-      className='items-center justify-between w-full bg-background border-border border-b-2 p-2'>
+      className='items-center justify-between w-full  border-border border-b-2 p-2 bg-accent_a2'>
       <Flex gap='3' className='  items-center  text-foreground  '>
         <Link href={'/'}>
           <Flex className='items-center gap-2 group  pl-3 pr-4 '>
@@ -40,7 +40,7 @@ export default function Header() {
             </Text>
           </Flex>
         </Link>
-        <NavigationMenuDemo />
+        {/* <NavigationMenuDemo /> */}
       </Flex>
       <SearchBox />
       <Flex gap={'4'} className='items-center'>
@@ -54,13 +54,13 @@ export default function Header() {
 const SearchBox = () => {
   return (
     <>
-      <Box className='w-2/4 relative flex items-center transition-all'>
+      <Box className='w-2/4 relative flex items-center transition-all '>
         <input
           type='search'
           placeholder='Search'
-          className='p-2 rounded-full hover:bg-background px-4 pl-8 placeholder:text-center peer outline-none max-w-6/12 w-full  border-border border-[1.5px] focus:border-accent font-mono'
+          className='p-2 rounded-radius_6 focus:bg-accent_a3 bg-accent_a1 focus:border-accent_9 border-accent_8 px-4 pl-8 placeholder:text-center peer outline-none max-w-6/12 w-full  border-[1.5px]  font-mono'
         />
-        <BiSearch className='w-6 h-6 absolute m-auto  text-border top-1/2 transform left-2 -translate-y-1/2 peer-focus:text-accent  peer-focus:animate-pulse' />
+        <BiSearch className='w-6 h-6 absolute m-auto  text-accent_a8 top-1/2 transform left-2 -translate-y-1/2 peer-focus:text-accent  peer-focus:animate-pulse' />
       </Box>
     </>
   );

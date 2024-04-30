@@ -2,8 +2,15 @@
 @import '@radix-ui/themes/styles.css';
 
 @tailwind base;
+
 @tailwind components;
 @tailwind utilities;
+
+.jersey-10-regular {
+  font-family: 'Jersey 10', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
 @layer base {
   :root {
@@ -28,6 +35,36 @@
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
   }
+  /* .radix {
+    --accent-1: var(--crimson-1);
+    --accent-2: var(--crimson-2);
+    --accent-3: var(--crimson-3);
+    --accent-4: var(--crimson-4);
+    --accent-5: var(--crimson-5);
+    --accent-6: var(--crimson-6);
+    --accent-7: var(--crimson-7);
+    --accent-8: var(--crimson-8);
+    --accent-9: var(--crimson-9);
+    --accent-10: var(--crimson-10);
+    --accent-11: var(--crimson-11);
+    --accent-12: var(--crimson-12);
+    --accent-a1: var(--crimson-a1);
+    --accent-a2: var(--crimson-a2);
+    --accent-a3: var(--crimson-a3);
+    --accent-a4: var(--crimson-a4);
+    --accent-a5: var(--crimson-a5);
+    --accent-a6: var(--crimson-a6);
+    --accent-a7: var(--crimson-a7);
+    --accent-a8: var(--crimson-a8);
+    --accent-a9: var(--crimson-a9);
+    --accent-a10: var(--crimson-a10);
+    --accent-a11: var(--crimson-a11);
+    --accent-a12: var(--crimson-a12);
+    --accent-contrast: var(--crimson-contrast);
+    --accent-surface: var(--crimson-surface);
+    --accent-indicator: var(--crimson-indicator);
+    --accent-track: var(--crimson-track);
+  } */
 }
 
 @layer base {
@@ -38,3 +75,88 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* .light,
+.light-theme {
+  --crimson-1: #fffcfd;
+  --crimson-2: #fef7f9;
+  --crimson-3: #ffe9f0;
+  --crimson-4: #fedce7;
+  --crimson-5: #facedd;
+  --crimson-6: #f3bed1;
+  --crimson-7: #eaacc3;
+  --crimson-8: #e093b2;
+  --crimson-9: #e93d82;
+  --crimson-10: #df3478;
+  --crimson-11: #cb1d63;
+  --crimson-12: #621639;
+  --crimson-a1: #ff005503;
+  --crimson-a2: #e0004008;
+  --crimson-a3: #ff005216;
+  --crimson-a4: #f8005123;
+  --crimson-a5: #e5004f31;
+  --crimson-a6: #d0004b41;
+  --crimson-a7: #bf004753;
+  --crimson-a8: #b6004a6c;
+  --crimson-a9: #e2005bc2;
+  --crimson-a10: #d70056cb;
+  --crimson-a11: #c4004fe2;
+  --crimson-a12: #530026e9;
+} */
+/* .dark,
+.dark-theme {
+  --crimson-1: #191114;
+  --crimson-2: #201318;
+  --crimson-3: #381525;
+  --crimson-4: #4d122f;
+  --crimson-5: #5c1839;
+  --crimson-6: #6d2545;
+  --crimson-7: #873356;
+  --crimson-8: #b0436e;
+  --crimson-9: #e93d82;
+  --crimson-10: #ee518a;
+  --crimson-11: #ff92ad;
+  --crimson-12: #fdd3e8;
+  --crimson-a1: #f4126709;
+  --crimson-a2: #f22f7a11;
+  --crimson-a3: #fe2a8b2a;
+  --crimson-a4: #fd158741;
+  --crimson-a5: #fd278f51;
+  --crimson-a6: #fe459763;
+  --crimson-a7: #fd559b7f;
+  --crimson-a8: #fe5b9bab;
+  --crimson-a9: #fe418de8;
+  --crimson-a10: #ff5693ed;
+  --crimson-a11: #ff92ad;
+  --crimson-a12: #ffd5eafd;
+}
+.sata {
+  --accent-1: var(--crimson-1);
+  --accent-2: var(--crimson-2);
+  --accent-3: var(--crimson-3);
+  --accent-4: var(--crimson-4);
+  --accent-5: var(--crimson-5);
+  --accent-6: var(--crimson-6);
+  --accent-7: var(--crimson-7);
+  --accent-8: var(--crimson-8);
+  --accent-9: var(--crimson-9);
+  --accent-10: var(--crimson-10);
+  --accent-11: var(--crimson-11);
+  --accent-12: var(--crimson-12);
+  --accent-a1: var(--crimson-a1);
+  --accent-a2: var(--crimson-a2);
+  --accent-a3: var(--crimson-a3);
+  --accent-a4: var(--crimson-a4);
+  --accent-a5: var(--crimson-a5);
+  --accent-a6: var(--crimson-a6);
+  --accent-a7: var(--crimson-a7);
+  --accent-a8: var(--crimson-a8);
+  --accent-a9: var(--crimson-a9);
+  --accent-a10: var(--crimson-a10);
+  --accent-a11: var(--crimson-a11);
+  --accent-a12: var(--crimson-a12);
+  --accent-contrast: var(--crimson-contrast);
+  --accent-surface: var(--crimson-surface);
+  --accent-indicator: var(--crimson-indicator);
+  --accent-track: var(--crimson-track);
+} */

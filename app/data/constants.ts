@@ -3,8 +3,11 @@ import {
   HiOutlineHome,
   HiOutlinePhotograph,
   HiOutlineUserGroup,
+  HiUserGroup,
 } from 'react-icons/hi';
-
+import { IoIosHome } from 'react-icons/io';
+import { RiHomeSmileFill, RiHomeSmileLine } from 'react-icons/ri';
+import { TbPhoto, TbPhotoFilled } from 'react-icons/tb';
 export const genres = [
   { title: 'Pop', value: 'POP' },
   { title: 'Hip-Hop', value: 'HIP_HOP_RAP' },
@@ -23,9 +26,24 @@ export const genres = [
 ];
 
 export const links = [
-  { name: 'Around You', to: '/around-you', icon: HiOutlinePhotograph },
-  { name: 'Top Artists', to: '/top-artists', icon: HiOutlineUserGroup },
-  { name: 'Top Charts', to: '/top-charts', icon: HiOutlineHashtag },
+  {
+    name: 'Discover',
+    to: '/',
+    icon: RiHomeSmileLine,
+    activeIcon: RiHomeSmileFill,
+  },
+  {
+    name: 'Around You',
+    to: '/around-you',
+    icon: TbPhoto,
+    activeIcon: TbPhotoFilled,
+  },
+  {
+    name: 'Top Artists',
+    to: '/top-artists',
+    icon: HiOutlineUserGroup,
+    activeIcon: HiUserGroup,
+  },
 ];
 
 export const language = [

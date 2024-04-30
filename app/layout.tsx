@@ -1,10 +1,13 @@
-import './styles/globals.css';
+'use client';
+import { ScrollArea, Theme, ThemePanel } from '@radix-ui/themes';
 import type { Metadata } from 'next';
-import { Theme, ThemePanel } from '@radix-ui/themes';
 import Header from './components/Header';
 import { ThemeProvider } from 'next-themes';
+import { Sidebar } from '@/components';
+import { Provider } from 'react-redux';
+import { store } from '@/redux/store';
 import { Jersey, inter } from './assets/fonts';
-import Sidebar from './components/SideBar';
+import './styles/globals.css';
 
 const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,37 +22,25 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang='en'>
       <body className={(inter.className, Jersey.className)}>
-        <ThemeProvider attribute='class'>
-          <Theme
-            accentColor='crimson'
-            grayColor='sand'
-            radius='large'
-            scaling='95%'>
-            <Header />
-            <div className='relative h-[calc(100vh-60px)] flex  '>
-              <Sidebar />
-              <div className='flex-1 flex flex-col bg-gradient-to-br from-[#131017] to-[#131017]'>
-                {children}
-                {/* <Searchbar /> */}
-                {/* <div className='px-6 h-[calc(100vh-150px)] overflow-y-scroll hide-scrollbar flex  flex-col mt-20'>
-                  <div className='flex-1 h-fit pb-40'>
-                    <div className='xl:sticky relative top-0 h-fit'>
-                      <TopPlay />
-                    </div>
-                  </div>
-                </div> */}
-
-                {/* {activeSong?.name && (
-                  <div className='h-28 absolute bottom-0 left-0 right-0 flex animate-slowfade bg-gradient-to-br from-white/10 to-[#111017] backdrop-blur-lg rounded-t-3xl z-10'>
-                    <MusicPlayer />
-                  </div>
-                )} */}
+        <Provider store={store}>
+          <ThemeProvider attribute='class'>
+            <Theme
+              accentColor='crimson'
+              grayColor='sand'
+              radius='large'
+              scaling='95%'>
+              <div className='bg-accent_a2 select-none'>
+                <Header />
+                <div className='relative h-[calc(100vh-60px)] flex  '>
+                  <Sidebar />
+                  <ScrollArea>{children}</ScrollArea>
+                </div>
               </div>
-            </div>
-            {children}
-            <ThemePanel />
-          </Theme>
-        </ThemeProvider>
+
+              <ThemePanel />
+            </Theme>
+          </ThemeProvider>
+        </Provider>
       </body>
     </html>
   );
