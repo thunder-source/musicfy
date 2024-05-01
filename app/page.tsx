@@ -1,60 +1,106 @@
 'use client';
-import { Callout, Flex } from '@radix-ui/themes';
+import { Flex, Select, Skeleton } from '@radix-ui/themes';
 import { useDispatch, useSelector } from 'react-redux';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { Error, SongCard } from '@/components';
 
-import { Error, Loader, SongCard } from '@/components';
-
-import { useGetNewReleasesQuery } from '@/redux/services/main';
-import { selectGenreListId } from '@/redux/features/playerSlice';
+import { mainApi, useGetNewReleasesQuery } from '@/redux/services/main';
 import { useState } from 'react';
 import { Jersey } from './assets/fonts';
+import { languages } from '@/data/constants';
+import toast from 'react-hot-toast';
+import { useAppDispatch, useAppSelector } from './hooks/reduxHandlers';
 
 export default function Discover() {
-  const dispatch = useDispatch();
-  const { genreListId } = useSelector((state) => state.player);
-  const { activeSong, isPlaying } = useSelector((state) => state.player);
+  const dispatch = useAppDispatch();
 
-  const { data, isFetching, error } = useGetNewReleasesQuery({
-    language: genreListId | '',
-    page: 0,
-    limit: 0,
+  const { musicLanguage } = useAppSelector((state) => state.main);
+  const { activeSong, isPlaying } = useAppSelector((state) => state.player);
+
+  const [page, setPage] = useState(1);
+  const [language, setLanguage] = useState(musicLanguage[0]);
+
+  const { data, isFetching, error, refetch } = useGetNewReleasesQuery({
+    language: language,
+    page: page,
+    limit: 20,
   });
 
-  if (isFetching) return <Loader title='Loading songs...' />;
+  const resetParams = (newLanguage: string) => {
+    setLanguage(newLanguage);
+    setPage(1);
+    // refetch();
+    dispatch(mainApi.util.resetApiState());
+  };
 
+  // console.log(data);
+
+  // if (isFetching) return <Loader title='Loading songs...' />;
   if (error) return <Error />;
 
-  console.log(data.data.result);
-  // const genreTitle = genres.find(({ value }) => value === genreListId)?.title;
-  // return
   return (
-    <div className='flex flex-col p-4 px-8'>
-      <ThemeDemo />;
-      <Callout.Root size='1'>
-        <Callout.Icon>{/* <InfoCircledIcon  /> */}</Callout.Icon>
-        <Callout.Text>
-          You will need admin privileges to install and access this application.
-        </Callout.Text>
-      </Callout.Root>
-      <h2
-        className='font-bold text-5xl text-accent_10 text-left mb-8'
-        style={Jersey.style}>
-        Discover
-      </h2>
-      <div className='flex flex-wrap sm:justify-start justify-center gap-8'>
-        {data.data?.result?.map((song, i) => {
-          return (
-            <SongCard
-              isPlaying={isPlaying}
-              activeSong={activeSong}
-              key={song.id}
-              song={song}
-              i={i}
-              data={data.data.result}
-            />
-          );
-        })}
+    <div className='flex flex-col p-4 px-8 h-screen'>
+      {/* <ThemeDemo />; */}
+      <div className='flex justify-between items-start'>
+        <h2
+          className='font-bold text-5xl text-accent_10 text-left mb-8'
+          style={Jersey.style}
+          onClick={() => {
+            toast.success('Hello World');
+            toast.error('Hello World');
+          }}>
+          Discover
+        </h2>
+        <div className='mt-2 '>
+          <Select.Root
+            onValueChange={(value) => {
+              resetParams(value);
+              // console.log('resetParams called');
+            }}
+            defaultValue={language}>
+            <Select.Trigger className='capitalize'>{language}</Select.Trigger>
+            <Select.Content>
+              <Select.Group>
+                {languages.map((lang) => (
+                  <Select.Item className='capitalize' value={lang} key={lang}>
+                    {lang}
+                  </Select.Item>
+                ))}
+              </Select.Group>
+            </Select.Content>
+          </Select.Root>
+        </div>
       </div>
+      <InfiniteScroll
+        dataLength={data?.data?.result.length || 0} //This is important field to render the next data
+        next={() => {
+          setPage(page + 1);
+        }}
+        hasMore={data?.data?.lastPage === true ? false : true}
+        loader={<SoundCardLoader />}
+        endMessage={
+          <p style={{ textAlign: 'center' }} className='my-4'>
+            <b>Yay! You have seen it all 🤩</b>
+          </p>
+        }
+        scrollableTarget='scrollableDiv'>
+        {data?.data && (
+          <div className='flex flex-wrap sm:justify-start justify-center gap-8 mb-8'>
+            {data?.data?.result?.map((song, i) => {
+              return (
+                <SongCard
+                  isPlaying={isPlaying}
+                  activeSong={activeSong}
+                  key={i}
+                  song={song}
+                  i={i}
+                  data={data.data.result}
+                />
+              );
+            })}
+          </div>
+        )}
+      </InfiniteScroll>
     </div>
   );
 }
@@ -138,6 +184,18 @@ export const ThemeDemo = () => {
           );
         })}
       </Flex>
+    </div>
+  );
+};
+
+const SoundCardLoader = () => {
+  return (
+    <div className='flex flex-wrap sm:justify-start justify-center gap-8 '>
+      {Array.apply(0, Array(10)).map((_, i) => (
+        <Skeleton key={i}>
+          <div className='flex flex-col w-[250px]  h-80 p-4 bg-accent_a7 border-accent_a2 border-2 animate-slideup rounded-radius_6 '></div>
+        </Skeleton>
+      ))}
     </div>
   );
 };

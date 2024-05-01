@@ -9,7 +9,7 @@ const ArtistCard = ({ artist }) => {
   return (
     <Skeleton loading={!artist?.name} className=''>
       <div
-        className='flex group relative flex-col w-[250px] p-4 hover:transition-all bg-accent_a4 bg-opacity-80 backdrop-blur-sm  cursor-pointer rounded-full hover:border-accent_10 border-transparent border-2'
+        className='flex transform transition-all duration-500  group relative flex-col w-[250px] p-4 hover:transition-all bg-accent_a4 bg-opacity-80 backdrop-blur-sm  cursor-pointer rounded-full hover:border-accent_10 border-transparent border-2'
         onClick={() => router.push(`/artists/${artist.artistid}`)}>
         <Avatar
           className='w-full h-56 rounded-full  '

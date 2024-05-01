@@ -1,9 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import playerReducer from './features/playerSlice';
+import mainReducer from './features/mainSlice';
 import { mainApi } from './services/main';
 
 export const store = configureStore({
-  reducer: { [mainApi.reducerPath]: mainApi.reducer, player: playerReducer },
+  reducer: {
+    [mainApi.reducerPath]: mainApi.reducer,
+    player: playerReducer,
+    main: mainReducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(mainApi.middleware),
 });

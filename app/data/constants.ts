@@ -46,7 +46,7 @@ export const links = [
   },
 ];
 
-export const language = [
+export const languages = [
   'hindi',
   'english',
   'tamil',

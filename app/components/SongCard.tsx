@@ -1,8 +1,19 @@
 import { useDispatch } from 'react-redux';
 import PlayPause from './PlayPause';
 import { playPause, setActiveSong } from '../redux/features/playerSlice';
-import { Avatar } from '@radix-ui/themes';
+import {
+  Avatar,
+  Button,
+  ContextMenu,
+  DropdownMenu,
+  Skeleton,
+} from '@radix-ui/themes';
 import Link from 'next/link';
+import { IoHeartOutline, IoHeartSharp } from 'react-icons/io5';
+import {
+  PiDotsThreeCircleVerticalBold,
+  PiDotsThreeCircleBold,
+} from 'react-icons/pi';
 
 const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
   const dispatch = useDispatch();
@@ -18,16 +29,11 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
   // const stringWithText = "Your string with (From 'text1') and (From 'text2')";
   const cleanedName = song.name.replace(/\(From\s"[^"]+"\)/g, '');
 
-  console.log(cleanedName);
-  // Output: Your string with and
-
-  return song.image[2].url === undefined ? (
-    <></>
-  ) : (
-    <div className='flex flex-col w-[250px] p-4 bg-accent_9  animate-slideup rounded-radius_6 cursor-pointer'>
-      <div className='relative w-full h-56 group'>
+  return (
+    <div className='flex flex-col w-[250px] p-4 bg-accent_a7 border-accent_a2 border-2 animate-slideup rounded-radius_6 group '>
+      <div className='relative w-full h-56 overflow-hidden  rounded-radius_6'>
         <Avatar
-          className='w-full h-56 rounded-radius_6'
+          className='w-full relative h-56 rounded-radius_6 group-hover:scale-125 overflow-hidden transform transition duration-500'
           src={song.image[2].url}
           fallback={song?.name}
         />
@@ -41,21 +47,34 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
             handlePlay={handlePlayClick}
           />
         </p>
+        {/* <Button
+              className='group-hover:block hidden absolute right-4 bottom-4 px-0'
+              variant='soft'
+              radius='full'>
+              <PiDotsThreeCircleBold className=' w-8 h-8  text-accent_8' />
+              <DropdownMenu.TriggerIcon />
+            </Button> */}
       </div>
-      <div className='mt-4 flex-col'>
-        <p className='font-semibold text-base text-white truncate'>
-          <Link href={`/songs/${song?.key}`}> {cleanedName}</Link>
-        </p>
-        <p className='text-sm truncate text-gray-300 mt-1'>
-          <Link
-            href={
-              song.artist
-                ? `/artists/${song?.artist[0]?.adamid}`
-                : '/top-artists'
-            }>
-            {song?.artists?.all[0].name}
-          </Link>
-        </p>
+      <div className='flex items-center justify-between'>
+        <div className='mt-4 flex-col'>
+          <p className='font-semibold text-base w-full max-w-[180px] truncate'>
+            <Link href={`/songs/${song?.key}`}>{cleanedName}</Link>
+          </p>
+          <p className='text-sm truncate  mt-1'>
+            <Link
+              href={
+                song.artist
+                  ? `/artists/${song?.artist[0]?.adamid}`
+                  : '/top-artists'
+              }>
+              {song?.artists?.all[0].name}
+            </Link>
+          </p>
+        </div>
+        {/* <div className='flex flex-col  mt-2'>
+              <IoHeartOutline className='w-6 h-6' />
+              <IoHeartSharp className='w-6 h-6' />
+            </div> */}
       </div>
     </div>
   );

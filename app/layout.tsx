@@ -6,6 +6,7 @@ import { ThemeProvider } from 'next-themes';
 import { Sidebar } from '@/components';
 import { Provider } from 'react-redux';
 import { store } from '@/redux/store';
+import { Toaster } from 'react-hot-toast';
 import { Jersey, inter } from './assets/fonts';
 import './styles/globals.css';
 
@@ -29,15 +30,16 @@ export default function RootLayout({
               grayColor='sand'
               radius='large'
               scaling='95%'>
-              <div className='bg-accent_a2 select-none'>
+              <Toaster />
+              <div className='bg-accent_a2 select-none transform transition-all duration-500'>
                 <Header />
                 <div className='relative h-[calc(100vh-60px)] flex  '>
                   <Sidebar />
-                  <ScrollArea>{children}</ScrollArea>
+                  <ScrollArea id='scrollableDiv'>{children}</ScrollArea>
                 </div>
               </div>
 
-              <ThemePanel />
+              {/* <ThemePanel /> */}
             </Theme>
           </ThemeProvider>
         </Provider>

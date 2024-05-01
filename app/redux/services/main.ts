@@ -10,6 +10,20 @@ export const mainApi = createApi({
     getNewReleases: builder.query({
       query: ({ language, page, limit }) =>
         `newReleases?language=${language}&page=${page}&limit=${limit}`,
+      serializeQueryArgs: ({ queryArgs, endpointDefinition, endpointName }) => {
+        const { language } = queryArgs;
+        return language;
+      },
+      // Always merge incoming data to the cache entry
+      merge: (currentCache, newItems, args) => {
+        currentCache.data.lastPage = newItems.data.lastPage;
+        currentCache.data.result.push(...newItems.data.result);
+      },
+      // Refetch when the page arg changes
+      forceRefetch({ currentArg, previousArg, endpointState }) {
+        console.log(endpointState);
+        return currentArg !== previousArg;
+      },
     }),
     getTopArtist: builder.query({ query: () => `top-artists` }),
     getArtistDetails: builder.query({
