@@ -1,13 +1,7 @@
-import {
-  HiOutlineHashtag,
-  HiOutlineHome,
-  HiOutlinePhotograph,
-  HiOutlineUserGroup,
-  HiUserGroup,
-} from 'react-icons/hi';
-import { IoIosHome } from 'react-icons/io';
+import { HiOutlineUserGroup, HiUserGroup } from 'react-icons/hi';
 import { RiHomeSmileFill, RiHomeSmileLine } from 'react-icons/ri';
 import { TbPhoto, TbPhotoFilled } from 'react-icons/tb';
+
 export const genres = [
   { title: 'Pop', value: 'POP' },
   { title: 'Hip-Hop', value: 'HIP_HOP_RAP' },

@@ -1,7 +1,10 @@
+import { accentColors } from '@radix-ui/themes/props';
+
 const plugin = require('tailwindcss/plugin');
 const { blackA, mauve, violet, indigo, purple } = require('@radix-ui/colors');
 
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -21,6 +24,7 @@ module.exports = {
         ...violet,
         ...purple,
         ...indigo,
+        // ...accentColors,
         accent_1: 'var(--accent-1)',
         accent_2: 'var(--accent-2)',
         accent_3: 'var(--accent-3)',
@@ -42,9 +46,41 @@ module.exports = {
         accent_a7: 'var(--accent-a7)',
         accent_a8: 'var(--accent-a8)',
         accent_a9: 'var(--accent-a9)',
-        // --accent-a_0 var(--accent-a10)
-        // --accent-a_1 var(--accent-a11)
-        // --accent-a_2 var(--accent-a12),
+        accent_a10: 'var(--accent-a10)',
+        accent_a11: 'var(--accent-a11)',
+        accent_a12: 'var(--accent-a12)',
+        accent_contrast: 'var(--accent-contrast)',
+        accent_surface: 'var(--accent-surface)',
+        accent_indicator: 'var(--accent-indicator)',
+        accent_track: 'var(--accent-track)',
+        gray_1: 'var(--gray-1)',
+        gray_2: 'var(--gray-2)',
+        gray_3: 'var(--gray-3)',
+        gray_4: 'var(--gray-4)',
+        gray_5: 'var(--gray-5)',
+        gray_6: 'var(--gray-6)',
+        gray_7: 'var(--gray-7)',
+        gray_8: 'var(--gray-8)',
+        gray_9: 'var(--gray-9)',
+        gray_10: 'var(--gray-10)',
+        gray_11: 'var(--gray-11)',
+        gray_12: 'var(--gray-12)',
+        gray_a1: 'var(--gray-a1)',
+        gray_a2: 'var(--gray-a2)',
+        gray_a3: 'var(--gray-a3)',
+        gray_a4: 'var(--gray-a4)',
+        gray_a5: 'var(--gray-a5)',
+        gray_a6: 'var(--gray-a6)',
+        gray_a7: 'var(--gray-a7)',
+        gray_a8: 'var(--gray-a8)',
+        gray_a9: 'var(--gray-a9)',
+        gray_a10: 'var(--gray-a10)',
+        gray_a11: 'var(--gray-a11)',
+        gray_a12: 'var(--gray-a12)',
+        gray_contrast: 'var(--gray-contrast)',
+        gray_surface: 'var(--gray-surface)',
+        gray_indicator: 'var(--gray-indicator)',
+        gray_track: 'var(--gray_tra-track)',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         border: 'hsl(var(--border))',

@@ -5,7 +5,7 @@ import { useGetTopArtistQuery } from '@/redux/services/main';
 import { Jersey } from '@/assets/fonts';
 
 export default function TopArtist() {
-  const { data, isFetching, error } = useGetTopArtistQuery();
+  const { data, isFetching, error } = useGetTopArtistQuery({});
 
   // if (isFetching) return <ArtistCardLoading />;
 
@@ -16,7 +16,8 @@ export default function TopArtist() {
     <div className='flex flex-col p-4 px-8'>
       <h2
         className='font-bold text-5xl text-accent_10 text-left mb-8'
-        style={Jersey.style}>
+        // style={Jersey.style}
+      >
         Top artists
       </h2>
 

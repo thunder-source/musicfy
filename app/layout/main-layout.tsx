@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { classNames } from '@/utility/classNames';
+import { classNames } from '@/utility/parseToHtml';
 import Header from '../components/Header';
 import Sidebar from '../components/SideBar';
 

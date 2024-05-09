@@ -1,63 +1,62 @@
+import {
+  NewReleasesAPIResponseModel,
+  NewReleasesMainAPIResponseModel,
+} from '@/types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { z } from 'zod';
+
+interface NewReleases {
+  language: string;
+  limit: number;
+  page: number;
+}
 
 export const mainApi = createApi({
   reducerPath: 'mainApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://music-api.pradityamanjhi.site/api/',
   }),
-  //https://music-api.pradityamanjhi.site/api/newReleases?language=hindi&page=0&limit=10
   endpoints: (builder) => ({
-    getNewReleases: builder.query({
+    getNewReleases: builder.query<
+      z.infer<typeof NewReleasesAPIResponseModel>,
+      NewReleases
+    >({
       query: ({ language, page, limit }) =>
         `newReleases?language=${language}&page=${page}&limit=${limit}`,
+
       serializeQueryArgs: ({ queryArgs, endpointDefinition, endpointName }) => {
         const { language } = queryArgs;
         return language;
       },
+
       // Always merge incoming data to the cache entry
       merge: (currentCache, newItems, args) => {
-        currentCache.data.lastPage = newItems.data.lastPage;
-        currentCache.data.result.push(...newItems.data.result);
+        currentCache.lastPage = newItems.lastPage;
+        if (currentCache.result && newItems.result) {
+          currentCache.result.push(...newItems.result);
+        }
       },
+
       // Refetch when the page arg changes
       forceRefetch({ currentArg, previousArg, endpointState }) {
-        console.log(endpointState);
         return currentArg !== previousArg;
       },
-    }),
-    getTopArtist: builder.query({ query: () => `top-artists` }),
-    getArtistDetails: builder.query({
-      query: (artistId) => `/artists/${artistId}`,
-    }),
-    getTopCharts: builder.query({ query: () => '/charts/world' }),
-
-    getSongsByGenre: builder.query({
-      query: (genre) => `/charts/genre-world?genre_code=${genre}`,
-    }),
-    getSongsByCountry: builder.query({
-      query: (countryCode) => `/charts/country?country_code=${countryCode}`,
-    }),
-    getSongsBySearch: builder.query({
-      query: (searchTerm) => `/api/search/songs?query=${searchTerm}`,
+      transformResponse(
+        response: z.infer<typeof NewReleasesMainAPIResponseModel>
+      ) {
+        NewReleasesMainAPIResponseModel.parse(response);
+        return response.data;
+      },
     }),
 
-    getSongDetails: builder.query({
-      query: ({ songid }) => `/tracks/details?track_id=${songid}`,
-    }),
-    getSongRelated: builder.query({
-      query: ({ songid }) => `/tracks/related?track_id=${songid}`,
-    }),
+    getSongById: builder.query({ query: (id) => `albums/&id=${id}` }),
+
+    getAlbumById: builder.query({ query: (id) => `albums?id=${id}` }),
   }),
 });
 
 export const {
   useGetNewReleasesQuery,
-  useGetTopArtistQuery,
-  useGetTopChartsQuery,
-  useGetSongsByGenreQuery,
-  useGetSongsByCountryQuery,
-  useGetSongsBySearchQuery,
-  useGetArtistDetailsQuery,
-  useGetSongDetailsQuery,
-  useGetSongRelatedQuery,
+  useGetSongByIdQuery,
+  useGetAlbumByIdQuery,
 } = mainApi;

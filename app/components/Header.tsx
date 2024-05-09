@@ -4,13 +4,10 @@ import {
   Avatar,
   Box,
   Button,
-  Checkbox,
   CheckboxGroup,
   Flex,
   Popover,
-  Spinner,
   Text,
-  TextArea,
 } from '@radix-ui/themes';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import classNames from 'classnames';
@@ -56,16 +53,14 @@ export default function Header() {
 
 const SearchBox = () => {
   return (
-    <>
-      <Box className='w-2/4 relative flex items-center transition-all '>
-        <input
-          type='search'
-          placeholder='Search'
-          className='p-2 rounded-radius_6 focus:bg-accent_a3 bg-accent_a1 focus:border-accent_9 border-accent_8 px-4 pl-8 placeholder:text-center peer outline-none max-w-6/12 w-full  border-[1.5px]  font-mono'
-        />
-        <BiSearch className='w-6 h-6 absolute m-auto  text-accent_a8 top-1/2 transform left-2 -translate-y-1/2 peer-focus:text-accent  peer-focus:animate-pulse' />
-      </Box>
-    </>
+    <Box className='w-2/4 relative flex items-center transition-all '>
+      <input
+        type='search'
+        placeholder='Search'
+        className='p-2 rounded-radius_6 focus:bg-accent_a3 bg-accent_a1 focus:border-accent_9 border-accent_8 px-4 pl-8 placeholder:text-center peer outline-none max-w-6/12 w-full  border-[1.5px]  font-mono'
+      />
+      <BiSearch className='w-6 h-6 absolute m-auto  text-accent_a8 top-1/2 transform left-2 -translate-y-1/2 peer-focus:text-accent  peer-focus:animate-pulse' />
+    </Box>
   );
 };
 
@@ -134,8 +129,6 @@ const MusicLanguage = () => {
                 </Button>
               </Popover.Close>
             </CheckboxGroup.Root>
-
-            {/* <Spinner /> */}
           </Flex>
         </Box>
       </Popover.Content>

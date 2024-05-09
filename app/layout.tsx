@@ -3,12 +3,13 @@ import { ScrollArea, Theme, ThemePanel } from '@radix-ui/themes';
 import type { Metadata } from 'next';
 import Header from './components/Header';
 import { ThemeProvider } from 'next-themes';
-import { Sidebar } from '@/components';
+import { MusicPlayer, Sidebar } from '@/components';
 import { Provider } from 'react-redux';
-import { store } from '@/redux/store';
+import { persistor, store } from '@/redux/store';
 import { Toaster } from 'react-hot-toast';
 import { Jersey, inter } from './assets/fonts';
 import './styles/globals.css';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const metadata: Metadata = {
   title: 'Create Next App',
@@ -24,24 +25,34 @@ export default function RootLayout({
     <html suppressHydrationWarning lang='en'>
       <body className={(inter.className, Jersey.className)}>
         <Provider store={store}>
-          <ThemeProvider attribute='class'>
-            <Theme
-              accentColor='crimson'
-              grayColor='sand'
-              radius='large'
-              scaling='95%'>
-              <Toaster />
-              <div className='bg-accent_a2 select-none transform transition-all duration-500'>
-                <Header />
-                <div className='relative h-[calc(100vh-60px)] flex  '>
-                  <Sidebar />
-                  <ScrollArea id='scrollableDiv'>{children}</ScrollArea>
-                </div>
+          <PersistGate
+            loading={
+              <div className='w-screen h-screen text-center justify-center items-center bg-black  text-white'>
+                <div className='text-9xl'>Loading...</div>
               </div>
-
-              {/* <ThemePanel /> */}
-            </Theme>
-          </ThemeProvider>
+            }
+            persistor={persistor}>
+            <ThemeProvider attribute='class'>
+              <Theme
+                accentColor='crimson'
+                grayColor='sand'
+                radius='large'
+                scaling='95%'>
+                <Toaster />
+                <div className='bg-accent_a2 select-none transform transition-all duration-500 relative overflowX-hidden'>
+                  <Header />
+                  <div className='relative h-[calc(100vh-60px)] flex  '>
+                    <Sidebar />
+                    <ScrollArea id='scrollableDiv' className='scroll-smooth'>
+                      {children}
+                    </ScrollArea>
+                  </div>
+                  <MusicPlayer />
+                </div>
+                <ThemePanel />
+              </Theme>
+            </ThemeProvider>
+          </PersistGate>
         </Provider>
       </body>
     </html>
