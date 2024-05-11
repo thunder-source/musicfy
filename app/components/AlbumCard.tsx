@@ -8,7 +8,7 @@ import FallBackImage from '@/assets/fallback/fallback.jpg';
 import Image from 'next/image';
 import { mainApi, useGetAlbumByIdQuery } from '@/redux/services/main';
 import { FaPlayCircle } from 'react-icons/fa';
-import { Spinner } from '@radix-ui/themes';
+import { Card, Spinner } from '@radix-ui/themes';
 import { z } from 'zod';
 
 const AlbumCard = (album: z.infer<typeof NewReleasesItem>) => {
@@ -27,7 +27,10 @@ const AlbumCard = (album: z.infer<typeof NewReleasesItem>) => {
   const cleanedName = album.name.replace(/\(From\s"[^"]+"\)/g, '');
 
   return (
-    <div className='flex flex-col w-[250px] p-4 bg-accent_a7 border-accent_a2 border-2 animate-slideup rounded-radius_6 group '>
+    <Card
+      variant='classic'
+      size={'4'}
+      className='flex flex-col  p-4   shadow-sm animate-slideup rounded-radius_6 group '>
       <div className='relative w-full h-56 overflow-hidden  rounded-radius_6'>
         <Image
           loading='lazy'
@@ -83,7 +86,7 @@ const AlbumCard = (album: z.infer<typeof NewReleasesItem>) => {
             } `}></div>
         </div> */}
       </div>
-    </div>
+    </Card>
   );
 };
 

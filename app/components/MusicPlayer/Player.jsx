@@ -31,6 +31,7 @@ const Player = ({
 
   return (
     <audio
+      className='hidden'
       src={
         Array.isArray(activeSong?.downloadUrl) && activeSong?.downloadUrl[4].url
       }

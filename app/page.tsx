@@ -9,6 +9,8 @@ import { languages } from '@/data/constants';
 import { useAppDispatch, useAppSelector } from './hooks/reduxHandlers';
 import AlbumCard from './components/AlbumCard';
 import { ThemeTesting } from './components/ThemeTesting';
+import Image from 'next/image';
+import Fallback from '@/assets/fallback/fallback.jpg';
 
 export default function Discover() {
   const dispatch = useAppDispatch();
@@ -34,19 +36,7 @@ export default function Discover() {
 
   return (
     <div className='flex flex-col p-4 px-8 relative h-screen'>
-      <ThemeTesting />
-      <div className='flex w-32 absolute '>
-        <Slider
-          defaultValue={[75]}
-          variant='soft'
-          min={0}
-          max={100}
-          // value={[10]}
-          onChange={(e) => {
-            console.log(e);
-          }}
-        />
-      </div>
+      {/* <ThemeTesting /> */}
       <div className='flex justify-between items-start'>
         <h2
           className='font-bold text-5xl text-accent_10 text-left mb-8'
@@ -77,6 +67,13 @@ export default function Discover() {
           </Select.Root>
         </div>
       </div>
+      {/* <Image
+        width='1000'
+        height='1000'
+        src={Fallback}
+        alt='img'
+        className='absolute'
+      /> */}
       <div className=''>
         <InfiniteScroll
           dataLength={data?.result?.length ? data.result.length : 0} //This is important field to render the next data
