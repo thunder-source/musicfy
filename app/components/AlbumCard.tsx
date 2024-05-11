@@ -102,7 +102,7 @@ const PlayPauseAlbumSongs = (album: NewReleasesItem) => {
       dispatch(setActiveSong(data.data));
     }
     // console.log('fetching data');
-  }, [isFetching, data]);
+  }, [isFetching, data, dispatch]);
 
   // console.log('data, isFetching, isError', data, isFetching, isError);
   return (

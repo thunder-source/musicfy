@@ -49,6 +49,8 @@ export const mainApi = createApi({
       },
     }),
 
+    getTopArtist: builder.query({ query: () => `top-artists` }),
+
     getSongById: builder.query({ query: (id) => `albums/&id=${id}` }),
 
     getAlbumById: builder.query({ query: (id) => `albums?id=${id}` }),
@@ -57,6 +59,7 @@ export const mainApi = createApi({
 
 export const {
   useGetNewReleasesQuery,
+  useGetTopArtistQuery,
   useGetSongByIdQuery,
   useGetAlbumByIdQuery,
 } = mainApi;

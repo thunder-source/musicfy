@@ -15,6 +15,48 @@ type navTypes = {
   handleClick?: Function;
 };
 
+const Sidebar = () => {
+  return (
+    <div className=' min-w-[210px] max-h-screen gap-1 p-1 flex flex-col  '>
+      <div className='flex py-2 pb-4 flex-col px-4 border-border border-2 bg-accent_a2 rounded-lg '>
+        <div className='text-2xl text-accent_10' style={Jersey.style}>
+          BROWSE
+        </div>
+        <NavLinks />
+      </div>
+      <div className=' flex p-4 flex-col  border-border border-2 h-full bg-accent_a2 rounded-lg relative'>
+        <div className='flex items-center text-accent_10 justify-between'>
+          <div
+            className='text-2xl '
+            // style={Jersey.style}
+          >
+            PLAYLIST
+          </div>
+          <IconButton radius='full' className='cursor-pointer' variant='soft'>
+            <IoIosAdd className=' w-6 h-6' />
+          </IconButton>
+        </div>
+        <ScrollArea type='hover' scrollbars='vertical' className='w-full mt-4'>
+          <div className='flex flex-col w-full gap-2'>
+            {Array.apply(1, Array(1)).map((_, i) => {
+              return (
+                <Button key={i} variant='soft' className='justify-between'>
+                  <IoIosHeartEmpty />
+                  Liked Songs
+                </Button>
+              );
+            })}
+          </div>
+        </ScrollArea>
+
+        <div className='bottom-0 z-[-1] absolute left-4'>
+          <MellowSvg className='w-[160px] h-full' alt='Marsh mallow' />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // className={` ${
 //   item.to == pathname ? 'active-Link' : 'unActive-Link'
 // } flex flex-row my-6 justify-start items-center text-sm font-medium hover:text-cyan-500 text-gray-300 `}
@@ -72,51 +114,6 @@ const MobileSideBar = () => {
         <NavLinks handleClick={closeNav} />
       </div>
     </>
-  );
-};
-
-const Sidebar = () => {
-  return (
-    <div className=' min-w-[210px] max-h-screen gap-1 p-1 flex flex-col  '>
-      <div className='flex py-2 pb-4 flex-col px-4 border-border border-2 bg-accent_a2 rounded-lg '>
-        <div
-          className='text-2xl text-accent_10'
-          // style={Jersey.style}
-        >
-          BROWSE
-        </div>
-        <NavLinks />
-      </div>
-      <div className=' flex p-4 flex-col  border-border border-2 h-full bg-accent_a2 rounded-lg relative'>
-        <div className='flex items-center text-accent_10 justify-between'>
-          <div
-            className='text-2xl '
-            // style={Jersey.style}
-          >
-            PLAYLIST
-          </div>
-          <IconButton radius='full' className='cursor-pointer' variant='soft'>
-            <IoIosAdd className=' w-6 h-6' />
-          </IconButton>
-        </div>
-        <ScrollArea type='hover' scrollbars='vertical' className='w-full mt-4'>
-          <div className='flex flex-col w-full gap-2'>
-            {Array.apply(1, Array(1)).map((_, i) => {
-              return (
-                <Button key={i} variant='soft' className='justify-between'>
-                  <IoIosHeartEmpty />
-                  Liked Songs
-                </Button>
-              );
-            })}
-          </div>
-        </ScrollArea>
-
-        <div className='bottom-0 z-[-1] absolute left-4'>
-          <MellowSvg className='w-[160px] h-full' alt='Marsh mallow' />
-        </div>
-      </div>
-    </div>
   );
 };
 

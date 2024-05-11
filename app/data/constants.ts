@@ -1,6 +1,6 @@
 import { HiOutlineUserGroup, HiUserGroup } from 'react-icons/hi';
 import { RiHomeSmileFill, RiHomeSmileLine } from 'react-icons/ri';
-import { TbPhoto, TbPhotoFilled } from 'react-icons/tb';
+import { TbPhoto } from 'react-icons/tb';
 
 export const genres = [
   { title: 'Pop', value: 'POP' },
@@ -30,7 +30,7 @@ export const links = [
     name: 'Around You',
     to: '/around-you',
     icon: TbPhoto,
-    activeIcon: TbPhotoFilled,
+    activeIcon: TbPhoto,
   },
   {
     name: 'Top Artists',
