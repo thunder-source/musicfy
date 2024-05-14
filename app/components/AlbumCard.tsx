@@ -10,6 +10,7 @@ import { mainApi, useGetAlbumByIdQuery } from '@/redux/services/main';
 import { FaPlayCircle } from 'react-icons/fa';
 import { Card, Spinner } from '@radix-ui/themes';
 import { z } from 'zod';
+import PlaySongHandler from './PlaySongHandler';
 
 const AlbumCard = (album: z.infer<typeof NewReleasesItem>) => {
   const dispatch = useAppDispatch();
@@ -45,7 +46,7 @@ const AlbumCard = (album: z.infer<typeof NewReleasesItem>) => {
 
         <div className='w-full h-full  absolute rounded-radius_6 left-0 top-0 backdrop:blur-3xl  group-hover:backdrop-blur-sm group-hover:bg-accent_a2 '></div>
         <p className='group-hover:block  hidden max-w-[200px] break-words text-center font-semibold text-lg text-accent_a9  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100'>
-          <PlayPauseAlbumSongs {...album} />
+          <PlaySongHandler id={album.id} type='album' />
           {/* <PlayPause
             handlePause={handlePauseClick}
             // handlePlay={handlePlayClick}
@@ -65,7 +66,7 @@ const AlbumCard = (album: z.infer<typeof NewReleasesItem>) => {
                   : '/top-artists'
               }>
               {Array.isArray(album?.artists.all)
-                ? album?.artists?.all[0].name
+                ? album?.artists?.all[0]?.name
                 : ''}
             </Link>
           </p>
@@ -91,29 +92,3 @@ const AlbumCard = (album: z.infer<typeof NewReleasesItem>) => {
 };
 
 export default AlbumCard;
-
-const PlayPauseAlbumSongs = (album: NewReleasesItem) => {
-  const [trigger, { data, isFetching, isError }] =
-    mainApi.endpoints.getAlbumById.useLazyQuery();
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (data) {
-      dispatch(setActiveSong(data.data));
-    }
-    // console.log('fetching data');
-  }, [isFetching, data, dispatch]);
-
-  // console.log('data, isFetching, isError', data, isFetching, isError);
-  return (
-    <Spinner loading={isFetching} size={'3'}>
-      <FaPlayCircle
-        size={35}
-        className='text-gray-300 hover:scale-125 transform transition duration-500'
-        onClick={() => {
-          trigger(album.id);
-        }}
-      />
-    </Spinner>
-  );
-};

@@ -11,6 +11,7 @@ import AlbumCard from './components/AlbumCard';
 import { ThemeTesting } from './components/ThemeTesting';
 import Image from 'next/image';
 import Fallback from '@/assets/fallback/fallback.jpg';
+import AlbumCardLoading from './components/SkeletonLoading/AlbumCardLoading';
 
 export default function Discover() {
   const dispatch = useAppDispatch();
@@ -31,8 +32,6 @@ export default function Discover() {
     setPage(1);
     dispatch(mainApi.util.resetApiState());
   };
-
-  if (error) return <Error />;
 
   return (
     <div className='flex flex-col p-4 px-8 relative h-screen'>
@@ -67,13 +66,6 @@ export default function Discover() {
           </Select.Root>
         </div>
       </div>
-      {/* <Image
-        width='1000'
-        height='1000'
-        src={Fallback}
-        alt='img'
-        className='absolute'
-      /> */}
       <div className=''>
         <InfiniteScroll
           dataLength={data?.result?.length ? data.result.length : 0} //This is important field to render the next data
@@ -81,7 +73,7 @@ export default function Discover() {
             setPage(page + 1);
           }}
           hasMore={data?.lastPage === true ? false : true}
-          loader={error ? <Error /> : <SoundCardLoader />}
+          loader={error ? <Error /> : <AlbumCardLoading />}
           endMessage={
             <p style={{ textAlign: 'center' }} className='my-4 w-full'>
               <b>Yay! You have seen it all 🤩</b>
@@ -95,14 +87,7 @@ export default function Discover() {
           })}
         </InfiniteScroll>
       </div>
+      <div className='mt-14 h-14 block'>&nbsp;</div>
     </div>
   );
 }
-
-const SoundCardLoader = () => {
-  return Array.apply(0, Array(10)).map((_, i) => (
-    <Skeleton key={i}>
-      <div className='flex flex-col w-[250px]  h-80 p-4 bg-accent_a7 border-accent_a2 border-2 animate-slideup rounded-radius_6 '></div>
-    </Skeleton>
-  ));
-};

@@ -1,16 +1,26 @@
 'use client';
+import { TopArtistModelBase } from '@/types';
 import { Avatar, Skeleton } from '@radix-ui/themes';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import { z } from 'zod';
+import { PlayPauseAlbumSongs } from './AlbumCard';
+import PlaySongHandler from './PlaySongHandler';
 
-const ArtistCard = ({ artist }) => {
+const ArtistCard = (artist: z.infer<typeof TopArtistModelBase>) => {
   const router = useRouter();
 
+  const options = { maximumFractionDigits: 2 };
+  const formattedNumber = Intl.NumberFormat('en-US', options).format(
+    artist?.followerCount
+  );
+
   return (
-    <Skeleton loading={!artist?.name} className=''>
+    <div>
       <div
         className='flex transform transition-all duration-500  group relative flex-col w-[250px] p-4 hover:transition-all bg-accent_a4 bg-opacity-80 backdrop-blur-sm  cursor-pointer rounded-full hover:border-accent_10 border-transparent border-2'
-        onClick={() => router.push(`/artists/${artist.artistid}`)}>
+        // onClick={() => router.push(`/artists/${artist.artistid}`)}
+      >
         <Avatar
           className='w-full h-56 rounded-full  '
           src={artist?.image}
@@ -18,11 +28,24 @@ const ArtistCard = ({ artist }) => {
         />
 
         <div className='w-full h-full absolute rounded-full left-0 top-0 group-hover:bg-accent_3 group-hover:opacity-70'></div>
-        <p className='group-hover:block hidden max-w-[200px] break-words text-center font-semibold text-lg text-accent_a9  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100'>
+        {/* <p className='group-hover:block hidden max-w-[200px] break-words text-center font-semibold text-lg text-accent_a9  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100'>
           {artist?.name}
+        </p> */}
+        <p className='group-hover:block  hidden max-w-[200px] break-words text-center font-semibold text-lg text-accent_a9  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100'>
+          <PlaySongHandler id={artist.artistid} type={'artist'} />
+          {/* <PlayPause
+            handlePause={handlePauseClick}
+            // handlePlay={handlePlayClick}
+          /> */}
         </p>
       </div>
-    </Skeleton>
+      <p className='max-w-[200px] mx-auto mt-2 break-words text-center font-semibold text-lg text-accent_a9 opacity-100'>
+        {artist?.name}
+      </p>
+      <p className='max-w-[200px] mx-auto break-words text-center font-semibold text-sm text-accent_a7 opacity-100'>
+        {formattedNumber} Fans
+      </p>
+    </div>
   );
 };
 

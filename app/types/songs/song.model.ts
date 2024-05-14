@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { LyricsModel } from './song-lyrics.model';
-import { ArtistMapModel } from './artist-map.model';
-import { DownloadLinkModel } from './download.model';
+import { LyricsModel } from '../songs/song-lyrics.model';
+import { ArtistMapModel } from '../artist/artist-map.model';
+import { DownloadLinkModel } from '../common/download.model';
 
 export const SongModel = z.object({
   id: z.string(),

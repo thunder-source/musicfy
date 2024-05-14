@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { SongModel } from './song.model';
-import { DownloadLinkModel } from './download.model';
+import { SongModel } from '../songs/song.model';
+import { DownloadLinkModel } from '../common/download.model';
 
 export const NewReleasesItem = z.object({
   id: z.string(),

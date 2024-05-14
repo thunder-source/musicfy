@@ -3,11 +3,12 @@ import React from 'react';
 import { ArtistCard, Error } from '@/components';
 import { useGetTopArtistQuery } from '@/redux/services/main';
 import { Jersey } from '@/assets/fonts';
+import { TopArtistModelBase } from '@/types';
+import { z } from 'zod';
+import ArtistCardLoading from '@/components/SkeletonLoading/ArtistCardLoading';
 
 export default function TopArtist() {
   const { data, isFetching, error } = useGetTopArtistQuery({});
-
-  // if (isFetching) return <ArtistCardLoading />;
 
   if (error) return <Error />;
 
@@ -20,10 +21,14 @@ export default function TopArtist() {
       </h2>
       <div className='flex flex-wrap gap-8 '>
         {isFetching
-          ? Array.apply(0, new Array(20)).map((_, i) => <ArtistCard key={i} />)
-          : data?.data?.results?.map((artist) => (
-              <ArtistCard key={artist.artistid} artist={artist} />
-            ))}
+          ? Array.apply(0, new Array(20)).map((_, i) => (
+              <ArtistCardLoading key={i} />
+            ))
+          : data?.data?.results?.map(
+              (artist: z.infer<typeof TopArtistModelBase>) => (
+                <ArtistCard key={artist.artistid} {...artist} />
+              )
+            )}
       </div>
     </div>
   );

@@ -1,15 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
-
-interface Song {
-  // Define the structure of a song
-}
+import { z } from 'zod';
+import { SongModel } from '@/types/songs/song.model';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface State {
-  currentSongs: Song[];
+  currentSongs: z.infer<typeof SongModel>[] | [];
   currentIndex: number;
   isActive: boolean;
   isPlaying: boolean;
-  activeSong: Song | {};
+  activeSong: z.infer<typeof SongModel> | {};
 }
 
 const initialState: State = {
@@ -20,24 +18,22 @@ const initialState: State = {
   activeSong: {},
 };
 
+type setActiveSongPayloadType = {
+  songs: z.infer<typeof SongModel>[];
+  index: number;
+};
+
 const playerSlice = createSlice({
   name: 'player',
   initialState,
   reducers: {
-    setActiveSong: (state, { payload }) => {
-      console.log(payload);
-      state.activeSong = payload.songs[0];
-
-      state.currentSongs = payload.data;
-      // if (action.payload?.data?.tracks?.hits) {
-      //   state.currentSongs = action.payload.data.tracks.hits;
-      // } else if (action.payload?.data?.properties) {
-      //   state.currentSongs = action.payload?.data?.tracks;
-      // } else {
-      //   state.currentSongs = action.payload.data;
-      // }
-
-      // state.currentIndex = action.payload.i;
+    setActiveSong: (
+      state,
+      { payload }: PayloadAction<setActiveSongPayloadType>
+    ) => {
+      state.activeSong = payload.songs[payload.index];
+      state.currentIndex = payload.index;
+      state.currentSongs = payload.songs;
       state.isActive = true;
     },
 

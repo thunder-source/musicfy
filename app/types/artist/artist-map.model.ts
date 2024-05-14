@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { DownloadLinkModel } from './download.model';
+import { DownloadLinkModel } from '../common/download.model';
 
 export const ArtistMapModel = z.object({
   id: z.string(),

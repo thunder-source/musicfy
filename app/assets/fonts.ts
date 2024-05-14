@@ -5,4 +5,5 @@ export const Jersey = Jersey_10({
   weight: '400',
   subsets: ['latin'],
   display: 'swap',
+  adjustFontFallback: false,
 });
