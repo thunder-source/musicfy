@@ -75,7 +75,7 @@ const ArtistPlaySongHandler = ({ id }: { id: String }) => {
     mainApi.endpoints.getArtistById.useLazyQuery();
 
   useEffect(() => {
-    if (data) {
+    if (data && !isFetching) {
       if (Array.isArray(data.data.topSongs) && data.data.topSongs.length > 0) {
         dispatch(
           setActiveSong({
@@ -91,6 +91,7 @@ const ArtistPlaySongHandler = ({ id }: { id: String }) => {
 
   useEffect(() => {
     if (isError) {
+      console.log('isError', isError);
       toast.error('oops Something went wrong');
     }
   }, [isError]);

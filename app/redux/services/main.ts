@@ -21,7 +21,8 @@ interface NewReleases {
 export const mainApi = createApi({
   reducerPath: 'mainApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://music-api.pradityamanjhi.site/api/',
+    baseUrl: 'http://localhost:3000/api/',
+    // baseUrl: 'https://music-api.pradityamanjhi.site/api/',
   }),
   endpoints: (builder) => ({
     getNewReleases: builder.query<
