@@ -1,7 +1,7 @@
 import React from 'react';
 import { RxLoop } from 'react-icons/rx';
 import { BsFillPauseFill, BsFillPlayFill, BsShuffle } from 'react-icons/bs';
-import { IconButton } from '@radix-ui/themes';
+import { IconButton, Tooltip } from '@radix-ui/themes';
 
 type props = {
   isPlaying: Boolean;
@@ -39,29 +39,31 @@ const LeftControls = ({
           />
         </IconButton>
       )}
-
-      <IconButton
-        onClick={() => setRepeat((prev) => !prev)}
-        variant='ghost'
-        radius='full'
-        color='gray'
-        className={`p-2 mx-1 cursor-pointer hidden sm:block ${
-          repeat && 'bg-gray_a5'
-        }`}>
-        <RxLoop size={20} />
-      </IconButton>
-
-      <IconButton
-        variant='ghost'
-        radius='full'
-        size='4'
-        color='gray'
-        onClick={() => setShuffle((prev) => !prev)}
-        className={`p-2 cursor-pointer hidden sm:block ${
-          shuffle && 'bg-gray_a5'
-        } `}>
-        <BsShuffle size={20} />
-      </IconButton>
+      <Tooltip content='Loop'>
+        <IconButton
+          onClick={() => setRepeat((prev) => !prev)}
+          variant='ghost'
+          radius='full'
+          color='gray'
+          className={`p-2 mx-1 cursor-pointer hidden sm:block ${
+            repeat && 'bg-gray_a5'
+          }`}>
+          <RxLoop size={20} />
+        </IconButton>
+      </Tooltip>
+      <Tooltip content='Shuffle' className='fill-transparent'>
+        <IconButton
+          variant='ghost'
+          radius='full'
+          size='4'
+          color='gray'
+          onClick={() => setShuffle((prev) => !prev)}
+          className={`p-2 cursor-pointer hidden sm:block ${
+            shuffle && 'bg-gray_a5'
+          } `}>
+          <BsShuffle size={20} />
+        </IconButton>
+      </Tooltip>
     </div>
   );
 };

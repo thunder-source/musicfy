@@ -1,7 +1,5 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
 import {
   nextSong,
   prevSong,
@@ -9,31 +7,37 @@ import {
 } from '../../redux/features/playerSlice';
 import LeftControls from './LeftControls';
 import Player from './Player';
-import Seekbar from './Seekbar';
 import Track from './Track';
 import VolumeBar from './VolumeBar';
-import { Card, DropdownMenu, IconButton, Slider, Text } from '@radix-ui/themes';
-import { MdSkipPrevious } from 'react-icons/md';
-import { HiForward } from 'react-icons/hi2';
-import { BsFastForward } from 'react-icons/bs';
+import { Card, DropdownMenu, IconButton } from '@radix-ui/themes';
 import { FcLikePlaceholder } from 'react-icons/fc';
 import { PiDotsThreeCircleVerticalBold } from 'react-icons/pi';
 import { FcLike } from 'react-icons/fc';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHandlers';
+
 const MusicPlayer = () => {
-  const { activeSong, currentSongs, currentIndex, isActive, isPlaying } =
-    useSelector((state) => state.player);
+  const {
+    activeSong,
+    currentSongs,
+    currentIndex,
+    isActive,
+    isPlaying,
+    volume,
+  } = useAppSelector((state) => state.player);
+
   const [duration, setDuration] = useState(0);
   const [seekTime, setSeekTime] = useState(0);
   const [appTime, setAppTime] = useState(0);
-  const [volume, setVolume] = useState([30]);
+  const [playerVolume, setPlayerVolume] = useState(volume);
   const [repeat, setRepeat] = useState(false);
   const [shuffle, setShuffle] = useState(false);
   const [liked, setliked] = useState(false);
-  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   if (currentSongs.length) dispatch(playPause(true));
-  // }, [currentIndex]);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (currentSongs.length) dispatch(playPause(true));
+  }, [currentIndex, dispatch, currentSongs.length]);
 
   const handlePlayPause = () => {
     if (!isActive) return;
@@ -46,8 +50,11 @@ const MusicPlayer = () => {
   };
 
   const handleNextSong = () => {
-    dispatch(playPause(false));
-
+    // console.log('handleNextSong');
+    if (currentIndex === currentSongs.length - 1) {
+      dispatch(playPause(false));
+      return undefined;
+    }
     if (!shuffle) {
       dispatch(nextSong((currentIndex + 1) % currentSongs.length));
     } else {
@@ -65,6 +72,9 @@ const MusicPlayer = () => {
     }
   };
 
+  if (!isActive) {
+    return;
+  }
   return (
     <Card className='rounded-full right-1/2 absolute bottom-5 m-auto translate-x-1/2  px-2 w-full flex items-center justify-between  max-w-screen-xl '>
       <LeftControls
@@ -79,18 +89,17 @@ const MusicPlayer = () => {
       <Track
         handlePrevSong={handlePrevSong}
         handleNextSong={handleNextSong}
-        isPlaying={isPlaying}
-        isActive={isActive}
         activeSong={activeSong}
         value={appTime}
         max={duration}
         setSeekTime={setSeekTime}
-        appTime={appTime}
+        currentSongs={currentSongs}
+        currentIndex={currentIndex}
       />
 
       <Player
         activeSong={activeSong}
-        volume={volume}
+        volume={playerVolume}
         isPlaying={isPlaying}
         seekTime={seekTime}
         repeat={repeat}
@@ -112,7 +121,7 @@ const MusicPlayer = () => {
         {liked ? <FcLikePlaceholder size={25} /> : <FcLike size={25} />}
       </IconButton>
 
-      <VolumeBar value={volume} setVolume={setVolume} />
+      <VolumeBar value={playerVolume} setVolume={setPlayerVolume} />
       <MoreOptions />
     </Card>
   );

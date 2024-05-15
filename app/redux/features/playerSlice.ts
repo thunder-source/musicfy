@@ -8,6 +8,7 @@ interface State {
   isActive: boolean;
   isPlaying: boolean;
   activeSong: z.infer<typeof SongModel> | {};
+  volume: number;
 }
 
 const initialState: State = {
@@ -16,6 +17,7 @@ const initialState: State = {
   isActive: false,
   isPlaying: false,
   activeSong: {},
+  volume: 30,
 };
 
 type setActiveSongPayloadType = {
@@ -38,25 +40,13 @@ const playerSlice = createSlice({
     },
 
     nextSong: (state, action) => {
-      // if (state.currentSongs[action.payload]?.track) {
-      //   state.activeSong = state.currentSongs[action.payload]?.track;
-      // } else {
-      //   state.activeSong = state.currentSongs[action.payload];
-      // }
-
       state.activeSong = state.currentSongs[action.payload];
-
       state.currentIndex = action.payload;
       state.isActive = true;
     },
 
     prevSong: (state, action) => {
-      // if (state.currentSongs[action.payload]) {
-      //   state.activeSong = state.currentSongs[action.payload];
-      // } else {
-      // }
       state.activeSong = state.currentSongs[action.payload];
-
       state.currentIndex = action.payload;
       state.isActive = true;
     },

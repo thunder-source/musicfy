@@ -6,7 +6,7 @@ const PlayPause = () => {
     (state) => state.player
   );
 
-  return isPlaying && activeSong?.title === song.title ? (
+  return isPlaying ? (
     <FaPauseCircle
       size={35}
       className='text-gray-300 hover:scale-125 transform transition duration-500'

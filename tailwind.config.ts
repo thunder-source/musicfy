@@ -1,8 +1,6 @@
-import { accentColors } from '@radix-ui/themes/props';
-
 const plugin = require('tailwindcss/plugin');
 const { blackA, mauve, violet, indigo, purple } = require('@radix-ui/colors');
-
+import type { PluginAPI } from 'tailwindcss/types/config';
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
@@ -152,12 +150,14 @@ module.exports = {
     },
   },
   plugins: [
-    plugin(({ matchUtilities }) => {
-      matchUtilities({
-        perspective: (value) => ({
-          perspective: value,
-        }),
-      });
-    }),
+    plugin(
+      ({ matchUtilities }: { matchUtilities: PluginAPI['matchUtilities'] }) => {
+        matchUtilities({
+          perspective: (value) => ({
+            perspective: value,
+          }),
+        });
+      }
+    ),
   ],
 };

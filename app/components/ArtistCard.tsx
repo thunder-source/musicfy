@@ -1,10 +1,9 @@
 'use client';
 import { TopArtistModelBase } from '@/types';
-import { Avatar, Skeleton } from '@radix-ui/themes';
+import { Avatar } from '@radix-ui/themes';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { z } from 'zod';
-import { PlayPauseAlbumSongs } from './AlbumCard';
 import PlaySongHandler from './PlaySongHandler';
 
 const ArtistCard = (artist: z.infer<typeof TopArtistModelBase>) => {

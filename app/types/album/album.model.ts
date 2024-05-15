@@ -17,3 +17,12 @@ export const AlbumModel = z.object({
   image: z.array(DownloadLinkModel),
   songs: z.array(SongModel).nullable(),
 });
+
+export const AlbumModelApiResponse = z.object({
+  success: z.boolean(),
+  data: AlbumModel,
+});
+
+export interface AlbumByIdApiParameters {
+  artistId: String;
+}

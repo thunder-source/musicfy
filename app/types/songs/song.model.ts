@@ -32,3 +32,12 @@ export const SongModel = z.object({
   image: z.array(DownloadLinkModel),
   downloadUrl: z.array(DownloadLinkModel),
 });
+
+export const SongByIdApiResponse = z.object({
+  success: z.boolean(),
+  data: SongModel,
+});
+
+export interface SongByIdApiParameters {
+  songId: String;
+}

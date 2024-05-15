@@ -1,30 +1,13 @@
-import React, { useEffect } from 'react';
-import PlayPause from './PlayPause';
-import { playPause, setActiveSong } from '../redux/features/playerSlice';
+import React from 'react';
 import Link from 'next/link';
-import { useAppDispatch, useAppSelector } from '@/hooks/reduxHandlers';
 import { NewReleasesItem } from '@/types';
 import FallBackImage from '@/assets/fallback/fallback.jpg';
 import Image from 'next/image';
-import { mainApi, useGetAlbumByIdQuery } from '@/redux/services/main';
-import { FaPlayCircle } from 'react-icons/fa';
-import { Card, Spinner } from '@radix-ui/themes';
+import { Card } from '@radix-ui/themes';
 import { z } from 'zod';
 import PlaySongHandler from './PlaySongHandler';
 
 const AlbumCard = (album: z.infer<typeof NewReleasesItem>) => {
-  const dispatch = useAppDispatch();
-  const handlePauseClick = () => {
-    dispatch(playPause(false));
-  };
-
-  // console.log(album);
-
-  // const handlePlayClick = () => {
-  //   dispatch(setActiveSong({ song, data, i }));
-  //   dispatch(playPause(true));
-  // };
-
   const cleanedName = album.name.replace(/\(From\s"[^"]+"\)/g, '');
 
   return (
@@ -46,11 +29,7 @@ const AlbumCard = (album: z.infer<typeof NewReleasesItem>) => {
 
         <div className='w-full h-full  absolute rounded-radius_6 left-0 top-0 backdrop:blur-3xl  group-hover:backdrop-blur-sm group-hover:bg-accent_a2 '></div>
         <p className='group-hover:block  hidden max-w-[200px] break-words text-center font-semibold text-lg text-accent_a9  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100'>
-          <PlaySongHandler id={album.id} type='album' />
-          {/* <PlayPause
-            handlePause={handlePauseClick}
-            // handlePlay={handlePlayClick}
-          /> */}
+          <PlaySongHandler id={album.id} type={album.type} />
         </p>
       </div>
       <div className='flex items-center justify-between gap-2'>
@@ -58,14 +37,15 @@ const AlbumCard = (album: z.infer<typeof NewReleasesItem>) => {
           <p className='font-semibold text-base w-[210px] truncate'>
             <Link href={`/songs/${album.id}`}>{cleanedName}</Link>
           </p>
-          <p className='text-sm truncate  mt-1'>
+          <p className='text-sm truncate  max-w-[200px] mt-1'>
             <Link
               href={
-                Array.isArray(album?.artists.all)
+                Array.isArray(album?.artists.all) &&
+                album.artists.all.length > 0
                   ? `/artists/${album.artists.all[0].id}`
                   : '/top-artists'
               }>
-              {Array.isArray(album?.artists.all)
+              {Array.isArray(album?.artists.all) && album.artists.all.length > 0
                 ? album?.artists?.all[0]?.name
                 : ''}
             </Link>

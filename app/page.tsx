@@ -1,16 +1,13 @@
 'use client';
-import { Flex, Select, Skeleton, Slider } from '@radix-ui/themes';
+import { Select } from '@radix-ui/themes';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Error, SongCard } from '@/components';
+import { Error } from '@/components';
 import { mainApi, useGetNewReleasesQuery } from '@/redux/services/main';
 import { useState } from 'react';
 import { Jersey } from './assets/fonts';
 import { languages } from '@/data/constants';
 import { useAppDispatch, useAppSelector } from './hooks/reduxHandlers';
 import AlbumCard from './components/AlbumCard';
-import { ThemeTesting } from './components/ThemeTesting';
-import Image from 'next/image';
-import Fallback from '@/assets/fallback/fallback.jpg';
 import AlbumCardLoading from './components/SkeletonLoading/AlbumCardLoading';
 
 export default function Discover() {

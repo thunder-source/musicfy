@@ -1,17 +1,30 @@
 /* eslint-disable jsx-a11y/media-has-caption */
+import { SongModel } from '@/types';
 import React, { useRef, useEffect } from 'react';
+import { z } from 'zod';
+
+type props = {
+  activeSong: z.infer<typeof SongModel>;
+  isPlaying: boolean;
+  volume: number;
+  seekTime: number;
+  repeat: boolean;
+  onEnded: () => {};
+  onTimeUpdate: () => {};
+  onLoadedData: () => {};
+};
 
 const Player = ({
   activeSong,
   isPlaying,
   volume,
   seekTime,
+  repeat,
   onEnded,
   onTimeUpdate,
   onLoadedData,
-  repeat,
-}) => {
-  const ref = useRef(null);
+}: props) => {
+  const ref = useRef<HTMLAudioElement>(null);
   // eslint-disable-next-line no-unused-expressions
   if (ref.current) {
     if (isPlaying) {
@@ -22,16 +35,18 @@ const Player = ({
   }
 
   useEffect(() => {
-    ref.current.volume = volume / 100;
+    if (ref.current !== null) {
+      ref.current.volume = volume / 100;
+    }
   }, [volume]);
   // updates audio element only on seekTime change (and not on each rerender):
   useEffect(() => {
-    ref.current.currentTime = seekTime;
+    if (ref.current !== null) ref.current.currentTime = seekTime;
   }, [seekTime]);
 
   if (
-    !Array.isArray(activeSong?.downloadUrl) &&
-    activeSong.downloadUrl[4]?.url
+    Array.isArray(activeSong?.downloadUrl) &&
+    activeSong.downloadUrl.length === 0
   ) {
     return;
   }

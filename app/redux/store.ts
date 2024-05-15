@@ -1,8 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import playerReducer from './features/playerSlice';
-// import mainReducer from './features/mainSlice';
 import { mainApi } from './services/main';
-import { enableMapSet } from 'immer';
 import {
   persistStore,
   persistReducer,
@@ -15,6 +12,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import rootReducer from './features/rootReducer';
+import playerReducer from './features/playerSlice';
 
 const persistConfig = {
   key: 'root',
@@ -24,8 +22,6 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-enableMapSet();
 
 export const store = configureStore({
   reducer: persistedReducer,

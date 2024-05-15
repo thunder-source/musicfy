@@ -1,8 +1,12 @@
 import {
+  AlbumByIdApiParameters,
+  AlbumModelApiResponse,
   ArtistModelApiParameters,
   ArtistModelApiResponse,
   NewReleasesAPIResponseModel,
   NewReleasesMainAPIResponseModel,
+  SongByIdApiParameters,
+  SongByIdApiResponse,
   TopArtistAPIResponseModel,
 } from '@/types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
@@ -63,17 +67,16 @@ export const mainApi = createApi({
       query: ({ artistId, page, songCount, albumCount, sortBy, sortOrder }) =>
         `artists?id=${artistId}`,
     }),
-    // /${page ? `page=${page}` : ''}
-    // getArtistSongs: builder.query<
-    //   z.infer<typeof TopArtistAPIResponseModel>,
-    //   {}
-    // >({
-    //   query: () => `artists/${}/songs`,
-    // }),
 
-    getSongById: builder.query({ query: (id) => `albums/&id=${id}` }),
+    getSongById: builder.query<
+      z.infer<typeof SongByIdApiResponse>,
+      SongByIdApiParameters
+    >({ query: ({ songId }) => `songs/${songId}` }),
 
-    getAlbumById: builder.query({ query: (id) => `albums?id=${id}` }),
+    getAlbumById: builder.query<
+      z.infer<typeof AlbumModelApiResponse>,
+      AlbumByIdApiParameters
+    >({ query: ({ artistId }) => `albums?id=${artistId}` }),
   }),
 });
 

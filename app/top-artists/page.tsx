@@ -30,6 +30,7 @@ export default function TopArtist() {
               )
             )}
       </div>
+      <div className='mt-14 h-14 block'>&nbsp;</div>
     </div>
   );
 }

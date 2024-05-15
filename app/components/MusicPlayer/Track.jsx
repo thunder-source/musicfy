@@ -1,25 +1,33 @@
-import { cleanName, parseHtmlToText } from '@/utility/cleanName';
-import { Flex, IconButton } from '@radix-ui/themes';
+import { parseHtmlToText } from '@/utility/cleanName';
+import { IconButton } from '@radix-ui/themes';
 import Image from 'next/image';
 import React from 'react';
-import { BsFastForward } from 'react-icons/bs';
-import { MdSkipNext } from 'react-icons/md';
 import { TbPlayerTrackNext } from 'react-icons/tb';
 import { TbPlayerTrackPrev } from 'react-icons/tb';
 import * as Slider from '@radix-ui/react-slider';
 const Track = ({
   handlePrevSong,
   handleNextSong,
-  isPlaying,
-  isActive,
   activeSong,
   value,
   max,
   setSeekTime,
-  appTime,
+  currentIndex,
+  currentSongs,
 }) => {
+  let playNextSongDisabled = false;
+  let playPrevSongDisabled = false;
+
+  if (currentIndex === currentSongs.length - 1) {
+    playNextSongDisabled = true;
+  }
+  if (currentIndex === 0) {
+    playPrevSongDisabled = true;
+  }
+
   const getTime = (time) =>
     `${Math.floor(time / 60)}:${`0${Math.floor(time % 60)}`.slice(-2)}`;
+
   return (
     <div className='flex flex-1 items-center justify-start w-full mx-28'>
       <IconButton
@@ -27,6 +35,7 @@ const Track = ({
         radius='full'
         size='2'
         color='gray'
+        disabled={playPrevSongDisabled}
         onClick={handlePrevSong}
         className={`p-2 cursor-pointer hidden sm:block  `}>
         <TbPlayerTrackPrev size={25} />
@@ -37,7 +46,7 @@ const Track = ({
           height={56}
           src={Array.isArray(activeSong?.image) && activeSong?.image[1].url}
           alt='cover art'
-          className='rounded-radius_2 w-14 w-14'
+          className='rounded-radius_2 w-14'
         />
         <div className='mx-1 flex flex-col w-full'>
           <p className='truncate  font-bold text-xs'>
@@ -56,20 +65,6 @@ const Track = ({
               / <span className=''>{max === 0 ? '0:00' : getTime(max)}</span>
             </div>
           </div>
-          {/* <Slider
-            step={1}
-            value={[value]}
-            min={0}
-            max={max}
-            defaultValue={[0]}
-            onValueChange={(e) => {
-              console.log(e);
-              setSeekTime(e[0]);
-            }}
-            variant='soft'
-            size='1'
-            className='mt-2'
-          /> */}
           <Slider.Root
             className='relative flex items-center select-none touch-none w-full h-5'
             defaultValue={[0]}
@@ -95,6 +90,8 @@ const Track = ({
         radius='full'
         size='2'
         color='gray'
+        disabled={playNextSongDisabled}
+        onClick={handleNextSong}
         className='cursor-pointer p-2'>
         <TbPlayerTrackNext size={25} />
       </IconButton>
