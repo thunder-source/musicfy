@@ -49,7 +49,7 @@ export default function RootLayout({
                   </div>
                   <MusicPlayer />
                 </div>
-                <ThemePanel />
+                {/* <ThemePanel /> */}
               </Theme>
             </ThemeProvider>
           </PersistGate>

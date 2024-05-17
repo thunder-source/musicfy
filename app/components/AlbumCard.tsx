@@ -1,20 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
-import { NewReleasesItem } from '@/types';
+import { AlbumModel, NewReleasesItem } from '@/types';
 import FallBackImage from '@/assets/fallback/fallback.jpg';
 import Image from 'next/image';
 import { Card } from '@radix-ui/themes';
 import { z } from 'zod';
 import PlaySongHandler from './PlaySongHandler';
 
-const AlbumCard = (album: z.infer<typeof NewReleasesItem>) => {
+const AlbumCard = (
+  album: z.infer<typeof NewReleasesItem> | z.infer<typeof AlbumModel>
+) => {
   const cleanedName = album.name.replace(/\(From\s"[^"]+"\)/g, '');
 
   return (
     <Card
       variant='classic'
       size={'4'}
-      className='flex flex-col  p-4   shadow-sm animate-slideup rounded-radius_6 group '>
+      className='flex flex-col  p-4  max-w-[250px] shadow-sm animate-slideup rounded-radius_6 group '>
       <div className='relative w-full h-56 overflow-hidden  rounded-radius_6'>
         <Image
           loading='lazy'

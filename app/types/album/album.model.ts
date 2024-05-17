@@ -7,7 +7,7 @@ export const AlbumModel = z.object({
   name: z.string(),
   description: z.string(),
   year: z.number().nullable(),
-  type: z.string(),
+  type: z.union([z.literal('song'), z.literal('album')]),
   playCount: z.number().nullable(),
   language: z.string(),
   explicitContent: z.boolean(),

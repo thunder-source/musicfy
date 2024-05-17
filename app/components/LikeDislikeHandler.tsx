@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { LikeButton } from './LikeButton';
+import { IconButton } from '@radix-ui/themes';
 
-type Props = {};
+type Props = {
+  size?: number;
+};
 
-export default function LikeDislikeHandler({}: Props) {
+export default function LikeDislikeHandler({ size }: Props) {
   const [mockLike, setMockLke] = useState(false);
   return (
-    <div className='w-7 h-7'>
-      <LikeButton
-        isLiked={mockLike}
-        size={2}
-        handleLike={() => {
-          setMockLke(!mockLike);
-        }}
-      />
-    </div>
+    <LikeButton
+      isLiked={mockLike}
+      size={size ? size : 1.5}
+      handleLike={() => {
+        setMockLke(!mockLike);
+      }}
+    />
   );
 }

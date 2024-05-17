@@ -11,12 +11,11 @@ export const LikeButton = ({ isLiked, handleLike, size }: LikeButtonProps) => {
   return (
     <div className={`like-btn-container ${isLiked ? 'liked' : ''}`}>
       <AnimatePresence>
-        <motion.button
+        <motion.div
           whileTap='tap'
           onClick={handleLike && handleLike}
-          type='button'
           style={{ scale: size ? size : 2 }}
-          className='like-btn '>
+          className='like-btn fill-[#FFCDD2]'>
           {isLiked && (
             <svg
               className='svg-icon-answer-like-circle'
@@ -225,7 +224,7 @@ export const LikeButton = ({ isLiked, handleLike, size }: LikeButtonProps) => {
               fill='inherit'
             />
           </motion.svg>
-        </motion.button>
+        </motion.div>
       </AnimatePresence>
     </div>
   );

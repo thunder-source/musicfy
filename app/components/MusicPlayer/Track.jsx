@@ -5,6 +5,7 @@ import React from 'react';
 import { TbPlayerTrackNext } from 'react-icons/tb';
 import { TbPlayerTrackPrev } from 'react-icons/tb';
 import * as Slider from '@radix-ui/react-slider';
+import { convertSecondsToVisualTime } from '@/lib/utils';
 const Track = ({
   handlePrevSong,
   handleNextSong,
@@ -24,9 +25,6 @@ const Track = ({
   if (currentIndex === 0) {
     playPrevSongDisabled = true;
   }
-
-  const getTime = (time) =>
-    `${Math.floor(time / 60)}:${`0${Math.floor(time % 60)}`.slice(-2)}`;
 
   return (
     <div className='flex flex-1 items-center justify-start w-full mx-28'>
@@ -61,8 +59,13 @@ const Track = ({
                 : 'No active Song'}
             </p>
             <div>
-              <span className=''>{value === 0 ? '0:00' : getTime(value)}</span>{' '}
-              / <span className=''>{max === 0 ? '0:00' : getTime(max)}</span>
+              <span className=''>
+                {value === 0 ? '0:00' : convertSecondsToVisualTime(value)}
+              </span>{' '}
+              /{' '}
+              <span className=''>
+                {max === 0 ? '0:00' : convertSecondsToVisualTime(max)}
+              </span>
             </div>
           </div>
           <Slider.Root
