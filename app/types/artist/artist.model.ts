@@ -65,7 +65,8 @@ export const ArtistModel = z.object({
 export const ArtistModelApiResponse = z.object({
   success: z.boolean(),
   data: ArtistModel,
-  hasMoreTopSongs: z.boolean(),
+  hasMoreTopSongs: z.boolean().optional(),
+  hasMoreTopAlbums: z.boolean().optional(),
 });
 
 export interface ArtistModelApiParameters {

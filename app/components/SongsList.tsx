@@ -3,12 +3,11 @@ import { SongModel } from '@/types';
 import Image from 'next/image';
 import React from 'react';
 import { z } from 'zod';
-import LikeDislikeHandler from './LikeDislikeHandler';
-import { IconButton } from '@radix-ui/themes';
 import Link from 'next/link';
 import { FaPlayCircle } from 'react-icons/fa';
 import { useAppDispatch } from '@/hooks/reduxHandlers';
 import { setActiveSong } from '@/redux/features/playerSlice';
+import LikeButtonLite from './LikeButtonLite';
 
 type Props = {
   songs: z.infer<typeof SongModel>[];
@@ -19,7 +18,7 @@ export default function SongsList({ songs }: Props) {
   return songs.map((song: z.infer<typeof SongModel>, index: number) => {
     return (
       <div
-        key={song.id}
+        key={song.id + index}
         className='flex justify-start items-center  my-2 hover:bg-accent_a4 rounded-radius_2 py-2 group '>
         <div className=' w-14 text-center px-2 truncate text-sm'>
           {index + 1}
@@ -52,10 +51,7 @@ export default function SongsList({ songs }: Props) {
           {song.artists.primary.map((ele, index) => {
             return (
               <Link href={`/artists/${ele.id}`} key={ele.id}>
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: ele.name,
-                  }}></span>
+                <span>ele.name</span>
                 <span className='text-accent_8'>
                   {index + 1 !== song.artists.primary.length && ' | '}{' '}
                 </span>
@@ -67,12 +63,7 @@ export default function SongsList({ songs }: Props) {
           {song.album.name}
         </div>
         <div className='px-4 h-full'>
-          <IconButton
-            variant='soft'
-            size='3'
-            className='rounded-full cursor-pointer'>
-            <LikeDislikeHandler size={1.2} />
-          </IconButton>
+          <LikeButtonLite />
         </div>
         <div className='px-4 w-20 text-center'>
           {song.duration && convertSecondsToVisualTime(song.duration)}

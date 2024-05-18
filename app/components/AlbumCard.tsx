@@ -37,7 +37,9 @@ const AlbumCard = (
       <div className='flex items-center justify-between gap-2'>
         <div className='mt-4 flex-col'>
           <p className='font-semibold text-base w-[210px] truncate'>
-            <Link href={`/songs/${album.id}`}>{cleanedName}</Link>
+            <Link href={`/songs/${album.id}`} prefetch={false}>
+              {cleanedName}
+            </Link>
           </p>
           <p className='text-sm truncate  max-w-[200px] mt-1'>
             <Link

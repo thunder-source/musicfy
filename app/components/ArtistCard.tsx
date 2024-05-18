@@ -20,7 +20,7 @@ const ArtistCard = (artist: z.infer<typeof TopArtistModelBase>) => {
         className='flex transform transition-all duration-500  group relative flex-col w-fit p-4 hover:transition-all bg-accent_a4 bg-opacity-80 backdrop-blur-sm  cursor-pointer rounded-full hover:border-accent_10 border-transparent border-2'
         onClick={() => router.push(`/artists/${artist.artistid}`)}>
         <Avatar
-          className='w-full h-56 rounded-full'
+          className='w-56 h-56 rounded-full'
           src={artist?.image}
           fallback={artist?.name}
         />

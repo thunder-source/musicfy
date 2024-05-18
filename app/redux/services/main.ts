@@ -85,36 +85,36 @@ export const mainApi = createApi({
             return (currentCache = newItems);
           }
           if (newItems.data.topSongs?.length === 0) {
-            console.log('newItems.data.topSongs?.length ===');
             currentCache.hasMoreTopSongs = false;
             return;
           }
           if (currentCache.data.topSongs && newItems.data.topSongs) {
-            console.log('currentCache.data.topSongs && newItems.data.topSongs');
             currentCache.hasMoreTopSongs = true;
             currentCache.data.topSongs.push(...newItems.data.topSongs);
             return;
           }
         }
-        console.log('current cache', currentCache);
-        currentCache = newItems;
-        // console.log('artists calling');
-        // currentCache.lastPage = newItems.lastPage;
-        // if (currentCache.result && newItems.result) {
-        //   currentCache.result.push(...newItems.result);
-        // }
+        if (args.arg.albumCount === 50) {
+          if (args.arg.page === 0) {
+            return (currentCache = newItems);
+          }
+          if (newItems.data.topAlbums?.length === 0) {
+            currentCache.hasMoreTopAlbums = false;
+            return;
+          }
+          if (currentCache.data.topAlbums && newItems.data.topAlbums) {
+            currentCache.hasMoreTopAlbums = true;
+            currentCache.data.topAlbums.push(...newItems.data.topAlbums);
+            return;
+          }
+        }
+        // currentCache = newItems;
       },
 
       // Refetch when the page arg changes
       forceRefetch({ currentArg, previousArg, endpointState }) {
         return currentArg !== previousArg;
       },
-      // transformResponse(
-      //   response: z.infer<typeof NewReleasesMainAPIResponseModel>
-      // ) {
-      //   NewReleasesMainAPIResponseModel.parse(response);
-      //   return response.data;
-      // },
     }),
 
     getArtistAlbumById: builder.query<
