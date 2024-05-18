@@ -6,6 +6,7 @@ import { Jersey } from '@/assets/fonts';
 import { TopArtistModelBase } from '@/types';
 import { z } from 'zod';
 import ArtistCardLoading from '@/components/SkeletonLoading/ArtistCardLoading';
+import IsPlayerOpenBottomMargin from '@/components/common/IsPlayerOpenBottomMargin';
 
 export default function TopArtist() {
   const { data, isFetching, error } = useGetTopArtistQuery({});
@@ -13,7 +14,7 @@ export default function TopArtist() {
   if (error) return <Error />;
 
   return (
-    <div className='flex flex-col p-4 px-8'>
+    <div className='flex flex-col p-4 px-8 w-full overflow-y-auto'>
       <h2
         className='font-bold text-5xl text-accent_10 text-left mb-8'
         style={Jersey.style}>
@@ -30,7 +31,7 @@ export default function TopArtist() {
               )
             )}
       </div>
-      <div className='mt-14 h-14 block'>&nbsp;</div>
+      <IsPlayerOpenBottomMargin />
     </div>
   );
 }

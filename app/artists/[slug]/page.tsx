@@ -31,14 +31,17 @@ import AlbumCardLoading from '@/components/SkeletonLoading/AlbumCardLoading';
 import { Error } from '@/components';
 import AlbumCard from '@/components/AlbumCard';
 import { z } from 'zod';
-import { AlbumModel } from '@/types';
+import { AlbumModel, ArtistModelApiResponse } from '@/types';
 import SongsList from '@/components/SongsList';
 import { isLink } from '@/lib/utils';
 import SongListLoading from '@/components/SkeletonLoading/SongListLoading';
 import SongsInfiniteScroll from '@/components/songs/SongsInfiniteScroll';
+import { setActiveSong } from '@/redux/features/playerSlice';
+import ArtistOverViewPage from '@/components/artists/ArtistOverViewPage';
+import IsPlayerOpenBottomMargin from '@/components/common/IsPlayerOpenBottomMargin';
 
 export default function Page({ params, searchParams }: Props) {
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   // const [trigger, { data, isFetching, isError }] =
   //   mainApi.endpoints.getArtistById.useLazyQuery();
@@ -103,7 +106,9 @@ export default function Page({ params, searchParams }: Props) {
   }
 
   return (
-    <div className='flex flex-col p-8 relative h-screen'>
+    <div
+      className='flex flex-col p-8 relative w-full overflow-y-auto'
+      id='scrollableDiv'>
       {Header()}
 
       <Tabs.Root defaultValue='overview'>
@@ -118,22 +123,11 @@ export default function Page({ params, searchParams }: Props) {
 
         <Box pt='3'>
           <Tabs.Content value='overview'>
-            <h2 className='text-5xl text-accent_8 w-full ' style={Jersey.style}>
-              Top Songs
-            </h2>
-            {isLoading ? (
-              <SongListLoading times={10} />
-            ) : (
-              <SongsList
-                songs={
-                  data?.data.topSongs ? data?.data.topSongs.slice(0, 10) : []
-                }
-              />
-            )}
+            <ArtistOverViewPage data={data} isLoading={isLoading} />
           </Tabs.Content>
           <Tabs.Content value='songs'>
             {data?.data.id ? (
-              <div className=''>
+              <div className='w-full '>
                 {/* <SongsInfiniteScrollV2 id={data?.data.id} /> */}
                 <SongsInfiniteScroll id={data?.data.id} />
               </div>
@@ -221,7 +215,7 @@ export default function Page({ params, searchParams }: Props) {
           )}
         </Box>
       </Tabs.Root>
-      <div className='mt-20 h-14 block'>&nbsp;</div>
+      <IsPlayerOpenBottomMargin />
     </div>
   );
 
@@ -261,7 +255,16 @@ export default function Page({ params, searchParams }: Props) {
           </Skeleton>
           <Skeleton loading={isLoading}>
             <div className='flex mt-4 items-center gap-4 '>
-              <Button variant='soft' size='4' highContrast>
+              <Button
+                onClick={() => {
+                  if (Array.isArray(data?.data.topSongs))
+                    dispatch(
+                      setActiveSong({ songs: data?.data.topSongs, index: 0 })
+                    );
+                }}
+                variant='soft'
+                size='4'
+                highContrast>
                 <IoMusicalNote /> Play Songs
               </Button>
               <div className=''>
@@ -345,7 +348,7 @@ const SongsInfiniteScrollV1 = ({ id }: { id: string }) => {
       hasMore={hasMoreTopSongs}
       loader={error ? <Error /> : <SongListLoading times={10} />}
       endMessage={
-        <p style={{ textAlign: 'center' }} className='my-4 w-full'>
+        <p style={{ textAlign: 'center' }} className='text-2xl w-full'>
           <b>Yay! You have seen it all 🤩</b>
         </p>
       }
@@ -393,12 +396,12 @@ const AlbumInfiniteScrollV1 = ({ id }: { id: string }) => {
       hasMore={hasMoreTopAlbums}
       loader={error ? <Error /> : <AlbumCardLoading />}
       endMessage={
-        <p style={{ textAlign: 'center' }} className='my-4 w-full'>
+        <p style={{ textAlign: 'center' }} className='text-2xl w-full'>
           <b>Yay! You have seen it all 🤩</b>
         </p>
       }
       style={{ overflow: 'hidden' }}
-      className='flex flex-wrap sm:justify-start justify-center gap-8 mb-8 overflow-hidden'
+      className='flex flex-wrap sm:justify-start justify-center gap-8 overflow-hidden'
       scrollableTarget='scrollableDiv'>
       {Array.isArray(data?.data.topAlbums) &&
         data?.data.topAlbums?.map((album: z.infer<typeof AlbumModel>) => {
@@ -439,12 +442,12 @@ const AlbumInfiniteScroll = ({
       hasMore={data?.data.lastPage === true ? false : true}
       loader={error ? <Error /> : <AlbumCardLoading />}
       endMessage={
-        <p style={{ textAlign: 'center' }} className='my-4 w-full'>
+        <p style={{ textAlign: 'center' }} className='text-2xl w-full'>
           <b>Yay! You have seen it all 🤩</b>
         </p>
       }
       style={{ overflow: 'hidden' }}
-      className='flex flex-wrap sm:justify-start justify-center gap-8 mb-8 overflow-hidden'
+      className='flex flex-wrap sm:justify-start justify-center gap-8 overflow-hidden'
       scrollableTarget='scrollableDiv'>
       {Array.isArray(topAlbums) &&
         topAlbums.map((album: z.infer<typeof AlbumModel>) => {

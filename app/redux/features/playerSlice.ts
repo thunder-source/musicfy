@@ -37,6 +37,7 @@ const playerSlice = createSlice({
       state.currentIndex = payload.index;
       state.currentSongs = payload.songs;
       state.isActive = true;
+      state.isPlaying = true;
     },
 
     nextSong: (state, action) => {

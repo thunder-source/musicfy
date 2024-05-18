@@ -62,7 +62,7 @@ export default function SongsInfiniteScrollV2({ id }: { id: string }) {
   //       // <SongListLoading key={1} times={10} />
   //       // useWindow={false}
   //       // endMessage={
-  //       //   <p style={{ textAlign: 'center' }} className='my-4 w-full'>
+  //       //   <p style={{ textAlign: 'center' }} className='text-2xl w-full'>
   //       //     <b>Yay! You have seen it all 🤩</b>
   //       //   </p>
   //       // }

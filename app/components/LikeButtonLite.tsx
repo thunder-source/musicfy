@@ -5,7 +5,8 @@ import { FcLike, FcLikePlaceholder } from 'react-icons/fc';
 type Props = {};
 
 export default function LikeButtonLite({}: Props) {
-  const [liked, setLiked] = useState(false);
+  const getRandomBoolean = () => Math.random() >= 0.5;
+  const [liked, setLiked] = useState(getRandomBoolean());
   return (
     <IconButton
       variant='ghost'
@@ -16,7 +17,7 @@ export default function LikeButtonLite({}: Props) {
       onClick={() => {
         setLiked(!liked);
       }}>
-      {liked ? <FcLikePlaceholder size={25} /> : <FcLike size={25} />}
+      {liked ? <FcLike size={25} /> : <FcLikePlaceholder size={25} />}
     </IconButton>
   );
 }

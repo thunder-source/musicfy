@@ -43,13 +43,14 @@ export default function RootLayout({
                   <Header />
                   <div className='relative h-[calc(100vh-60px)] flex  '>
                     <Sidebar />
-                    <ScrollArea id='scrollableDiv' className='scroll-smooth'>
-                      {children}
-                    </ScrollArea>
+                    {/* this ScrollArea causing performance lose in infinite scroll  */}
+                    {/* <ScrollArea id='scrollableDiv' className='scroll-smooth'> */}
+                    {children}
+                    {/* </ScrollArea> */}
                   </div>
                   <MusicPlayer />
                 </div>
-                {/* <ThemePanel /> */}
+                <ThemePanel />
               </Theme>
             </ThemeProvider>
           </PersistGate>

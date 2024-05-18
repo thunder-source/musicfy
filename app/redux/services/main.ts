@@ -80,7 +80,7 @@ export const mainApi = createApi({
 
       // Always merge incoming data to the cache entry
       merge: (currentCache, newItems, args) => {
-        if (args.arg.songCount === 50) {
+        if (args.arg.songCount === 100) {
           if (args.arg.page === 0) {
             return (currentCache = newItems);
           }

@@ -17,7 +17,7 @@ const SongsInfiniteScroll = ({ id }: { id: string }) => {
   const { data, error } = useGetArtistByIdQuery({
     artistId: id,
     page: page,
-    songCount: 50,
+    songCount: 100,
     sortBy: undefined,
     sortOrder: undefined,
   });
@@ -28,6 +28,8 @@ const SongsInfiniteScroll = ({ id }: { id: string }) => {
     hasMoreTopSongs = false;
   }
 
+  console.log(data);
+
   return (
     <InfiniteScroll
       dataLength={data?.data?.topSongs?.length ? data?.data.topSongs.length : 0} //This is important field to render the next data
@@ -37,7 +39,7 @@ const SongsInfiniteScroll = ({ id }: { id: string }) => {
       hasMore={hasMoreTopSongs}
       loader={error ? <Error /> : <SongListLoading times={5} />}
       endMessage={
-        <p style={{ textAlign: 'center' }} className='my-4 w-full'>
+        <p style={{ textAlign: 'center' }} className='text-2xl w-full'>
           <b>Yay! You have seen it all 🤩</b>
         </p>
       }

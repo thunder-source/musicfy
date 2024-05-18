@@ -29,7 +29,7 @@ const AlbumCard = (
           alt='Album Image'
         />
 
-        <div className='w-full h-full  absolute rounded-radius_6 left-0 top-0 backdrop:blur-3xl  group-hover:backdrop-blur-sm group-hover:bg-accent_a2 '></div>
+        <div className='w-full h-full  absolute rounded-radius_6 left-0 top-0 group-hover:bg-accent_a5 '></div>
         <p className='group-hover:block  hidden max-w-[200px] break-words text-center font-semibold text-lg text-accent_a9  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100'>
           <PlaySongHandler id={album.id} type={album.type} />
         </p>

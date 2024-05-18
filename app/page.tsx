@@ -9,6 +9,7 @@ import { languages } from '@/data/constants';
 import { useAppDispatch, useAppSelector } from './hooks/reduxHandlers';
 import AlbumCard from './components/AlbumCard';
 import AlbumCardLoading from './components/SkeletonLoading/AlbumCardLoading';
+import IsPlayerOpenBottomMargin from './components/common/IsPlayerOpenBottomMargin';
 
 export default function Discover() {
   const dispatch = useAppDispatch();
@@ -31,7 +32,9 @@ export default function Discover() {
   };
 
   return (
-    <div className='flex flex-col p-4 px-8 relative h-screen'>
+    <div
+      className='flex flex-col p-4 h-full px-8 relative w-full overflow-y-auto'
+      id='scrollableDiv'>
       {/* <ThemeTesting /> */}
       <div className='flex justify-between items-start'>
         <h2
@@ -72,19 +75,19 @@ export default function Discover() {
           hasMore={data?.lastPage === true ? false : true}
           loader={error ? <Error /> : <AlbumCardLoading />}
           endMessage={
-            <p style={{ textAlign: 'center' }} className='my-4 w-full'>
+            <p style={{ textAlign: 'center' }} className='text-2xl w-full'>
               <b>Yay! You have seen it all 🤩</b>
             </p>
           }
           style={{ overflow: 'hidden' }}
-          className='flex flex-wrap sm:justify-start justify-center gap-8 mb-8 overflow-hidden'
+          className='flex flex-wrap sm:justify-start justify-center gap-8 overflow-hidden'
           scrollableTarget='scrollableDiv'>
           {data?.result?.map((album) => {
             return <AlbumCard key={album.id} {...album} />;
           })}
         </InfiniteScroll>
       </div>
-      <div className='mt-14 h-14 block'>&nbsp;</div>
+      <IsPlayerOpenBottomMargin />
     </div>
   );
 }
