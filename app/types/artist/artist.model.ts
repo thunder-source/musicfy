@@ -7,7 +7,7 @@ export const ArtistModel = z.object({
   id: z.string(),
   name: z.string(),
   url: z.string(),
-  type: z.string(),
+  type: z.union([z.literal('song'), z.literal('album')]),
   image: z.array(DownloadLinkModel),
   followerCount: z.number().nullable(),
   fanCount: z.string().nullable(),

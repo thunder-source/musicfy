@@ -1,15 +1,16 @@
 'use client';
 import { Select } from '@radix-ui/themes';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Error } from '@/components';
+
 import { mainApi, useGetNewReleasesQuery } from '@/redux/services/main';
 import { useState } from 'react';
 import { Jersey } from './assets/fonts';
 import { languages } from '@/data/constants';
 import { useAppDispatch, useAppSelector } from './hooks/reduxHandlers';
-import AlbumCard from './components/AlbumCard';
+import AlbumCard from './components/albums/AlbumCard';
 import AlbumCardLoading from './components/SkeletonLoading/AlbumCardLoading';
 import IsPlayerOpenBottomMargin from './components/common/IsPlayerOpenBottomMargin';
+import Error from './components/Error';
 
 export default function Discover() {
   const dispatch = useAppDispatch();

@@ -14,7 +14,7 @@ const Searchbar = () => {
     <form
       onSubmit={handleSubmit}
       autoComplete='off'
-      className='p-2 text-gray-300 focus-within:text-gray-600  border-transparent border-2 rounded-xl absolute md:w-[calc(100%-15rem)] w-[calc(100%-3rem)] '>
+      className='p-2 text-gray-300 focus-within:text-gray-600 w-2/4 border-transparent border-2 rounded-radius_6 absolute md:w-[calc(100%-15rem)]  '>
       <label htmlFor='search-field' className='sr-only'>
         Search all files
       </label>
@@ -25,7 +25,7 @@ const Searchbar = () => {
           autoComplete='off'
           id='search-field'
           className='flex-1 bg-transparent border-none placeholder-gray-400 outline-none text-base text-white p-4 focus-within:placeholder-gray-600 '
-          placeholder='Search'
+          placeholder='Search 132'
           type='search'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}

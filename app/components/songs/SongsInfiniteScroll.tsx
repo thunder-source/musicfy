@@ -3,7 +3,7 @@ import React, { memo, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Error from '../Error';
 import SongListLoading from '../SkeletonLoading/SongListLoading';
-import SongsList from '../SongsList';
+import SongsList from '../common/SongsList';
 
 type Props = {};
 

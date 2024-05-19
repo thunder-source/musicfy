@@ -67,6 +67,23 @@
   } */
 }
 
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  backface-visibility: hidden;
+  display: flex;
+  margin-left: -1rem;
+  touch-action: pan-y pinch-zoom;
+}
+.embla__slide {
+  /* flex: 0 0 14.2857142857%; */
+  min-width: 0;
+  max-width: 100%;
+  padding-left: 1rem;
+  height: 100%;
+}
+
 @layer base {
   * {
     @apply border-border;

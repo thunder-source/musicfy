@@ -11,7 +11,7 @@ type Props = {
   type: 'artist' | 'album' | 'song';
 };
 
-export default function PlaySongHandler({ id, type }: Props) {
+export function PlaySongHandler({ id, type }: Props) {
   switch (type) {
     case 'album':
       return <AlbumPlaySongHandler id={id} />;
@@ -59,7 +59,7 @@ const AlbumPlaySongHandler = ({ id }: { id: String }) => {
     <Spinner loading={isFetching} size={'3'}>
       <FaPlayCircle
         size={35}
-        className='text-gray-300 hover:scale-125 transform transition duration-500 cursor-pointer'
+        className='text-accent_indicator hover:scale-125 transform transition duration-500 cursor-pointer'
         onClick={() => {
           trigger({ artistId: id });
         }}
@@ -100,7 +100,7 @@ const ArtistPlaySongHandler = ({ id }: { id: String }) => {
     <Spinner loading={isFetching} size={'3'}>
       <FaPlayCircle
         size={35}
-        className='text-gray-300 hover:scale-125 transform transition duration-500 cursor-pointer'
+        className='text-accent_indicator hover:scale-125 transform transition duration-500 cursor-pointer'
         onClick={() => {
           trigger({ artistId: id });
         }}
@@ -140,7 +140,7 @@ const PlayDiscoverSongHandler = ({ id }: { id: String }) => {
     <Spinner loading={isFetching} size={'3'}>
       <FaPlayCircle
         size={35}
-        className='text-gray-300 hover:scale-125 transform transition duration-500 cursor-pointer'
+        className='text-accent_indicator hover:scale-125 transform transition duration-500 cursor-pointer'
         onClick={() => {
           trigger({ songId: id });
         }}

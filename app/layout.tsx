@@ -1,15 +1,16 @@
 'use client';
 import { ScrollArea, Theme, ThemePanel } from '@radix-ui/themes';
 import type { Metadata } from 'next';
-import Header from './components/Header';
 import { ThemeProvider } from 'next-themes';
-import { MusicPlayer, Sidebar } from '@/components';
 import { Provider } from 'react-redux';
 import { persistor, store } from '@/redux/store';
 import { Toaster } from 'react-hot-toast';
 import { Jersey, inter } from './assets/fonts';
 import './styles/globals.css';
 import { PersistGate } from 'redux-persist/integration/react';
+import Header from './components/layout/Header';
+import Sidebar from './components/layout/SideBar';
+import MusicPlayer from './components/MusicPlayer/MusicPlayer';
 
 const metadata: Metadata = {
   title: 'Create Next App',
@@ -34,19 +35,16 @@ export default function RootLayout({
             persistor={persistor}>
             <ThemeProvider attribute='class'>
               <Theme
-                accentColor='crimson'
+                accentColor='indigo'
                 grayColor='sand'
-                radius='large'
+                radius='medium'
                 scaling='95%'>
                 <Toaster />
                 <div className='bg-accent_a2 select-none transform transition-all duration-500 relative overflowX-hidden'>
                   <Header />
                   <div className='relative h-[calc(100vh-60px)] flex  '>
                     <Sidebar />
-                    {/* this ScrollArea causing performance lose in infinite scroll  */}
-                    {/* <ScrollArea id='scrollableDiv' className='scroll-smooth'> */}
                     {children}
-                    {/* </ScrollArea> */}
                   </div>
                   <MusicPlayer />
                 </div>

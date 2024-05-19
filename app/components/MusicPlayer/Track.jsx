@@ -1,5 +1,5 @@
 import { parseHtmlToText } from '@/utility/cleanName';
-import { IconButton } from '@radix-ui/themes';
+import { Avatar, IconButton } from '@radix-ui/themes';
 import Image from 'next/image';
 import React from 'react';
 import { TbPlayerTrackNext } from 'react-icons/tb';
@@ -27,7 +27,7 @@ const Track = ({
   }
 
   return (
-    <div className='flex flex-1 items-center justify-start w-full mx-28'>
+    <div className='flex flex-1 items-center justify-start  mx-16'>
       <IconButton
         variant='ghost'
         radius='full'
@@ -39,12 +39,11 @@ const Track = ({
         <TbPlayerTrackPrev size={25} />
       </IconButton>
       <div className='flex gap-2 w-full mx-4'>
-        <Image
-          width={56}
-          height={56}
+        <Avatar
+          fallback={activeSong.name.slice(0, 2)}
           src={Array.isArray(activeSong?.image) && activeSong?.image[1].url}
           alt='cover art'
-          className='rounded-radius_2 w-14'
+          className='rounded-radius_2 w-14 h-14'
         />
         <div className='mx-1 flex flex-col w-full'>
           <p className='truncate  font-bold text-xs'>

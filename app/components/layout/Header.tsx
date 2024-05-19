@@ -12,15 +12,15 @@ import {
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import classNames from 'classnames';
 import Image from 'next/image';
-import logo from '../assets/logo.png';
-import { Jersey } from '../assets/fonts';
+import logo from '@/assets/logo.png';
 import Link from 'next/link';
 import { BiSearch } from 'react-icons/bi';
 import { IoMusicalNoteOutline } from 'react-icons/io5';
-import { languages } from '../data/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHandlers';
 import { setMusicLanguage } from '@/redux/features/mainSlice';
 import toast from 'react-hot-toast';
+import { Jersey } from '@/assets/fonts';
+import { languages } from '@/data/constants';
 
 export default function Header() {
   return (
@@ -28,7 +28,7 @@ export default function Header() {
       justify='between'
       className='items-center justify-between w-full  border-border border-b-2 p-2 bg-accent_a2'>
       <Flex gap='3' className='  items-center  text-foreground  '>
-        <Link href={'/'}>
+        <Link prefetch={false} href={'/'}>
           <Flex className='items-center gap-2 group  pl-3 pr-4 '>
             <Image
               src={logo}
@@ -42,6 +42,7 @@ export default function Header() {
         </Link>
         {/* <NavigationMenuDemo /> */}
       </Flex>
+      {/* <Searchbar />  */}
       <SearchBox />
       <Flex gap={'4'} className='items-center'>
         <MusicLanguage />

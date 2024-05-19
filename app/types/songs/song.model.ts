@@ -6,7 +6,7 @@ import { DownloadLinkModel } from '../common/download.model';
 export const SongModel = z.object({
   id: z.string(),
   name: z.string(),
-  type: z.string(),
+  type: z.union([z.literal('song'), z.literal('album')]),
   year: z.string().nullable(),
   releaseDate: z.string().nullable(),
   duration: z.number().nullable(),

@@ -76,7 +76,7 @@ const MusicPlayer = () => {
     return;
   }
   return (
-    <Card className='rounded-full right-1/2 absolute bottom-5 m-auto translate-x-1/2  px-2 w-full flex items-center justify-between  max-w-screen-xl '>
+    <div className='right-1/2 absolute bottom-5 m-auto translate-x-1/2 rounded-full  px-2 w-[calc(100%_-_70px)] flex items-center justify-between  max-w-screen-xl border-gray_a3 p-2 border-2  bg-accent_surface backdrop-blur-3xl shadow-sm'>
       <LeftControls
         isPlaying={isPlaying}
         repeat={repeat}
@@ -108,22 +108,23 @@ const MusicPlayer = () => {
         onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
         onLoadedData={(event) => setDuration(event.target.duration)}
       />
+      <div className='flex'>
+        <IconButton
+          variant='ghost'
+          radius='full'
+          size='2'
+          color='gray'
+          className='cursor-pointer p-2'
+          onClick={() => {
+            setliked(!liked);
+          }}>
+          {liked ? <FcLikePlaceholder size={25} /> : <FcLike size={25} />}
+        </IconButton>
 
-      <IconButton
-        variant='ghost'
-        radius='full'
-        size='2'
-        color='gray'
-        className='cursor-pointer p-2'
-        onClick={() => {
-          setliked(!liked);
-        }}>
-        {liked ? <FcLikePlaceholder size={25} /> : <FcLike size={25} />}
-      </IconButton>
-
-      <VolumeBar value={playerVolume} setVolume={setPlayerVolume} />
-      <MoreOptions />
-    </Card>
+        <VolumeBar value={playerVolume} setVolume={setPlayerVolume} />
+        <MoreOptions />
+      </div>
+    </div>
   );
 };
 

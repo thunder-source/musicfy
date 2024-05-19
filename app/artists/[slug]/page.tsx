@@ -1,6 +1,6 @@
 'use client';
 import { Jersey } from '@/assets/fonts';
-import LikeDislikeHandler from '@/components/LikeDislikeHandler';
+import LikeDislikeHandler from '@/components/common/LikeDislikeHandler';
 import { useAppDispatch } from '@/hooks/reduxHandlers';
 import {
   useGetArtistAlbumByIdQuery,
@@ -28,17 +28,17 @@ import Link from 'next/link';
 import { RiVerifiedBadgeFill } from 'react-icons/ri';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import AlbumCardLoading from '@/components/SkeletonLoading/AlbumCardLoading';
-import { Error } from '@/components';
-import AlbumCard from '@/components/AlbumCard';
 import { z } from 'zod';
-import { AlbumModel, ArtistModelApiResponse } from '@/types';
-import SongsList from '@/components/SongsList';
+import { AlbumModel } from '@/types';
+import SongsList from '@/components/common/SongsList';
 import { isLink } from '@/lib/utils';
 import SongListLoading from '@/components/SkeletonLoading/SongListLoading';
 import SongsInfiniteScroll from '@/components/songs/SongsInfiniteScroll';
 import { setActiveSong } from '@/redux/features/playerSlice';
 import ArtistOverViewPage from '@/components/artists/ArtistOverViewPage';
 import IsPlayerOpenBottomMargin from '@/components/common/IsPlayerOpenBottomMargin';
+import AlbumCard from '@/components/albums/AlbumCard';
+import Error from '@/components/Error';
 
 export default function Page({ params, searchParams }: Props) {
   const dispatch = useAppDispatch();
@@ -122,10 +122,11 @@ export default function Page({ params, searchParams }: Props) {
         </Tabs.List>
 
         <Box pt='3'>
-          <Tabs.Content value='overview'>
+          <Tabs.Content value='overview' className='outline-none'>
             <ArtistOverViewPage data={data} isLoading={isLoading} />
           </Tabs.Content>
-          <Tabs.Content value='songs'>
+
+          <Tabs.Content value='songs' className='outline-none'>
             {data?.data.id ? (
               <div className='w-full '>
                 {/* <SongsInfiniteScrollV2 id={data?.data.id} /> */}
@@ -166,6 +167,7 @@ export default function Page({ params, searchParams }: Props) {
                 <div className='flex flex-col justify-center gap-2 items-end'>
                   {isWikiLinkAvailable && (
                     <Link
+                      prefetch={false}
                       target='_blank'
                       href={data?.data.wiki ? data?.data.wiki : ''}>
                       <Button
@@ -178,6 +180,7 @@ export default function Page({ params, searchParams }: Props) {
                   )}
                   {isTwitterLinkAvailable && (
                     <Link
+                      prefetch={false}
                       target='_blank'
                       href={data?.data.twitter ? data?.data.twitter : ''}>
                       <Button
@@ -278,6 +281,7 @@ export default function Page({ params, searchParams }: Props) {
               </div>
               {isWikiLinkAvailable && (
                 <Link
+                  prefetch={false}
                   target='_blank'
                   href={data?.data.wiki ? data?.data.wiki : ''}>
                   <IconButton
@@ -290,6 +294,7 @@ export default function Page({ params, searchParams }: Props) {
               )}
               {isTwitterLinkAvailable && (
                 <Link
+                  prefetch={false}
                   target='_blank'
                   href={data?.data.twitter ? data?.data.twitter : ''}>
                   <IconButton
@@ -301,7 +306,10 @@ export default function Page({ params, searchParams }: Props) {
                 </Link>
               )}
               {isFBLinkAvailable && (
-                <Link target='_blank' href={data?.data.fb ? data?.data.fb : ''}>
+                <Link
+                  prefetch={false}
+                  target='_blank'
+                  href={data?.data.fb ? data?.data.fb : ''}>
                   <IconButton
                     variant='soft'
                     size='4'

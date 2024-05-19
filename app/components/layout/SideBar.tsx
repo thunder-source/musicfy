@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
-import { logo } from '../assets';
-import { links } from '../data/constants';
+import { logo } from '../../assets';
+import { links } from '../../data/constants';
 import { HiOutlineMenu } from 'react-icons/hi';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Jersey } from '../assets/fonts';
+import { Jersey } from '../../assets/fonts';
 import { IoIosAdd, IoIosHeartEmpty } from 'react-icons/io';
 import { Button, IconButton, ScrollArea } from '@radix-ui/themes';
-import MellowSvg from '../assets/mellow.svg';
+import MellowSvg from '@/assets/mellow.svg';
 
 type navTypes = {
   handleClick?: Function;
@@ -17,7 +17,7 @@ type navTypes = {
 
 const Sidebar = () => {
   return (
-    <div className=' min-w-[210px] max-h-screen gap-1 p-1 flex flex-col  '>
+    <div className=' min-w-[210px] max-h-screen gap-1 p-1  flex-col hidden lg:flex '>
       <div className='flex py-2 pb-4 flex-col px-4 border-border border-2 bg-accent_a2 rounded-lg '>
         <div className='text-2xl text-accent_10' style={Jersey.style}>
           BROWSE

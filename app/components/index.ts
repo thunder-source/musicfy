@@ -1,22 +1,9 @@
-import Sidebar from './SideBar';
-import Searchbar from './Searchbar';
-// import SongCard from './SongCard';
-// import TopPlay from './TopPlay';
-import ArtistCard from './ArtistCard';
-import MusicPlayer from './MusicPlayer';
-import Loader from './Loader';
-import Error from './Error';
-
-export {
-  // TopPlay,
-  Sidebar,
-  // SongCard,
-  Searchbar,
-  ArtistCard,
-  // DetailsHeader,
-  // SongBar,
-  // RelatedSongs,
-  MusicPlayer,
-  Loader,
-  Error,
-};
+export * from './Error';
+export * from './ThemeTesting';
+export * from './MusicPlayer';
+export * from './SkeletonLoading';
+export * from './albums';
+export * from './artists';
+export * from './common';
+export * from './layout';
+export * from './songs';

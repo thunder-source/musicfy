@@ -12,8 +12,8 @@ export default function LikeButtonLite({}: Props) {
       variant='ghost'
       radius='full'
       size='2'
-      color='gray'
-      className='cursor-pointer p-2'
+      // color='gray'
+      className='cursor-pointer p-2 hover:scale-110 transform transition duration-500 bg-accent_surface'
       onClick={() => {
         setLiked(!liked);
       }}>

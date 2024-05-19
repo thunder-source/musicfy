@@ -1,12 +1,13 @@
 'use client';
 import React from 'react';
-import { ArtistCard, Error } from '@/components';
 import { useGetTopArtistQuery } from '@/redux/services/main';
 import { Jersey } from '@/assets/fonts';
 import { TopArtistModelBase } from '@/types';
 import { z } from 'zod';
 import ArtistCardLoading from '@/components/SkeletonLoading/ArtistCardLoading';
 import IsPlayerOpenBottomMargin from '@/components/common/IsPlayerOpenBottomMargin';
+import ArtistCard from '@/components/artists/ArtistCard';
+import Error from '@/components/Error';
 
 export default function TopArtist() {
   const { data, isFetching, error } = useGetTopArtistQuery({});

@@ -4,7 +4,7 @@ import { Avatar } from '@radix-ui/themes';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { z } from 'zod';
-import PlaySongHandler from './PlaySongHandler';
+import { PlaySongHandler } from '../common';
 
 const ArtistCard = (artist: z.infer<typeof TopArtistModelBase>) => {
   const router = useRouter();

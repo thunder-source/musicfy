@@ -49,7 +49,7 @@ export default function SongsList({ songs }: Props) {
         <div className='px-4 flex-1 w-[100px] max-w-xl min-w-[50px] overflow-hidden text-ellipsis truncate '>
           {song.artists.primary.map((ele, index) => {
             return (
-              <Link href={`/artists/${ele.id}`} key={ele.id}>
+              <Link prefetch={false} href={`/artists/${ele.id}`} key={ele.id}>
                 <span>{ele.name}</span>
                 <span className='text-accent_8'>
                   {index + 1 !== song.artists.primary.length && ' | '}{' '}
