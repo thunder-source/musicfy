@@ -4,8 +4,8 @@ import { AspectRatio, Avatar } from '@radix-ui/themes';
 import Link from 'next/link';
 import React from 'react';
 import { z } from 'zod';
-import LikeButtonLite from './LikeButtonLite';
-import { PlaySongHandler } from './PlaySongHandler';
+import LikeButtonLite from '../common/LikeButtonLite';
+import { PlaySongHandler } from '../common/PlaySongHandler';
 
 type Props = {
   data: z.infer<typeof AlbumModel> | z.infer<typeof SongModel>;
@@ -42,7 +42,7 @@ export default function SongAlbumCarouselCard({ data }: Props) {
 
         <div className='mt-4 flex-col text-center px-2 pb-4'>
           <p className='font-semibold text-sm w-full truncate'>
-            <Link prefetch={false} href={`/songs/${data.id}`}>
+            <Link prefetch={false} href={`/song/${data.id}`}>
               {data.name}
             </Link>
           </p>

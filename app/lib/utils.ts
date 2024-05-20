@@ -1,10 +1,3 @@
-// import { type ClassValue, clsx } from "clsx"
-// import { twMerge } from "tailwind-merge"
-
-// export function cn(...inputs: ClassValue[]) {
-//   return twMerge(clsx(inputs))
-// }
-
 export const convertSecondsToVisualTime = (time: number) =>
   `${Math.floor(time / 60)}:${`0${Math.floor(time % 60)}`.slice(-2)}`;
 

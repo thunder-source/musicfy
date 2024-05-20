@@ -1,11 +1,9 @@
 import { useGetArtistByIdQuery } from '@/redux/services/main';
-import React, { memo, useState } from 'react';
+import React, { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Error from '../Error';
 import SongListLoading from '../SkeletonLoading/SongListLoading';
 import SongsList from '../common/SongsList';
-
-type Props = {};
 
 const SongsInfiniteScroll = ({ id }: { id: string }) => {
   const [page, setPage] = useState(0);
@@ -28,7 +26,9 @@ const SongsInfiniteScroll = ({ id }: { id: string }) => {
     hasMoreTopSongs = false;
   }
 
-  console.log(data);
+  if (data?.data.topSongs && data?.data.topSongs?.length === 0) {
+    return 'No Songs Found';
+  }
 
   return (
     <InfiniteScroll

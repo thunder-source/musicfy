@@ -35,7 +35,6 @@ const AlbumPlaySongHandler = ({ id }: { id: String }) => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
       if (Array.isArray(data.data.songs) && data.data.songs.length > 0) {
         dispatch(
           setActiveSong({
@@ -61,7 +60,7 @@ const AlbumPlaySongHandler = ({ id }: { id: String }) => {
         size={35}
         className='text-accent_indicator hover:scale-125 transform transition duration-500 cursor-pointer'
         onClick={() => {
-          trigger({ artistId: id });
+          trigger({ albumId: id });
         }}
       />
     </Spinner>

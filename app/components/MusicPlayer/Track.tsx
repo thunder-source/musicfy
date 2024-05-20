@@ -1,11 +1,24 @@
 import { parseHtmlToText } from '@/utility/cleanName';
 import { Avatar, IconButton } from '@radix-ui/themes';
-import Image from 'next/image';
 import React from 'react';
 import { TbPlayerTrackNext } from 'react-icons/tb';
 import { TbPlayerTrackPrev } from 'react-icons/tb';
 import * as Slider from '@radix-ui/react-slider';
 import { convertSecondsToVisualTime } from '@/lib/utils';
+import { SongModel } from '@/types';
+import { z } from 'zod';
+
+type props = {
+  handlePrevSong: () => void;
+  handleNextSong: () => void;
+  activeSong: z.infer<typeof SongModel>;
+  value: number;
+  max: number;
+  setSeekTime: React.Dispatch<React.SetStateAction<number>>;
+  currentIndex: number;
+  currentSongs: z.infer<typeof SongModel>[] | [];
+};
+
 const Track = ({
   handlePrevSong,
   handleNextSong,
@@ -15,7 +28,7 @@ const Track = ({
   setSeekTime,
   currentIndex,
   currentSongs,
-}) => {
+}: props) => {
   let playNextSongDisabled = false;
   let playPrevSongDisabled = false;
 
@@ -40,8 +53,8 @@ const Track = ({
       </IconButton>
       <div className='flex gap-2 w-full mx-4'>
         <Avatar
-          fallback={activeSong.name.slice(0, 2)}
-          src={Array.isArray(activeSong?.image) && activeSong?.image[1].url}
+          fallback={activeSong?.name?.slice(0, 2)}
+          src={Array.isArray(activeSong?.image) ? activeSong?.image[1].url : ''}
           alt='cover art'
           className='rounded-radius_2 w-14 h-14'
         />

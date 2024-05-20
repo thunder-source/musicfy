@@ -24,5 +24,5 @@ export const AlbumModelApiResponse = z.object({
 });
 
 export interface AlbumByIdApiParameters {
-  artistId: String;
+  albumId: String;
 }

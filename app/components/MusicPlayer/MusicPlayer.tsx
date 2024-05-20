@@ -9,7 +9,7 @@ import LeftControls from './LeftControls';
 import Player from './Player';
 import Track from './Track';
 import VolumeBar from './VolumeBar';
-import { Card, DropdownMenu, IconButton } from '@radix-ui/themes';
+import { DropdownMenu, IconButton } from '@radix-ui/themes';
 import { FcLikePlaceholder } from 'react-icons/fc';
 import { PiDotsThreeCircleVerticalBold } from 'react-icons/pi';
 import { FcLike } from 'react-icons/fc';
@@ -50,7 +50,6 @@ const MusicPlayer = () => {
   };
 
   const handleNextSong = () => {
-    // console.log('handleNextSong');
     if (currentIndex === currentSongs.length - 1) {
       dispatch(playPause(false));
       return undefined;
@@ -73,6 +72,10 @@ const MusicPlayer = () => {
   };
 
   if (!isActive) {
+    return;
+  }
+
+  if (!activeSong?.name) {
     return;
   }
   return (
@@ -103,7 +106,6 @@ const MusicPlayer = () => {
         isPlaying={isPlaying}
         seekTime={seekTime}
         repeat={repeat}
-        currentIndex={currentIndex}
         onEnded={handleNextSong}
         onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
         onLoadedData={(event) => setDuration(event.target.duration)}

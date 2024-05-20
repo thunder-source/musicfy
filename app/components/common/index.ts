@@ -6,7 +6,5 @@ export * from './Loader';
 export * from './PlayPause';
 export * from './PlaySongHandler';
 export * from './Searchbar';
-export * from './SongAlbumCarousel';
-export * from './SongAlbumCarouselCard';
 // export * from './SongCard';
 export * from './SongsList';

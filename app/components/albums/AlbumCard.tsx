@@ -2,7 +2,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { AlbumModel, NewReleasesItem } from '@/types';
-import FallBackImage from '@/assets/fallback/fallback.jpg';
 import { Avatar } from '@radix-ui/themes';
 import { z } from 'zod';
 import { PlaySongHandler } from '../common';
@@ -12,7 +11,7 @@ const AlbumCard = (
   album: z.infer<typeof NewReleasesItem> | z.infer<typeof AlbumModel>
 ) => {
   // const cleanedName = album.name.replace(/\(From\s"[^"]+"\)/g, '');
-  console.log(album.artists);
+
   return (
     <div className='relative overflow-hidden rounded-radius_6  shadow-sm group'>
       <img
@@ -37,7 +36,7 @@ const AlbumCard = (
         <div className='flex items-center justify-between gap-2 '>
           <div className='mt-4 flex-col'>
             <p className='font-semibold text-base max-w-[140px] truncate'>
-              <Link href={`/songs/${album.id}`} prefetch={false}>
+              <Link href={`/song/${album.id}`} prefetch={false}>
                 {album.name}
               </Link>
             </p>

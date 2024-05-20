@@ -1,7 +1,6 @@
 'use client';
 import { Select } from '@radix-ui/themes';
 import InfiniteScroll from 'react-infinite-scroll-component';
-
 import { mainApi, useGetNewReleasesQuery } from '@/redux/services/main';
 import { useState } from 'react';
 import { Jersey } from './assets/fonts';

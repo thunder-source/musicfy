@@ -9,7 +9,7 @@ type props = {
   shuffle: Boolean;
   setRepeat: React.Dispatch<React.SetStateAction<boolean>>;
   setShuffle: React.Dispatch<React.SetStateAction<boolean>>;
-  handlePlayPause: () => {};
+  handlePlayPause: () => void;
 };
 
 const LeftControls = ({

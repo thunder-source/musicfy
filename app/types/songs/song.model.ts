@@ -35,9 +35,10 @@ export const SongModel = z.object({
 
 export const SongByIdApiResponse = z.object({
   success: z.boolean(),
-  data: SongModel,
+  data: z.array(SongModel),
 });
 
 export interface SongByIdApiParameters {
   songId: String;
+  lyrics?: boolean;
 }

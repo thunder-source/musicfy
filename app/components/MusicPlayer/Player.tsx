@@ -9,9 +9,9 @@ type props = {
   volume: number;
   seekTime: number;
   repeat: boolean;
-  onEnded: () => {};
-  onTimeUpdate: () => {};
-  onLoadedData: () => {};
+  onEnded: () => void;
+  onTimeUpdate: (event: any) => void;
+  onLoadedData: (event: any) => void;
 };
 
 const Player = ({
@@ -50,6 +50,7 @@ const Player = ({
   ) {
     return;
   }
+
   return (
     <audio
       className='hidden'

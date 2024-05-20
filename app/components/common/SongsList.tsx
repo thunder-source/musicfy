@@ -44,7 +44,9 @@ export default function SongsList({ songs }: Props) {
           />
         </div>
         <div className='px-4 flex-1 w-[100px] max-w-xl min-w-[50px] overflow-hidden text-ellipsis truncate '>
-          {song.name}
+          <Link prefetch={false} href={`/song/${song.id}`}>
+            {song.name}
+          </Link>
         </div>
         <div className='px-4 flex-1 w-[100px] max-w-xl min-w-[50px] overflow-hidden text-ellipsis truncate '>
           {song.artists.primary.map((ele, index) => {

@@ -46,9 +46,10 @@ export default function RootLayout({
                     <Sidebar />
                     {children}
                   </div>
+
                   <MusicPlayer />
                 </div>
-                <ThemePanel />
+                {/* <ThemePanel /> */}
               </Theme>
             </ThemeProvider>
           </PersistGate>

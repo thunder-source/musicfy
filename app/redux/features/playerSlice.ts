@@ -7,7 +7,7 @@ interface State {
   currentIndex: number;
   isActive: boolean;
   isPlaying: boolean;
-  activeSong: z.infer<typeof SongModel> | {};
+  activeSong: z.infer<typeof SongModel> | undefined;
   volume: number;
 }
 
@@ -16,7 +16,7 @@ const initialState: State = {
   currentIndex: 0,
   isActive: false,
   isPlaying: false,
-  activeSong: {},
+  activeSong: undefined,
   volume: 30,
 };
 
