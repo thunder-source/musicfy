@@ -40,7 +40,7 @@ const Track = ({
   }
 
   return (
-    <div className='flex flex-1 items-center justify-start  mx-16'>
+    <div className='flex  flex-1 items-center justify-start  lg:mx-16 '>
       <IconButton
         variant='ghost'
         radius='full'
@@ -48,29 +48,29 @@ const Track = ({
         color='gray'
         disabled={playPrevSongDisabled}
         onClick={handlePrevSong}
-        className={`p-2 cursor-pointer hidden sm:block  `}>
+        className={`p-2 cursor-pointer hidden lg:block  `}>
         <TbPlayerTrackPrev size={25} />
       </IconButton>
-      <div className='flex gap-2 w-full mx-4'>
+      <div className='flex gap-2 w-full mx-1 lg:mx-4 flex-row-reverse lg:flex-row '>
         <Avatar
           fallback={activeSong?.name?.slice(0, 2)}
           src={Array.isArray(activeSong?.image) ? activeSong?.image[1].url : ''}
           alt='cover art'
-          className='rounded-radius_2 w-14 h-14'
+          className=' w-14 h-14  rounded-full lg:rounded-radius_2'
         />
-        <div className='mx-1 flex flex-col w-full'>
+        <div className='mx-1 flex flex-col w-full max-w-[calc(100vw_-_170px)] justify-evenly lg:text-left text-center '>
           <p className='truncate  font-bold text-xs'>
             {activeSong?.name
               ? parseHtmlToText(activeSong?.name)
               : 'No active Song'}
           </p>
-          <div className='flex text-xs justify-between'>
+          <div className='flex text-xs justify-center lg:justify-between'>
             <p className='truncate text-gray_11 '>
               {activeSong?.artists?.all[0].name
                 ? activeSong?.artists?.all[0].name
                 : 'No active Song'}
             </p>
-            <div>
+            <div className='hidden lg:block'>
               <span className=''>
                 {value === 0 ? '0:00' : convertSecondsToVisualTime(value)}
               </span>{' '}
@@ -81,7 +81,7 @@ const Track = ({
             </div>
           </div>
           <Slider.Root
-            className='relative flex items-center select-none touch-none w-full h-5'
+            className='relative flex items-center select-none touch-none w-full h-5 hidden lg:block'
             defaultValue={[0]}
             value={[value]}
             min={0}
@@ -107,7 +107,7 @@ const Track = ({
         color='gray'
         disabled={playNextSongDisabled}
         onClick={handleNextSong}
-        className='cursor-pointer p-2'>
+        className='cursor-pointer p-2 hidden lg:block'>
         <TbPlayerTrackNext size={25} />
       </IconButton>
     </div>

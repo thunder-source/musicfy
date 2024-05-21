@@ -20,7 +20,7 @@ export default function Page({ params }: Props) {
 
   return (
     <div
-      className='flex flex-col p-8 relative w-full overflow-y-auto'
+      className='flex flex-col p-4 lg:p-8 relative w-full overflow-y-auto'
       id='scrollableDiv'>
       <SongAlbumArtistHeader
         song={Array.isArray(data?.data) ? data?.data[0] : undefined}

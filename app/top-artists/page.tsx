@@ -15,13 +15,13 @@ export default function TopArtist() {
   if (error) return <Error />;
 
   return (
-    <div className='flex flex-col p-4 px-8 w-full overflow-y-auto'>
+    <div className='flex flex-col p-4 px-8 w-full overflow-y-auto items-center lg:items-start'>
       <h2
         className='font-bold text-5xl text-accent_10 text-left mb-8'
         style={Jersey.style}>
         Top artists
       </h2>
-      <div className='flex flex-wrap gap-8 '>
+      <div className='flex flex-wrap gap-8 justify-center lg:justify-start'>
         {isFetching
           ? Array.apply(0, new Array(20)).map((_, i) => (
               <ArtistCardLoading key={i} />

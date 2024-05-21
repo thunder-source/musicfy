@@ -79,7 +79,7 @@ const MusicPlayer = () => {
     return;
   }
   return (
-    <div className='right-1/2 absolute bottom-5 m-auto translate-x-1/2 rounded-full  px-2 w-[calc(100%_-_70px)] flex items-center justify-between  max-w-screen-xl border-gray_a3 p-2 border-2  bg-accent_surface backdrop-blur-3xl shadow-sm'>
+    <div className='right-1/2 absolute bottom-5 m-auto translate-x-1/2 rounded-full  px-2 w-[95%] lg:w-[calc(100%_-_70px)]  flex items-center justify-between  max-w-screen-xl border-gray_a3 p-2 border-2  bg-accent_surface backdrop-blur-3xl shadow-sm '>
       <LeftControls
         isPlaying={isPlaying}
         repeat={repeat}
@@ -116,7 +116,7 @@ const MusicPlayer = () => {
           radius='full'
           size='2'
           color='gray'
-          className='cursor-pointer p-2'
+          className='cursor-pointer p-2 hidden lg:block'
           onClick={() => {
             setliked(!liked);
           }}>
@@ -141,7 +141,7 @@ const MoreOptions = () => {
           radius='full'
           size='2'
           color='gray'
-          className='cursor-pointer p-2 mr-2'>
+          className='cursor-pointer p-2 mr-2 hidden lg:block'>
           <PiDotsThreeCircleVerticalBold size={25}>
             <DropdownMenu.Trigger />
           </PiDotsThreeCircleVerticalBold>

@@ -72,7 +72,7 @@ export default function SongAlbumCarousel({ data, headerName, delay }: Props) {
               <MdNavigateNext size={30} />
             </IconButton>
           </div>
-          <div className='embla__dots '>
+          <div className='embla__dots hidden lg:flex'>
             {scrollSnaps.map((_, index) => (
               <IconButton
                 key={index}

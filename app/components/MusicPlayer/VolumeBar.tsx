@@ -14,7 +14,7 @@ type props = {
 const VolumeBar = ({ value, setVolume }: props) => {
   const [prevSliderValue, setPrevSliderValue] = useState<number>(0);
   return (
-    <div className=' flex items-center  mx-4 '>
+    <div className='  items-center  mx-4  hidden lg:flex'>
       <HoverCard.Root>
         <HoverCard.Trigger>
           <IconButton

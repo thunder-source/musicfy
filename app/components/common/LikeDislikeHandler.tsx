@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { LikeButton } from './LikeButton';
-import { IconButton } from '@radix-ui/themes';
 
 type Props = {
   size?: number;

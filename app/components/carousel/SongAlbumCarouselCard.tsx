@@ -34,9 +34,9 @@ export default function SongAlbumCarouselCard({ data }: Props) {
             <p className='group-hover:block  hidden max-w-[200px] break-words text-center font-semibold text-lg text-accent_a9  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100'>
               <PlaySongHandler id={data.id} type={data.type} />
             </p>
-            <p className='group-hover:block  hidden max-w-[200px] break-words text-center font-semibold text-lg text-accent_a9  absolute bottom-4 left-4  opacity-100'>
+            {/* <p className='group-hover:block  hidden max-w-[200px] break-words text-center font-semibold text-lg text-accent_a9  absolute bottom-4 left-4  opacity-100'>
               <LikeButtonLite />
-            </p>
+            </p> */}
           </div>
         </AspectRatio>
 

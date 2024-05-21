@@ -35,7 +35,7 @@ const AlbumCard = (
         </div>
         <div className='flex items-center justify-between gap-2 '>
           <div className='mt-4 flex-col'>
-            <p className='font-semibold text-base max-w-[140px] truncate'>
+            <p className='font-semibold text-base max-w-[200px] truncate'>
               <Link href={`/song/${album.id}`} prefetch={false}>
                 {album.name}
               </Link>
@@ -53,9 +53,9 @@ const AlbumCard = (
               )}
             </p>
           </div>
-          <div className='h-full mt-4 '>
+          {/* <div className='h-full mt-4 '>
             <LikeButtonLite />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 'use client';
-import { ScrollArea, Theme, ThemePanel } from '@radix-ui/themes';
+import { Theme, ThemePanel } from '@radix-ui/themes';
 import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 import { Provider } from 'react-redux';
@@ -11,6 +11,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import Header from './components/layout/Header';
 import Sidebar from './components/layout/SideBar';
 import MusicPlayer from './components/MusicPlayer/MusicPlayer';
+import SimpleTextLoading from './components/layout/SimpleTextLoading';
 
 const metadata: Metadata = {
   title: 'Create Next App',
@@ -26,13 +27,7 @@ export default function RootLayout({
     <html suppressHydrationWarning lang='en'>
       <body className={(inter.className, Jersey.className)}>
         <Provider store={store}>
-          <PersistGate
-            loading={
-              <div className='w-screen h-screen text-center justify-center items-center bg-black  text-white'>
-                <div className='text-9xl'>Loading...</div>
-              </div>
-            }
-            persistor={persistor}>
+          <PersistGate loading={<SimpleTextLoading />} persistor={persistor}>
             <ThemeProvider attribute='class'>
               <Theme
                 accentColor='indigo'
@@ -46,7 +41,6 @@ export default function RootLayout({
                     <Sidebar />
                     {children}
                   </div>
-
                   <MusicPlayer />
                 </div>
                 {/* <ThemePanel /> */}

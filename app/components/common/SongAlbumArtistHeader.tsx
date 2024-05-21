@@ -20,6 +20,7 @@ import { z } from 'zod';
 import { AlbumModel, ArtistModel, SongModel } from '@/types';
 import { convertSecondsToVisualTime, isLink } from '@/lib/utils';
 import { useAppDispatch } from '@/hooks/reduxHandlers';
+import { BsFillPlayFill } from 'react-icons/bs';
 
 const options = { maximumFractionDigits: 2 };
 
@@ -91,7 +92,7 @@ const ArtistHeader = ({ data, isLoading }: artistProps) => {
     isFBLinkAvailable = true;
   }
   return (
-    <div className='flex flex-wrap gap-8 mb-8'>
+    <div className='flex flex-col lg:flex-row gap-8 mb-8  items-center lg:justify-start'>
       <div className='flex transform transition-all duration-500  group relative flex-col w-min p-4 bg-accent_a4 bg-opacity-80 backdrop-blur-sm  cursor-pointer rounded-full border-transparent border-2'>
         <Skeleton loading={isLoading}>
           <Avatar
@@ -103,15 +104,19 @@ const ArtistHeader = ({ data, isLoading }: artistProps) => {
       </div>
       <div className='flex items-start justify-center flex-col gap-2'>
         <Skeleton loading={isLoading} className='h-10 w-56'>
-          <h2
-            className='font-bold text-7xl text-accent_10 text-left flex items-center leading-10 gap-2'
-            style={Jersey.style}>
-            {data?.name}{' '}
-            <div>{data?.isVerified && <RiVerifiedBadgeFill size={20} />} </div>
-          </h2>
+          <div className='flex items-start lg:items-center gap-2 justify-center w-full'>
+            <h2
+              className='font-bold text-7xl text-accent_10   lg:leading-[3.5rem]'
+              style={Jersey.style}>
+              {data?.name}{' '}
+            </h2>
+            <div className='text-accent_10'>
+              {data?.isVerified && <RiVerifiedBadgeFill size={20} />}{' '}
+            </div>
+          </div>
         </Skeleton>
         <Skeleton loading={isLoading}>
-          <h4 className='font-semibold text-xl  capitalize text-accent_10 text-left flex items-center gap-2'>
+          <h4 className='font-semibold text-xl  capitalize text-accent_10 w-full justify-center lg:justify-start lg:text-left flex items-center gap-2 text-center'>
             {data?.type}{' '}
             <Separator
               orientation='vertical'
@@ -122,7 +127,7 @@ const ArtistHeader = ({ data, isLoading }: artistProps) => {
           </h4>
         </Skeleton>
         <Skeleton loading={isLoading}>
-          <div className='flex mt-4 items-center gap-4 '>
+          <div className='flex mt-4 items-center gap-4 justify-center lg:justify-start w-full '>
             <Button
               onClick={() => {
                 if (Array.isArray(data?.topSongs))
@@ -130,9 +135,16 @@ const ArtistHeader = ({ data, isLoading }: artistProps) => {
               }}
               variant='soft'
               size='4'
+              className='hidden lg:flex'
               highContrast>
               <IoMusicalNote /> Play Songs
             </Button>
+            <IconButton
+              size='4'
+              variant='soft'
+              className='rounded-full cursor-pointer lg:hidden'>
+              <BsFillPlayFill size={35} />
+            </IconButton>
             <div className=''>
               <IconButton
                 variant='soft'
@@ -210,7 +222,7 @@ const SongHeader = ({ data, isLoading }: songProps) => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className='flex flex-wrap gap-8 mb-8'>
+    <div className='flex flex-col lg:flex-row gap-8 mb-8  items-center lg:justify-start '>
       <div className='flex transform transition-all duration-500  group relative flex-col w-min p-4 bg-accent_surface shadow-lg bg-opacity-80 backdrop-blur-sm  cursor-pointer rounded-radius_4 border-transparent border-2'>
         <Skeleton loading={isLoading}>
           <Avatar

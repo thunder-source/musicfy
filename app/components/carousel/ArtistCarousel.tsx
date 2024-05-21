@@ -58,7 +58,7 @@ export default function ArtistCarousel({ headerName, data, isLoading }: Props) {
             );
           })}
         </div>
-        <div className='flex my-4 gap-2 items-center justify-between w-full'>
+        <div className='flex my-4 gap-2 items-center justify-between w-full '>
           <div className='flex gap-2 '>
             <IconButton
               variant='soft'
@@ -87,7 +87,7 @@ export default function ArtistCarousel({ headerName, data, isLoading }: Props) {
                 className='mr-2  rounded-full cursor-pointer'>
                 <TbCircle
                   size={30}
-                  className={`border-2 fill-transparent  rounded-full  ${
+                  className={`border-2 fill-transparent  rounded-full   ${
                     index === selectedIndex
                       ? ' border-accent_9'
                       : ' border-accent_a6'

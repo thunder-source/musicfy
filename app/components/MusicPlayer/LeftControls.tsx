@@ -21,7 +21,7 @@ const LeftControls = ({
   handlePlayPause,
 }: props) => {
   return (
-    <div className='flex items-center gap-4 px-2 '>
+    <div className='flex items-center gap-4 '>
       {isPlaying ? (
         <IconButton variant='solid' radius='full' size='4' className='p-2'>
           <BsFillPauseFill
@@ -45,20 +45,20 @@ const LeftControls = ({
           variant='ghost'
           radius='full'
           color='gray'
-          className={`p-2 mx-1 cursor-pointer hidden sm:block ${
+          className={`p-2 mx-1 cursor-pointer hidden lg:block ${
             repeat && 'bg-gray_a5'
           }`}>
           <RxLoop size={20} />
         </IconButton>
       </Tooltip>
-      <Tooltip content='Shuffle' className='fill-transparent'>
+      <Tooltip content='Shuffle' className='fill-transparent '>
         <IconButton
           variant='ghost'
           radius='full'
           size='4'
           color='gray'
           onClick={() => setShuffle((prev) => !prev)}
-          className={`p-2 cursor-pointer hidden sm:block ${
+          className={`p-2 cursor-pointer hidden lg:block ${
             shuffle && 'bg-gray_a5'
           } `}>
           <BsShuffle size={20} />

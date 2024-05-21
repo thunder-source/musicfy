@@ -27,12 +27,6 @@ export const links = [
     activeIcon: RiHomeSmileFill,
   },
   {
-    name: 'Around You',
-    to: '/around-you',
-    icon: TbPhoto,
-    activeIcon: TbPhoto,
-  },
-  {
     name: 'Top Artists',
     to: '/top-artists',
     icon: HiOutlineUserGroup,

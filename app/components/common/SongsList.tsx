@@ -63,9 +63,9 @@ export default function SongsList({ songs }: Props) {
         <div className='px-4 flex-1 w-[100px] max-w-xl min-w-[50px] overflow-hidden text-ellipsis truncate '>
           {song.album.name}
         </div>
-        <div className='px-4 h-full'>
+        {/* <div className='px-4 h-full'>
           <LikeButtonLite />
-        </div>
+        </div> */}
         <div className='px-4 w-20 text-center'>
           {song.duration && convertSecondsToVisualTime(song.duration)}
         </div>
