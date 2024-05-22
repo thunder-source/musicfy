@@ -10,6 +10,7 @@ import AlbumCard from './components/albums/AlbumCard';
 import AlbumCardLoading from './components/SkeletonLoading/AlbumCardLoading';
 import IsPlayerOpenBottomMargin from './components/common/IsPlayerOpenBottomMargin';
 import Error from './components/Error';
+import { ThemeTesting } from './components';
 
 export default function Discover() {
   const dispatch = useAppDispatch();
@@ -17,7 +18,7 @@ export default function Discover() {
   const { musicLanguage } = useAppSelector((state) => state.main);
 
   const [page, setPage] = useState(1);
-  const [language, setLanguage] = useState(musicLanguage[0]);
+  const [language, setLanguage] = useState('For Me');
 
   const { data, error } = useGetNewReleasesQuery({
     language: language === 'For Me' ? musicLanguage.join(',') : language,

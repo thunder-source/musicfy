@@ -21,25 +21,22 @@ import { AlbumModel, ArtistModel, SongModel } from '@/types';
 import { convertSecondsToVisualTime, isLink } from '@/lib/utils';
 import { useAppDispatch } from '@/hooks/reduxHandlers';
 import { BsFillPlayFill } from 'react-icons/bs';
+import SanitizedText from './SanitizedText';
 
 const options = { maximumFractionDigits: 2 };
 
 type Props = {
-  data?:
-    | z.infer<typeof SongModel>
-    | z.infer<typeof ArtistModel>
-    | z.infer<typeof AlbumModel>
-    | undefined;
   song?: z.infer<typeof SongModel> | undefined;
   artist?: z.infer<typeof ArtistModel> | undefined;
+  album?: z.infer<typeof AlbumModel> | undefined;
   isLoading: boolean;
   type: 'album' | 'artist' | 'song' | undefined;
 };
 
 export default function SongAlbumArtistHeader({
-  data,
   song,
   artist,
+  album,
   isLoading,
   type,
 }: Props) {
@@ -49,6 +46,9 @@ export default function SongAlbumArtistHeader({
 
     case 'song':
       return <SongHeader data={song} isLoading={isLoading} />;
+
+    case 'album':
+      return <AlbumHeader data={album} isLoading={isLoading} />;
 
     default:
       break;
@@ -106,7 +106,7 @@ const ArtistHeader = ({ data, isLoading }: artistProps) => {
         <Skeleton loading={isLoading} className='h-10 w-56'>
           <div className='flex items-start lg:items-center gap-2 justify-center w-full'>
             <h2
-              className='font-bold text-7xl text-accent_10   lg:leading-[3.5rem]'
+              className='font-bold text-5xl lg:text-7xl text-accent_10   lg:leading-[3.5rem]'
               style={Jersey.style}>
               {data?.name}{' '}
             </h2>
@@ -141,6 +141,10 @@ const ArtistHeader = ({ data, isLoading }: artistProps) => {
             </Button>
             <IconButton
               size='4'
+              onClick={() => {
+                if (Array.isArray(data?.topSongs))
+                  dispatch(setActiveSong({ songs: data?.topSongs, index: 0 }));
+              }}
               variant='soft'
               className='rounded-full cursor-pointer lg:hidden'>
               <BsFillPlayFill size={35} />
@@ -232,19 +236,19 @@ const SongHeader = ({ data, isLoading }: songProps) => {
           />
         </Skeleton>
       </div>
-      <div className='flex items-start justify-center flex-col gap-2'>
+      <div className='flex lg:items-start items-center justify-center flex-col gap-2'>
         <Skeleton loading={isLoading} className='h-10 w-96'>
           <h2
-            className='font-bold text-7xl text-accent_10 text-left flex items-center  gap-2'
+            className='font-bold text-5xl lg:text-7xl text-accent_10  text-center flex items-center  gap-2'
             style={Jersey.style}>
             {data?.name}
           </h2>
         </Skeleton>
         <Skeleton loading={isLoading} className='h-10 w-60'>
-          <h4 className='font-semibold text-xl  capitalize text-accent_10 text-left flex items-center gap-2'>
-            {data?.name} By
+          <h4 className='font-semibold text-xl  capitalize text-accent_10 text-left flex items-center gap-2 flex-col lg:flex-row flex-wrap'>
+            By
             {Array.isArray(data?.artists?.primary) &&
-              data?.artists.primary.map((ele, index) => {
+              data?.artists.primary.slice(0, 5).map((ele, index) => {
                 return (
                   <Link
                     prefetch={false}
@@ -260,7 +264,7 @@ const SongHeader = ({ data, isLoading }: songProps) => {
           </h4>
         </Skeleton>
         <Skeleton loading={isLoading} className='h-10 w-96'>
-          <h4 className='font-semibold text-xl  capitalize text-accent_10 text-left flex items-center gap-2'>
+          <h4 className='font-semibold text-xl  capitalize text-accent_10 flex items-center gap-2 text-center lg:text-left '>
             {data?.type} | {data?.playCount && formatNumbers(data?.playCount)}{' '}
             Plays |{' '}
             {data?.duration && convertSecondsToVisualTime(data?.duration)} |{' '}
@@ -280,9 +284,113 @@ const SongHeader = ({ data, isLoading }: songProps) => {
               }}
               variant='soft'
               size='4'
+              className='hidden lg:flex'
               highContrast>
               <IoMusicalNote /> Play Songs
             </Button>
+            <IconButton
+              size='4'
+              onClick={() => {
+                if (data) dispatch(setActiveSong({ songs: [data], index: 0 }));
+              }}
+              variant='soft'
+              className='rounded-full cursor-pointer lg:hidden'>
+              <BsFillPlayFill size={35} />
+            </IconButton>
+            <div className=''>
+              <IconButton
+                variant='soft'
+                size='4'
+                color='gray'
+                className='rounded-full cursor-pointer'>
+                <LikeDislikeHandler />
+              </IconButton>
+            </div>
+          </div>
+        </Skeleton>
+      </div>
+    </div>
+  );
+};
+
+type AlbumProps = {
+  data: z.infer<typeof AlbumModel> | undefined;
+  isLoading: boolean;
+};
+
+const AlbumHeader = ({ data, isLoading }: AlbumProps) => {
+  const dispatch = useAppDispatch();
+  console.log(data);
+  return (
+    <div className='flex flex-col lg:flex-row gap-8 mb-8  items-center lg:justify-start '>
+      <div className='flex transform transition-all duration-500  group relative flex-col w-min p-4 bg-accent_surface shadow-lg bg-opacity-80 backdrop-blur-sm  cursor-pointer rounded-radius_4 border-transparent border-2'>
+        <Skeleton loading={isLoading}>
+          <Avatar
+            className='w-56 h-56 rounded-radius_4'
+            src={Array.isArray(data?.image) ? data?.image[2].url : ''}
+            fallback={data?.name ? data.name : ''}
+          />
+        </Skeleton>
+      </div>
+      <div className='flex lg:items-start items-center justify-center flex-col gap-2'>
+        <Skeleton loading={isLoading} className='h-10 w-96'>
+          <h2
+            className='font-bold text-5xl lg:text-6xl text-accent_10  text-center flex items-center  gap-2'
+            style={Jersey.style}>
+            {data?.name}
+          </h2>
+        </Skeleton>
+        <Skeleton loading={isLoading} className='h-10 w-60'>
+          <h4 className='font-semibold text-xl  capitalize text-accent_10 text-left flex items-center gap-2 flex-col lg:flex-row flex-wrap'>
+            By
+            {Array.isArray(data?.artists?.primary) &&
+              data?.artists.primary.slice(0, 5).map((ele, index) => {
+                return (
+                  <Link
+                    prefetch={false}
+                    href={`/artists/${ele.id}`}
+                    key={ele.id}>
+                    <span>{ele.name}</span>
+                    <span className='text-accent_8'>
+                      {index + 1 !== data?.artists.primary.length && ','}
+                    </span>
+                  </Link>
+                );
+              })}
+          </h4>
+        </Skeleton>
+        <Skeleton loading={isLoading} className='h-10 w-96'>
+          <h4 className='font-semibold text-xl  capitalize text-accent_10 flex items-center gap-2 text-center lg:text-left '>
+            {data?.type} |{' '}
+            {data?.playCount && <> {formatNumbers(data?.playCount)} Plays | </>}{' '}
+            {data?.songCount && <> {data?.songCount} Songs </>} |{' '}
+            {data?.language}
+          </h4>
+        </Skeleton>
+
+        <Skeleton loading={isLoading} className='h-10 w-80'>
+          <div className='flex mt-4 items-center gap-4 '>
+            <Button
+              onClick={() => {
+                if (Array.isArray(data?.songs))
+                  dispatch(setActiveSong({ songs: data.songs, index: 0 }));
+              }}
+              variant='soft'
+              size='4'
+              className='hidden lg:flex'
+              highContrast>
+              <IoMusicalNote /> Play Songs
+            </Button>
+            <IconButton
+              size='4'
+              onClick={() => {
+                if (Array.isArray(data?.songs))
+                  dispatch(setActiveSong({ songs: data.songs, index: 0 }));
+              }}
+              variant='soft'
+              className='rounded-full cursor-pointer lg:hidden'>
+              <BsFillPlayFill size={35} />
+            </IconButton>
             <div className=''>
               <IconButton
                 variant='soft'

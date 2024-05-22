@@ -13,13 +13,13 @@ type navTypes = {
 const Sidebar = () => {
   return (
     <div className=' min-w-[210px] max-h-screen gap-1 p-1  flex-col hidden lg:flex '>
-      <div className='flex py-2 pb-4 flex-col px-4 border-border border-2 bg-accent_a2 rounded-lg h-full '>
+      <div className='flex py-2 pb-4 flex-col px-4 border-gray_a5 border-2 bg-accent_a2 rounded-lg h-full '>
         <div className='text-2xl text-accent_10' style={Jersey.style}>
           BROWSE
         </div>
         <NavLinks />
       </div>
-      {/* <div className=' flex p-4 flex-col  border-border border-2 h-full bg-accent_a2 rounded-lg relative'>
+      {/* <div className=' flex p-4 flex-col  border-gray_a5 border-2 h-full bg-accent_a2 rounded-lg relative'>
         <div className='flex items-center text-accent_10 justify-between'>
           <div
             className='text-2xl '

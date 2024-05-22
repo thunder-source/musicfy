@@ -77,7 +77,7 @@ export default function ArtistCarousel({ headerName, data, isLoading }: Props) {
               <MdNavigateNext size={30} />
             </IconButton>
           </div>
-          <div className='embla__dots '>
+          <div className='embla__dots hidden lg:block'>
             {scrollSnaps.map((_, index) => (
               <IconButton
                 key={index}

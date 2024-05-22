@@ -75,8 +75,7 @@ export const ThemeTesting = () => {
       <Flex
         gap='2'
         direction='row'
-        className='flex-wrap gap-4 justify-between'
-        width='1000px'>
+        className='flex-wrap gap-4 justify-between w-full'>
         {colors.map((color) => {
           return (
             <div

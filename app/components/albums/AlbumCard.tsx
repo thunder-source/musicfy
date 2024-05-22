@@ -14,11 +14,11 @@ const AlbumCard = (
 
   return (
     <div className='relative overflow-hidden rounded-radius_6  shadow-sm group'>
-      <img
+      {/* <img
         src={album.image[0].url}
         alt='das'
         className='absolute -z-50 h-full w-full m-auto group-hover:scale-125 transform transition duration-1000'
-      />
+      /> */}
       <div className='flex flex-col p-4 w-[250px] bg-accent_surface backdrop-blur-xl border-gray_a5 border-2 rounded-radius_6 group shadow-sm'>
         <div className='relative w-full h-56 overflow-hidden  rounded-radius_6'>
           <Avatar
@@ -36,7 +36,7 @@ const AlbumCard = (
         <div className='flex items-center justify-between gap-2 '>
           <div className='mt-4 flex-col'>
             <p className='font-semibold text-base max-w-[200px] truncate'>
-              <Link href={`/song/${album.id}`} prefetch={false}>
+              <Link href={`/album/${album.id}`} prefetch={false}>
                 {album.name}
               </Link>
             </p>

@@ -50,6 +50,9 @@ const Player = ({
   ) {
     return;
   }
+  if (activeSong.downloadUrl === undefined) {
+    return;
+  }
 
   return (
     <audio

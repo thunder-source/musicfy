@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 import React, { useState } from 'react';
 import {
@@ -23,18 +24,14 @@ export default function Header() {
   return (
     <Flex
       justify='between'
-      className='items-center justify-between w-full  border-border border-b-2 p-2 bg-accent_a2'>
-      <Flex gap='3' className='  items-center  text-foreground  '>
-        <Link prefetch={false} href={'/'}>
-          <Flex className='items-center gap-2 group  pl-3 pr-4 '>
-            <Image
-              src={logo}
-              className='w-8 h-8  transition-all group-hover:animate-bounce'
-              alt='logo'
-            />
-            <Text className={'text-3xl'} style={Jersey.style}>
+      className='items-center justify-between w-full border-gray_a5 border-b-2  p-2 bg-accent_a2'>
+      <Flex gap='3' className='  items-center  '>
+        <Link href={'/'}>
+          <Flex className='items-center gap-2 pl-3 pr-4 '>
+            <img src={logo.src} className='w-8 h-8' alt='logo' />
+            <h2 className={'text-3xl '} style={Jersey.style}>
               MusicFy
-            </Text>
+            </h2>
           </Flex>
         </Link>
       </Flex>
