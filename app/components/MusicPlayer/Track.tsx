@@ -81,7 +81,7 @@ const Track = ({
             </div>
           </div>
           <Slider.Root
-            className='relative flex items-center select-none touch-none w-full h-5 hidden lg:block'
+            className='relative  items-center select-none touch-none w-full h-5 hidden  lg:flex'
             defaultValue={[0]}
             value={[value]}
             min={0}

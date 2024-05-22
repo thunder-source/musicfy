@@ -111,7 +111,7 @@ const MusicPlayer = () => {
         onLoadedData={(event) => setDuration(event.target.duration)}
       />
       <div className='flex'>
-        <IconButton
+        {/* <IconButton
           variant='ghost'
           radius='full'
           size='2'
@@ -121,10 +121,10 @@ const MusicPlayer = () => {
             setliked(!liked);
           }}>
           {liked ? <FcLikePlaceholder size={25} /> : <FcLike size={25} />}
-        </IconButton>
+        </IconButton> */}
 
         <VolumeBar value={playerVolume} setVolume={setPlayerVolume} />
-        <MoreOptions />
+        {/* <MoreOptions /> */}
       </div>
     </div>
   );

@@ -36,7 +36,7 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-  blacklist: [mainApi.reducerPath],
+  blacklist: [mainApi.reducerPath, 'player'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
