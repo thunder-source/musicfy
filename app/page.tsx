@@ -20,11 +20,12 @@ export default function Discover() {
   const [page, setPage] = useState(1);
   const [language, setLanguage] = useState('For Me');
 
-  const { data, error } = useGetNewReleasesQuery({
-    language: language === 'For Me' ? musicLanguage.join(',') : language,
-    page: page,
-    limit: 20,
-  });
+  const { data, error, isLoading, isFetching, currentData } =
+    useGetNewReleasesQuery({
+      language: language === 'For Me' ? musicLanguage.join(',') : language,
+      page: page,
+      limit: 50,
+    });
 
   const resetParams = (newLanguage: string) => {
     setLanguage(newLanguage);
@@ -32,10 +33,10 @@ export default function Discover() {
     dispatch(mainApi.util.resetApiState());
   };
 
+  console.log(currentData);
+
   return (
-    <div
-      className='flex flex-col p-4 h-full px-8 relative w-full overflow-y-auto'
-      id='scrollableDiv'>
+    <>
       {/* <ThemeTesting /> */}
       <div className='flex justify-between items-start'>
         <h2
@@ -67,28 +68,35 @@ export default function Discover() {
           </Select.Root>
         </div>
       </div>
-      <div className=''>
-        <InfiniteScroll
-          dataLength={data?.result?.length ? data.result.length : 0} //This is important field to render the next data
-          next={() => {
-            setPage(page + 1);
-          }}
-          hasMore={data?.lastPage === true ? false : true}
-          loader={error ? <Error /> : <AlbumCardLoading />}
-          endMessage={
-            <p style={{ textAlign: 'center' }} className='text-2xl w-full'>
-              <b>Yay! You have seen it all 🤩</b>
-            </p>
-          }
-          style={{ overflow: 'hidden' }}
-          className='flex flex-wrap sm:justify-start justify-center gap-8 overflow-hidden'
-          scrollableTarget='scrollableDiv'>
-          {data?.result?.map((album) => {
-            return <AlbumCard key={album.id} {...album} />;
-          })}
-        </InfiniteScroll>
-      </div>
+      {currentData ? (
+        <>
+          <InfiniteScroll
+            dataLength={data?.result?.length ? data.result.length : 0} //This is important field to render the next data
+            next={() => {
+              setPage(page + 1);
+            }}
+            hasMore={data?.lastPage === true ? false : true}
+            loader={error ? <Error /> : <AlbumCardLoading />}
+            endMessage={
+              <p style={{ textAlign: 'center' }} className='text-2xl w-full'>
+                <b>Yay! You have seen it all 🤩</b>
+              </p>
+            }
+            style={{ overflow: 'hidden' }}
+            className='flex flex-wrap lg:justify-start justify-center gap-8'
+            scrollableTarget='scrollableDiv'>
+            {data?.result?.map((album) => {
+              return <AlbumCard key={album.id} {...album} />;
+            })}
+          </InfiniteScroll>
+        </>
+      ) : (
+        <div className='flex flex-wrap lg:justify-start justify-center gap-8'>
+          <AlbumCardLoading />
+        </div>
+      )}
+
       <IsPlayerOpenBottomMargin />
-    </div>
+    </>
   );
 }

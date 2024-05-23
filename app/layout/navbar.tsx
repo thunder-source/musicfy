@@ -41,7 +41,7 @@
 //             <AnimatedLogo />
 //           </div>
 //         </Link>
-//         <nav className='hidden items-center gap-2 rounded-full px-2 py-2 shadow-md ring-1 ring-zinc-200 backdrop-blur-md dark:ring-accent/50 md:flex'>
+//         <nav className='hidden items-center gap-2 rounded-full px-2 py-2 shadow-md ring-1 ring-zinc-200 custom-filter dark:ring-accent/50 md:flex'>
 //           <ul className='flex gap-2 text-sm font-medium'>
 //             {props.routes.map((_link, index) => {
 //               return (

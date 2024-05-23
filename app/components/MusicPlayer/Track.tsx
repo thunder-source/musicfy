@@ -56,9 +56,9 @@ const Track = ({
           fallback={activeSong?.name?.slice(0, 2)}
           src={Array.isArray(activeSong?.image) ? activeSong?.image[1].url : ''}
           alt='cover art'
-          className=' w-14 h-14  rounded-full lg:rounded-radius_2'
+          className='  w-11 h-11 lg:w-14 lg:h-14  rounded-full lg:rounded-radius_2'
         />
-        <div className='mx-1 flex flex-col w-full max-w-[calc(100vw_-_170px)] justify-evenly lg:text-left text-center '>
+        <div className='mx-1 flex flex-col w-full max-w-[calc(100vw_-_130px)] justify-evenly  lg:text-left text-center '>
           <p className='truncate  font-bold text-xs'>
             {activeSong?.name
               ? parseHtmlToText(activeSong?.name)

@@ -22,9 +22,7 @@ import { languages } from '@/data/constants';
 
 export default function Header() {
   return (
-    <Flex
-      justify='between'
-      className='items-center justify-between w-full border-gray_a5 border-b-2  p-2 bg-accent_a2'>
+    <div className='items-center flex justify-between w-full border-gray_a5 border-b-2  p-2 h-16  lg:fixed top-0 left-0 right-0 z-10 bg-accent_surface custom-filter'>
       <Flex gap='3' className='  items-center  '>
         <Link href={'/'}>
           <Flex className='items-center gap-2 pl-3 pr-4 '>
@@ -40,7 +38,7 @@ export default function Header() {
         <MusicLanguage />
         {/* <AuthHandlers /> */}
       </Flex>
-    </Flex>
+    </div>
   );
 }
 
@@ -65,7 +63,7 @@ const MusicLanguage = () => {
   return (
     <Popover.Root>
       <Popover.Trigger>
-        <Button variant='soft'>
+        <Button variant='soft' className='mr-3'>
           <IoMusicalNoteOutline width='16' height='16' />
           Music Language
         </Button>
@@ -79,8 +77,10 @@ const MusicLanguage = () => {
               onValueChange={(ele) => {
                 setSelectedLanguages(ele);
               }}>
-              <Flex gap='4' align='center'>
-                <Box>
+              <Flex
+                align='center'
+                className='flex-col w-full lg:flex-row lg:gap-4'>
+                <Box className='w-full'>
                   {languages.slice(0, languages.length / 2).map((lang) => {
                     return (
                       <CheckboxGroup.Item
@@ -92,7 +92,7 @@ const MusicLanguage = () => {
                     );
                   })}
                 </Box>
-                <Box>
+                <Box className='w-full'>
                   {languages.slice(languages.length / 2).map((lang) => {
                     return (
                       <CheckboxGroup.Item
@@ -107,6 +107,7 @@ const MusicLanguage = () => {
               </Flex>
               <Popover.Close>
                 <Button
+                  className='mt-1'
                   disabled={selectedLanguages.length === 0}
                   onClick={() => {
                     dispatch(setMusicLanguage(selectedLanguages));

@@ -21,7 +21,7 @@ export default function SongAlbumCarouselCard({ data }: Props) {
           className='absolute -z-50 h-full w-full m-auto group-hover:scale-125 transform transition duration-1000'
         />
       </div>
-      <div className='relative flex flex-col  w-full h-full bg-accent_surface  overflow-hidden  backdrop-blur-xl group'>
+      <div className='relative flex flex-col  w-full h-full bg-accent_surface  overflow-hidden  custom-filter group'>
         <AspectRatio ratio={1 / 1}>
           <div className='relative flex items-center justify-center overflow-hidden h-full '>
             <Avatar

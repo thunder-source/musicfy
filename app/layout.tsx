@@ -12,6 +12,7 @@ import Header from './components/layout/Header';
 import Sidebar from './components/layout/SideBar';
 import MusicPlayer from './components/MusicPlayer/MusicPlayer';
 import SimpleTextLoading from './components/layout/SimpleTextLoading';
+import MobileBottomNavigation from './components/layout/MobileBottomNavigation';
 
 const metadata: Metadata = {
   title: 'Create Next App',
@@ -25,7 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning lang='en'>
-      <body className={(inter.className, Jersey.className)}>
+      <body
+        className={
+          (inter.className, Jersey.className, 'bg-accent_8 h-screen relative')
+        }>
         <Provider store={store}>
           <PersistGate loading={<SimpleTextLoading />} persistor={persistor}>
             <ThemeProvider attribute='class'>
@@ -35,15 +39,18 @@ export default function RootLayout({
                 radius='medium'
                 scaling='95%'>
                 <Toaster />
-                <div className='bg-accent_a2 select-none transform transition-all duration-500 relative overflowX-hidden'>
-                  <Header />
-                  <div className='relative h-[calc(100vh-60px)] flex  '>
-                    <Sidebar />
+                <Header />
+                <div className='flex lg:mt-16'>
+                  <Sidebar />
+                  <div
+                    id='scrollableDiv'
+                    className='max-w-screen-2xl p-4 px-8 '>
                     {children}
                   </div>
-                  <MusicPlayer />
                 </div>
-                <ThemePanel />
+                <MusicPlayer />
+                <MobileBottomNavigation />
+                {/* <ThemePanel /> */}
               </Theme>
             </ThemeProvider>
           </PersistGate>

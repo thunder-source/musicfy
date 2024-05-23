@@ -15,7 +15,7 @@ export default function ArtistCarouselCard({ data }: Props) {
       <Link
         prefetch={false}
         href={`/artists/${data.id}`}
-        className='flex transform transition-all duration-500  group relative flex-col   hover:transition-all bg-accent_a4 bg-opacity-80 backdrop-blur-sm  cursor-pointer rounded-full hover:border-accent_10 border-transparent border-2'>
+        className='flex transform transition-all duration-500  group relative flex-col   hover:transition-all bg-accent_a4 bg-opacity-80 custom-filter  cursor-pointer rounded-full hover:border-accent_10 border-transparent border-2'>
         <AspectRatio ratio={1 / 1}>
           <Avatar
             src={data.image[2]?.url}

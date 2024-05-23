@@ -93,7 +93,7 @@ const ArtistHeader = ({ data, isLoading }: artistProps) => {
   }
   return (
     <div className='flex flex-col lg:flex-row gap-8 mb-8  items-center lg:justify-start'>
-      <div className='flex transform transition-all duration-500  group relative flex-col w-min p-4 bg-accent_a4 bg-opacity-80 backdrop-blur-sm  cursor-pointer rounded-full border-transparent border-2'>
+      <div className='flex transform transition-all duration-500  group relative flex-col w-min p-4 bg-accent_a4 bg-opacity-80 custom-filter  cursor-pointer rounded-full border-transparent border-2'>
         <Skeleton loading={isLoading}>
           <Avatar
             className='w-56 h-56 rounded-full'
@@ -227,7 +227,7 @@ const SongHeader = ({ data, isLoading }: songProps) => {
 
   return (
     <div className='flex flex-col lg:flex-row gap-8 mb-8  items-center lg:justify-start '>
-      <div className='flex transform transition-all duration-500  group relative flex-col w-min p-4 bg-accent_surface shadow-lg bg-opacity-80 backdrop-blur-sm  cursor-pointer rounded-radius_4 border-transparent border-2'>
+      <div className='flex transform transition-all duration-500  group relative flex-col w-min p-4 bg-accent_surface shadow-lg bg-opacity-80 custom-filter  cursor-pointer rounded-radius_4 border-transparent border-2'>
         <Skeleton loading={isLoading}>
           <Avatar
             className='w-56 h-56 rounded-radius_4'
@@ -323,7 +323,7 @@ const AlbumHeader = ({ data, isLoading }: AlbumProps) => {
   console.log(data);
   return (
     <div className='flex flex-col lg:flex-row gap-8 mb-8  items-center lg:justify-start '>
-      <div className='flex transform transition-all duration-500  group relative flex-col w-min p-4 bg-accent_surface shadow-lg bg-opacity-80 backdrop-blur-sm  cursor-pointer rounded-radius_4 border-transparent border-2'>
+      <div className='flex transform transition-all duration-500  group relative flex-col w-min p-4 bg-accent_surface shadow-lg bg-opacity-80 custom-filter  cursor-pointer rounded-radius_4 border-transparent border-2'>
         <Skeleton loading={isLoading}>
           <Avatar
             className='w-56 h-56 rounded-radius_4'

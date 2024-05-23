@@ -23,7 +23,11 @@ const LeftControls = ({
   return (
     <div className='flex items-center gap-4 '>
       {isPlaying ? (
-        <IconButton variant='solid' radius='full' size='4' className='p-2'>
+        <IconButton
+          variant='solid'
+          radius='full'
+          size='4'
+          className='p-2 max-lg:w-9 max-lg:h-9  '>
           <BsFillPauseFill
             size={45}
             onClick={handlePlayPause}
@@ -31,7 +35,11 @@ const LeftControls = ({
           />
         </IconButton>
       ) : (
-        <IconButton variant='solid' radius='full' size='4' className='p-2'>
+        <IconButton
+          variant='solid'
+          radius='full'
+          size='4'
+          className='p-2 max-lg:w-9 max-lg:h-9   '>
           <BsFillPlayFill
             size={45}
             onClick={handlePlayPause}

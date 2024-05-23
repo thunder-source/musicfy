@@ -14,6 +14,7 @@ import { FcLikePlaceholder } from 'react-icons/fc';
 import { PiDotsThreeCircleVerticalBold } from 'react-icons/pi';
 import { FcLike } from 'react-icons/fc';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHandlers';
+import MobileMusicPlayer from './MobileMusicPlayer';
 
 const MusicPlayer = () => {
   const {
@@ -79,7 +80,7 @@ const MusicPlayer = () => {
     return;
   }
   return (
-    <div className='right-1/2 absolute bottom-5 m-auto translate-x-1/2 rounded-full  px-2 w-[95%] lg:w-[calc(100%_-_70px)]  flex items-center justify-between  max-w-screen-xl border-gray_a3 p-2 border-2  bg-accent_surface backdrop-blur-3xl shadow-sm '>
+    <div className='right-1/2 translate-x-1/2 fixed max-lg:bottom-[72px] lg:bottom-5 m-auto rounded-radius_4 lg:rounded-full max-lg:rounded-b-none w-full lg:w-[calc(100%_-_70px)]  flex items-center justify-between  max-w-screen-xl border-gray_a3 p-2 border-2  bg-accent_surface custom-filter shadow-sm max-lg:py-1 max-lg:border-b-0'>
       <LeftControls
         isPlaying={isPlaying}
         repeat={repeat}

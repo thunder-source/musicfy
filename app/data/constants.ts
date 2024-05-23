@@ -1,5 +1,10 @@
 import { HiOutlineUserGroup, HiUserGroup } from 'react-icons/hi';
-import { RiHomeSmileFill, RiHomeSmileLine } from 'react-icons/ri';
+import {
+  RiHomeSmileFill,
+  RiHomeSmileLine,
+  RiSearchLine,
+  RiSearchFill,
+} from 'react-icons/ri';
 import { TbPhoto } from 'react-icons/tb';
 
 export const genres = [
@@ -25,6 +30,27 @@ export const links = [
     to: '/',
     icon: RiHomeSmileLine,
     activeIcon: RiHomeSmileFill,
+  },
+  {
+    name: 'Top Artists',
+    to: '/top-artists',
+    icon: HiOutlineUserGroup,
+    activeIcon: HiUserGroup,
+  },
+];
+
+export const mobileNavigationLinks = [
+  {
+    name: 'Discover',
+    to: '/',
+    icon: RiHomeSmileLine,
+    activeIcon: RiHomeSmileFill,
+  },
+  {
+    name: 'Search',
+    to: '/search',
+    icon: RiSearchLine,
+    activeIcon: RiSearchFill,
   },
   {
     name: 'Top Artists',

@@ -19,7 +19,7 @@ const AlbumCard = (
         alt='das'
         className='absolute -z-50 h-full w-full m-auto group-hover:scale-125 transform transition duration-1000'
       /> */}
-      <div className='flex flex-col p-4 w-[250px] bg-accent_surface backdrop-blur-xl border-gray_a5 border-2 rounded-radius_6 group shadow-sm'>
+      <div className='flex flex-col p-4 w-[250px] bg-accent_surface custom-filter border-gray_a5 border-2 rounded-radius_6 group shadow-sm'>
         <div className='relative w-full h-56 overflow-hidden  rounded-radius_6'>
           <Avatar
             loading='lazy'
