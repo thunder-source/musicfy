@@ -19,10 +19,11 @@ import { useAppDispatch, useAppSelector } from '@/hooks/reduxHandlers';
 import { setMusicLanguage } from '@/redux/features/mainSlice';
 import { Jersey } from '@/assets/fonts';
 import { languages } from '@/data/constants';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function Header() {
   return (
-    <div className='items-center flex justify-between w-full border-gray_a5 border-b-2  p-2 h-16  lg:fixed top-0 left-0 right-0 z-10 bg-accent_surface custom-filter'>
+    <div className='items-center flex justify-between w-full border-gray_a5 border-b-2  p-2 h-16  lg:sticky top-0 left-0 right-0 z-10 bg-accent_surface custom-filter'>
       <Flex gap='3' className='  items-center  '>
         <Link href={'/'}>
           <Flex className='items-center gap-2 pl-3 pr-4 '>
@@ -43,6 +44,8 @@ export default function Header() {
 }
 
 const SearchBox = () => {
+  const [selectedId, setSelectedId] = useState(false);
+
   return (
     <Box className='w-2/4 relative  items-center transition-all hidden lg:flex'>
       <input

@@ -8,3 +8,15 @@ export const isLink = (str: string) => {
   // Test if the string matches the URL pattern
   return urlPattern.test(str);
 };
+
+export function beautifyNumber(
+  number: number | string,
+  locale = 'en-US',
+  options = { maximumFractionDigits: 2 }
+) {
+  if (typeof number === 'string') {
+    return Intl.NumberFormat(locale, options).format(parseFloat(number));
+  } else if (typeof number === 'number') {
+    return Intl.NumberFormat(locale, options).format(number);
+  }
+}

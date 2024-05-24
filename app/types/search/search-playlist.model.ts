@@ -18,3 +18,14 @@ export const SearchPlaylistModel = z.object({
     })
   ),
 });
+
+export const SearchPlaylistModelApiResponse = z.object({
+  success: z.boolean(),
+  data: SearchPlaylistModel,
+});
+
+export type SearchPlaylistModelApiParameters = {
+  query: string;
+  page?: number;
+  limit?: number;
+};

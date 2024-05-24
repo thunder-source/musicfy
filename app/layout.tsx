@@ -38,13 +38,13 @@ export default function RootLayout({
                 grayColor='sand'
                 radius='medium'
                 scaling='95%'>
-                <Toaster />
+                {/* <Toaster /> */}
                 <Header />
-                <div className='flex lg:mt-16'>
+                <div className='flex '>
                   <Sidebar />
                   <div
                     id='scrollableDiv'
-                    className='max-w-screen-2xl p-4 px-8 '>
+                    className='max-w-screen-2xl w-full p-4 lg:pl-[226px] '>
                     {children}
                   </div>
                 </div>

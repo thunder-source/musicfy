@@ -39,6 +39,7 @@ const defaultElement = 'div';
 const SanitizedText = <T extends React.ElementType = typeof defaultElement>({
   as,
   value,
+  children,
   ...props
 }: SanitizedTextProps<T>) => {
   // Determine the element type to render
@@ -48,7 +49,12 @@ const SanitizedText = <T extends React.ElementType = typeof defaultElement>({
   const sanitizedValue = replaceHTMLEntities(value);
 
   // Render the component with the specified element type and props
-  return <Element {...props}>{sanitizedValue}</Element>;
+  return (
+    <Element {...props}>
+      {sanitizedValue}
+      {children}
+    </Element>
+  );
 };
 
 export default SanitizedText;

@@ -5,14 +5,10 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { z } from 'zod';
 import { PlaySongHandler } from '../common';
+import { beautifyNumber } from '@/lib/utils';
 
 const ArtistCard = (artist: z.infer<typeof TopArtistModelBase>) => {
   const router = useRouter();
-
-  const options = { maximumFractionDigits: 2 };
-  const formattedNumber = Intl.NumberFormat('en-US', options).format(
-    artist?.followerCount
-  );
 
   return (
     <div>
@@ -39,7 +35,7 @@ const ArtistCard = (artist: z.infer<typeof TopArtistModelBase>) => {
         {artist?.name}
       </p>
       <p className='max-w-[200px] mx-auto break-words text-center font-semibold text-sm text-accent_a7 opacity-100'>
-        {formattedNumber} Fans
+        {beautifyNumber(artist?.followerCount)} Fans
       </p>
     </div>
   );

@@ -15,3 +15,14 @@ export const SearchArtistModel = z.object({
     })
   ),
 });
+
+export const SearchArtistModelApiResponse = z.object({
+  success: z.boolean(),
+  data: SearchArtistModel,
+});
+
+export type SearchArtistModelApiParameters = {
+  query: string;
+  page?: number;
+  limit?: number;
+};

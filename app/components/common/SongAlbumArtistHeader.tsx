@@ -18,7 +18,11 @@ import { RiVerifiedBadgeFill } from 'react-icons/ri';
 import { setActiveSong } from '@/redux/features/playerSlice';
 import { z } from 'zod';
 import { AlbumModel, ArtistModel, SongModel } from '@/types';
-import { convertSecondsToVisualTime, isLink } from '@/lib/utils';
+import {
+  beautifyNumber,
+  convertSecondsToVisualTime,
+  isLink,
+} from '@/lib/utils';
 import { useAppDispatch } from '@/hooks/reduxHandlers';
 import { BsFillPlayFill } from 'react-icons/bs';
 import SanitizedText from './SanitizedText';
@@ -67,18 +71,9 @@ const ArtistHeader = ({ data, isLoading }: artistProps) => {
       ? data.image[data.image.length - 1].url
       : '';
 
-  let formattedNumber = '';
   let isWikiLinkAvailable = false;
   let isTwitterLinkAvailable = false;
   let isFBLinkAvailable = false;
-
-  if (typeof data?.fanCount === 'string') {
-    formattedNumber = Intl.NumberFormat('en-US', options).format(
-      parseFloat(data.fanCount)
-    );
-  } else if (typeof data?.fanCount === 'number') {
-    formattedNumber = Intl.NumberFormat('en-US', options).format(data.fanCount);
-  }
 
   if (data?.wiki && isLink(data.wiki)) {
     isWikiLinkAvailable = true;
@@ -123,7 +118,7 @@ const ArtistHeader = ({ data, isLoading }: artistProps) => {
               className='font-bold text-xl'
               size='1'
             />{' '}
-            {formattedNumber} Listeners
+            {data?.fanCount && beautifyNumber(data?.fanCount)} Listeners
           </h4>
         </Skeleton>
         <Skeleton loading={isLoading}>
@@ -204,19 +199,6 @@ const ArtistHeader = ({ data, isLoading }: artistProps) => {
   );
 };
 
-const formatNumbers = (number: number | string) => {
-  const options = { maximumFractionDigits: 2 };
-  let formattedNumber = '';
-  if (typeof number === 'string') {
-    formattedNumber = Intl.NumberFormat('en-US', options).format(
-      parseFloat(number)
-    );
-  } else if (typeof number === 'number') {
-    formattedNumber = Intl.NumberFormat('en-US', options).format(number);
-  }
-  return formattedNumber;
-};
-
 type songProps = {
   data: z.infer<typeof SongModel> | undefined;
   isLoading: boolean;
@@ -265,7 +247,7 @@ const SongHeader = ({ data, isLoading }: songProps) => {
         </Skeleton>
         <Skeleton loading={isLoading} className='h-10 w-96'>
           <h4 className='font-semibold text-xl  capitalize text-accent_10 flex items-center gap-2 text-center lg:text-left '>
-            {data?.type} | {data?.playCount && formatNumbers(data?.playCount)}{' '}
+            {data?.type} | {data?.playCount && beautifyNumber(data?.playCount)}{' '}
             Plays |{' '}
             {data?.duration && convertSecondsToVisualTime(data?.duration)} |{' '}
             {data?.language}
@@ -335,7 +317,7 @@ const AlbumHeader = ({ data, isLoading }: AlbumProps) => {
       <div className='flex lg:items-start items-center justify-center flex-col gap-2'>
         <Skeleton loading={isLoading} className='h-10 w-96'>
           <h2
-            className='font-bold text-5xl lg:text-6xl text-accent_10  text-center flex items-center  gap-2'
+            className='font-bold text-5xl lg:text-6xl text-accent_10  max-lg:text-center flex items-center  gap-2'
             style={Jersey.style}>
             {data?.name}
           </h2>
@@ -362,7 +344,9 @@ const AlbumHeader = ({ data, isLoading }: AlbumProps) => {
         <Skeleton loading={isLoading} className='h-10 w-96'>
           <h4 className='font-semibold text-xl  capitalize text-accent_10 flex items-center gap-2 text-center lg:text-left '>
             {data?.type} |{' '}
-            {data?.playCount && <> {formatNumbers(data?.playCount)} Plays | </>}{' '}
+            {data?.playCount && (
+              <> {beautifyNumber(data?.playCount)} Plays | </>
+            )}{' '}
             {data?.songCount && <> {data?.songCount} Songs </>} |{' '}
             {data?.language}
           </h4>

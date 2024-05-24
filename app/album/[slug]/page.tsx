@@ -18,9 +18,7 @@ export default function Page({ params }: Props) {
   });
 
   return (
-    <div
-      className='flex flex-col p-4 lg:p-8 relative w-full overflow-y-auto'
-      id='scrollableDiv'>
+    <div className=''>
       <SongAlbumArtistHeader
         album={data?.data}
         isLoading={isLoading}

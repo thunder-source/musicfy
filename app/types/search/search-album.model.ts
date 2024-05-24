@@ -21,3 +21,14 @@ export const SearchAlbumModel = z.object({
     })
   ),
 });
+
+export const SearchAlbumModelApiResponse = z.object({
+  success: z.boolean(),
+  data: SearchAlbumModel,
+});
+
+export type SearchAlbumModelApiParameters = {
+  query: string;
+  page?: number;
+  limit?: number;
+};

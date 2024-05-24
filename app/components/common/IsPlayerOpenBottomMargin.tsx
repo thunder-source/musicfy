@@ -5,5 +5,9 @@ type Props = {};
 
 export default function IsPlayerOpenBottomMargin({}: Props) {
   const { isActive } = useAppSelector((state) => state.player);
-  return isActive && <div className='h-36 block'>&nbsp;</div>;
+  return isActive ? (
+    <div className='h-28 block'>&nbsp;</div>
+  ) : (
+    <div className='max-lg:h-16 lg:hidden '>&nbsp;</div>
+  );
 }
