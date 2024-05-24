@@ -5,9 +5,7 @@ type Props = {
   times: number;
 };
 
-const Loading = () => (
-  <Skeleton className='h-16 my-2 rounded-radius_2 py-2 '></Skeleton>
-);
+const Loading = () => <Skeleton className="my-2 h-16 rounded-radius_2 py-2 "></Skeleton>;
 
 export default function SongListLoading({ times }: Props) {
   if (times) {

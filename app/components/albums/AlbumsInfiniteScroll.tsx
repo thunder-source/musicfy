@@ -34,22 +34,21 @@ export default function AlbumsInfiniteScroll({ id }: { id: string }) {
 
   return (
     <InfiniteScroll
-      dataLength={
-        data?.data?.topAlbums?.length ? data?.data.topAlbums.length : 0
-      } //This is important field to render the next data
+      dataLength={data?.data?.topAlbums?.length ? data?.data.topAlbums.length : 0} //This is important field to render the next data
       next={() => {
         setPage(page + 1);
       }}
       hasMore={hasMoreTopAlbums}
       loader={error ? <Error /> : <AlbumCardLoading />}
       endMessage={
-        <p style={{ textAlign: 'center' }} className='text-2xl w-full'>
+        <p style={{ textAlign: 'center' }} className="w-full text-2xl">
           <b>Yay! You have seen it all 🤩</b>
         </p>
       }
       style={{ overflow: 'hidden' }}
-      className='flex flex-wrap sm:justify-start justify-center gap-8 overflow-hidden'
-      scrollableTarget='scrollableDiv'>
+      className="flex flex-wrap justify-center gap-8 overflow-hidden sm:justify-start"
+      scrollableTarget="scrollableDiv"
+    >
       {Array.isArray(data?.data.topAlbums) &&
         data?.data.topAlbums?.map((album: z.infer<typeof AlbumModel>) => {
           return <AlbumCard key={album.id} {...album} />;

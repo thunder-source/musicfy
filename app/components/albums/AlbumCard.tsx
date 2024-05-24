@@ -7,45 +7,40 @@ import { z } from 'zod';
 import { PlaySongHandler } from '../common';
 import LikeButtonLite from '../common/LikeButtonLite';
 
-const AlbumCard = (
-  album: z.infer<typeof NewReleasesItem> | z.infer<typeof AlbumModel>
-) => {
+const AlbumCard = (album: z.infer<typeof NewReleasesItem> | z.infer<typeof AlbumModel>) => {
   // const cleanedName = album.name.replace(/\(From\s"[^"]+"\)/g, '');
 
   return (
-    <div className='relative overflow-hidden rounded-radius_6  shadow-sm group'>
+    <div className="group relative overflow-hidden  rounded-radius_6 shadow-sm">
       {/* <img
         src={album.image[0].url}
         alt='das'
         className='absolute -z-50 h-full w-full m-auto group-hover:scale-125 transform transition duration-1000'
       /> */}
-      <div className='flex flex-col p-4 w-[250px] bg-accent_surface custom-filter border-gray_a5 border-2 rounded-radius_6 group shadow-sm'>
-        <div className='relative w-full h-56 overflow-hidden  rounded-radius_6'>
+      <div className="custom-filter group flex w-[250px] flex-col rounded-radius_6 border-2 border-gray_a5 bg-accent_surface p-4 shadow-sm">
+        <div className="relative h-56 w-full overflow-hidden  rounded-radius_6">
           <Avatar
-            loading='lazy'
-            className='relative h-56 w-56 rounded-radius_6 group-hover:scale-125 overflow-hidden transform transition duration-500 text-center'
+            loading="lazy"
+            className="relative h-56 w-56 transform overflow-hidden rounded-radius_6 text-center transition duration-500 group-hover:scale-125"
             src={album?.image[2]?.url}
             fallback={album.name}
-            alt='Album Image'
+            alt="Album Image"
           />
-          <div className='w-full h-full  absolute rounded-radius_6 left-0 top-0 group-hover:bg-accent_a3 '></div>
-          <p className='group-hover:block  hidden max-w-[200px] break-words text-center font-semibold text-lg text-accent_a9  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100'>
+          <div className="absolute left-0  top-0 h-full w-full rounded-radius_6 group-hover:bg-accent_a3 "></div>
+          <p className="absolute  left-1/2 top-1/2 hidden max-w-[200px] -translate-x-1/2 -translate-y-1/2 break-words  text-center text-lg font-semibold text-accent_a9 opacity-100 group-hover:block">
             <PlaySongHandler id={album.id} type={album.type} />
           </p>
         </div>
-        <div className='flex items-center justify-between gap-2 '>
-          <div className='mt-4 flex-col'>
-            <p className='font-semibold text-base max-w-[200px] truncate'>
+        <div className="flex items-center justify-between gap-2 ">
+          <div className="mt-4 flex-col">
+            <p className="max-w-[200px] truncate text-base font-semibold">
               <Link href={`/album/${album.id}`} prefetch={false}>
                 {album.name}
               </Link>
             </p>
-            <p className='text-sm truncate  max-w-[140px] mt-1'>
-              {Array.isArray(album?.artists.all) &&
-              album.artists.all.length > 0 ? (
-                <Link
-                  prefetch={false}
-                  href={`/artists/${album.artists.all[0].id}`}>
+            <p className="mt-1 max-w-[140px]  truncate text-sm">
+              {Array.isArray(album?.artists.all) && album.artists.all.length > 0 ? (
+                <Link prefetch={false} href={`/artists/${album.artists.all[0].id}`}>
                   {album?.artists?.all[0]?.name}
                 </Link>
               ) : (

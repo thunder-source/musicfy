@@ -18,14 +18,12 @@ export default function LyricsPage({ song }: Props) {
   };
 
   return (
-    <div className='mb-6 flex flex-col  select-text'>
-      <h2 className='text-5xl my-1' style={Jersey.style}>
+    <div className="mb-6 flex select-text  flex-col">
+      <h2 className="my-1 text-5xl" style={Jersey.style}>
         {song.name} Lyrics
       </h2>
-      <p className='w-full text-lg'>
-        {song.lyrics?.lyrics && getLines(song.lyrics?.lyrics)}
-      </p>
-      <p className='my-1 text-accent_8 text-xl'>
+      <p className="w-full text-lg">{song.lyrics?.lyrics && getLines(song.lyrics?.lyrics)}</p>
+      <p className="my-1 text-xl text-accent_8">
         {song.lyrics?.copyright && getLines(song.lyrics?.copyright)}
       </p>
     </div>

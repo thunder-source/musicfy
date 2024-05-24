@@ -30,8 +30,7 @@ export function PlaySongHandler({ id, type }: Props) {
 const AlbumPlaySongHandler = ({ id }: { id: String }) => {
   const dispatch = useAppDispatch();
 
-  const [trigger, { data, isFetching, isError }] =
-    mainApi.endpoints.getAlbumById.useLazyQuery();
+  const [trigger, { data, isFetching, isError }] = mainApi.endpoints.getAlbumById.useLazyQuery();
 
   useEffect(() => {
     if (data) {
@@ -40,7 +39,7 @@ const AlbumPlaySongHandler = ({ id }: { id: String }) => {
           setActiveSong({
             songs: data.data.songs,
             index: 0,
-          })
+          }),
         );
       } else {
         toast.error('oops Something went wrong');
@@ -58,7 +57,7 @@ const AlbumPlaySongHandler = ({ id }: { id: String }) => {
     <Spinner loading={isFetching} size={'3'}>
       <FaPlayCircle
         size={35}
-        className='text-accent_indicator hover:scale-125 transform transition duration-500 cursor-pointer'
+        className="transform cursor-pointer text-accent_indicator transition duration-500 hover:scale-125"
         onClick={() => {
           trigger({ albumId: id });
         }}
@@ -70,8 +69,7 @@ const AlbumPlaySongHandler = ({ id }: { id: String }) => {
 const ArtistPlaySongHandler = ({ id }: { id: String }) => {
   const dispatch = useAppDispatch();
 
-  const [trigger, { data, isFetching, isError }] =
-    mainApi.endpoints.getArtistById.useLazyQuery();
+  const [trigger, { data, isFetching, isError }] = mainApi.endpoints.getArtistById.useLazyQuery();
 
   useEffect(() => {
     if (data && !isFetching) {
@@ -80,7 +78,7 @@ const ArtistPlaySongHandler = ({ id }: { id: String }) => {
           setActiveSong({
             songs: data.data.topSongs,
             index: 0,
-          })
+          }),
         );
       } else {
         toast.error('oops Something went wrong');
@@ -99,7 +97,7 @@ const ArtistPlaySongHandler = ({ id }: { id: String }) => {
     <Spinner loading={isFetching} size={'3'}>
       <FaPlayCircle
         size={35}
-        className='text-accent_indicator hover:scale-125 transform transition duration-500 cursor-pointer'
+        className="transform cursor-pointer text-accent_indicator transition duration-500 hover:scale-125"
         onClick={() => {
           trigger({ artistId: id });
         }}
@@ -111,8 +109,7 @@ const ArtistPlaySongHandler = ({ id }: { id: String }) => {
 const PlayDiscoverSongHandler = ({ id }: { id: String }) => {
   const dispatch = useAppDispatch();
 
-  const [trigger, { data, isFetching, isError }] =
-    mainApi.endpoints.getSongById.useLazyQuery();
+  const [trigger, { data, isFetching, isError }] = mainApi.endpoints.getSongById.useLazyQuery();
 
   useEffect(() => {
     if (data) {
@@ -121,7 +118,7 @@ const PlayDiscoverSongHandler = ({ id }: { id: String }) => {
           setActiveSong({
             songs: data.data,
             index: 0,
-          })
+          }),
         );
       } else {
         toast.error('oops Something went wrong');
@@ -139,7 +136,7 @@ const PlayDiscoverSongHandler = ({ id }: { id: String }) => {
     <Spinner loading={isFetching} size={'3'}>
       <FaPlayCircle
         size={35}
-        className='text-accent_indicator hover:scale-125 transform transition duration-500 cursor-pointer'
+        className="transform cursor-pointer text-accent_indicator transition duration-500 hover:scale-125"
         onClick={() => {
           trigger({ songId: id });
         }}

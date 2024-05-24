@@ -13,7 +13,7 @@ type Props = {
 
 export default function SongDetailsPage({ isLoading, data }: Props) {
   return (
-    <div className=''>
+    <div className="">
       {isLoading ? (
         <SongListLoading times={5} />
       ) : (
@@ -23,9 +23,7 @@ export default function SongDetailsPage({ isLoading, data }: Props) {
       )}
       {data?.id && <SongSuggestions id={data?.id} />}
 
-      {data?.artists.all && (
-        <ArtistCarousel data={data?.artists.all} headerName='Artist' />
-      )}
+      {data?.artists.all && <ArtistCarousel data={data?.artists.all} headerName="Artist" />}
     </div>
   );
 }

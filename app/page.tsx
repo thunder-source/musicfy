@@ -20,12 +20,11 @@ export default function Discover() {
   const [page, setPage] = useState(1);
   const [language, setLanguage] = useState('For Me');
 
-  const { data, error, isLoading, isFetching, currentData } =
-    useGetNewReleasesQuery({
-      language: language === 'For Me' ? musicLanguage.join(',') : language,
-      page: page,
-      limit: 50,
-    });
+  const { data, error, isLoading, isFetching, currentData } = useGetNewReleasesQuery({
+    language: language === 'For Me' ? musicLanguage.join(',') : language,
+    page: page,
+    limit: 50,
+  });
 
   const resetParams = (newLanguage: string) => {
     setLanguage(newLanguage);
@@ -38,28 +37,25 @@ export default function Discover() {
   return (
     <>
       {/* <ThemeTesting /> */}
-      <div className='flex justify-between items-start'>
-        <h2
-          className='font-bold text-5xl text-accent_10 text-left mb-8'
-          style={Jersey.style}>
+      <div className="flex items-start justify-between">
+        <h2 className="mb-8 text-left text-5xl font-bold text-accent_10" style={Jersey.style}>
           Discover
         </h2>
-        <div className='mt-2 '>
+        <div className="mt-2 ">
           <Select.Root
             onValueChange={(value) => {
               resetParams(value);
             }}
-            defaultValue={language}>
-            <Select.Trigger className='capitalize max-w-32'>
-              {language}
-            </Select.Trigger>
+            defaultValue={language}
+          >
+            <Select.Trigger className="max-w-32 capitalize">{language}</Select.Trigger>
             <Select.Content>
               <Select.Group>
-                <Select.Item className='capitalize' value={'For Me'}>
+                <Select.Item className="capitalize" value={'For Me'}>
                   For Me
                 </Select.Item>
                 {languages.map((lang) => (
-                  <Select.Item className='capitalize' value={lang} key={lang}>
+                  <Select.Item className="capitalize" value={lang} key={lang}>
                     {lang}
                   </Select.Item>
                 ))}
@@ -78,20 +74,21 @@ export default function Discover() {
             hasMore={data?.lastPage === true ? false : true}
             loader={error ? <Error /> : <AlbumCardLoading />}
             endMessage={
-              <p style={{ textAlign: 'center' }} className='text-2xl w-full'>
+              <p style={{ textAlign: 'center' }} className="w-full text-2xl">
                 <b>Yay! You have seen it all 🤩</b>
               </p>
             }
             style={{ overflow: 'hidden' }}
-            className='flex flex-wrap lg:justify-start justify-center gap-8'
-            scrollableTarget='scrollableDiv'>
+            className="flex flex-wrap justify-center gap-8 lg:justify-start"
+            scrollableTarget="scrollableDiv"
+          >
             {data?.result?.map((album) => {
               return <AlbumCard key={album.id} {...album} />;
             })}
           </InfiniteScroll>
         </>
       ) : (
-        <div className='flex flex-wrap lg:justify-start justify-center gap-8'>
+        <div className="flex flex-wrap justify-center gap-8 lg:justify-start">
           <AlbumCardLoading />
         </div>
       )}

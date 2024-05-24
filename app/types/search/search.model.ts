@@ -21,8 +21,8 @@ export const SearchModel = z.object({
         year: z.string(),
         language: z.string(),
         songIds: z.string(),
-      })
-    )
+      }),
+    ),
   ),
   songs: SearchResponseModel(
     z.array(
@@ -37,8 +37,8 @@ export const SearchModel = z.object({
         primaryArtists: z.string(),
         singers: z.string(),
         language: z.string(),
-      })
-    )
+      }),
+    ),
   ),
   artists: SearchResponseModel(
     z.array(
@@ -49,8 +49,8 @@ export const SearchModel = z.object({
         type: z.string(),
         description: z.string(),
         position: z.number(),
-      })
-    )
+      }),
+    ),
   ),
   playlists: SearchResponseModel(
     z.array(
@@ -62,8 +62,8 @@ export const SearchModel = z.object({
         language: z.string(),
         type: z.string(),
         description: z.string(),
-      })
-    )
+      }),
+    ),
   ),
   topQuery: SearchResponseModel(
     z.array(
@@ -78,8 +78,8 @@ export const SearchModel = z.object({
         primaryArtists: z.string(),
         singers: z.string(),
         language: z.string(),
-      })
-    )
+      }),
+    ),
   ),
 });
 

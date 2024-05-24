@@ -12,9 +12,9 @@ type navTypes = {
 
 const Sidebar = () => {
   return (
-    <div className='fixed top-16 left-0 min-w-[210px] w-[210px] h-[calc(100vh_-_64px)] gap-1 p-1  flex-col hidden lg:flex '>
-      <div className='flex py-2 pb-4 flex-col px-4 border-gray_a5 border-2 bg-accent_a2 rounded-lg h-full '>
-        <div className='text-2xl text-accent_10' style={Jersey.style}>
+    <div className="fixed left-0 top-16 hidden h-[calc(100vh_-_64px)] w-[210px] min-w-[210px] flex-col  gap-1 p-1 lg:flex ">
+      <div className="flex h-full flex-col rounded-lg border-2 border-gray_a5 bg-accent_a2 px-4 py-2 pb-4 ">
+        <div className="text-2xl text-accent_10" style={Jersey.style}>
           BROWSE
         </div>
         <NavLinks />
@@ -55,13 +55,14 @@ const Sidebar = () => {
 const NavLinks = ({ handleClick }: navTypes) => {
   const pathname = usePathname();
   return (
-    <div className='flex flex-col gap-2 w-full h-full'>
+    <div className="flex h-full w-full flex-col gap-2">
       {links.map(({ icon: Icon, activeIcon: ActiveIcon, name, to }) => (
-        <Link key={name} href={to} className='w-full '>
+        <Link key={name} href={to} className="w-full ">
           <Button
             onClick={() => handleClick && handleClick()}
             variant={to == pathname ? 'solid' : 'soft'}
-            className='w-full justify-between cursor-pointer'>
+            className="w-full cursor-pointer justify-between"
+          >
             {to == pathname ? <ActiveIcon /> : <Icon />}
             {name}
           </Button>

@@ -12,7 +12,7 @@ export const isLink = (str: string) => {
 export function beautifyNumber(
   number: number | string,
   locale = 'en-US',
-  options = { maximumFractionDigits: 2 }
+  options = { maximumFractionDigits: 2 },
 ) {
   if (typeof number === 'string') {
     return Intl.NumberFormat(locale, options).format(parseFloat(number));

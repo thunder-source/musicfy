@@ -13,5 +13,5 @@ export default function Page({ params }: Props) {
   });
 
   console.log(data);
-  return <div className='w-full h-full my-auto '>page {params.slug}</div>;
+  return <div className="my-auto h-full w-full ">page {params.slug}</div>;
 }

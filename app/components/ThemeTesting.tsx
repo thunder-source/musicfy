@@ -71,25 +71,18 @@ const radius = [
 
 export const ThemeTesting = () => {
   return (
-    <div className=' p-4'>
-      <Flex
-        gap='2'
-        direction='row'
-        className='flex-wrap gap-4 justify-between w-full'>
+    <div className=" p-4">
+      <Flex gap="2" direction="row" className="w-full flex-wrap justify-between gap-4">
         {colors.map((color) => {
           return (
-            <div
-              key={color}
-              className={`${color} rounded-lg text-center border-2 p-2 px-4`}>
+            <div key={color} className={`${color} rounded-lg border-2 p-2 px-4 text-center`}>
               {color}
             </div>
           );
         })}
         {radius.map((radius) => {
           return (
-            <div
-              key={radius}
-              className={`${radius} bg-accent_1 text-center border-2 p-2 px-4 `}>
+            <div key={radius} className={`${radius} border-2 bg-accent_1 p-2 px-4 text-center `}>
               {radius}
             </div>
           );

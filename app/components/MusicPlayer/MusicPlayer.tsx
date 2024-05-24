@@ -1,10 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import {
-  nextSong,
-  prevSong,
-  playPause,
-} from '../../redux/features/playerSlice';
+import { nextSong, prevSong, playPause } from '../../redux/features/playerSlice';
 import LeftControls from './LeftControls';
 import Player from './Player';
 import Track from './Track';
@@ -17,14 +13,9 @@ import { useAppDispatch, useAppSelector } from '@/hooks/reduxHandlers';
 import MobileMusicPlayer from './MobileMusicPlayer';
 
 const MusicPlayer = () => {
-  const {
-    activeSong,
-    currentSongs,
-    currentIndex,
-    isActive,
-    isPlaying,
-    volume,
-  } = useAppSelector((state) => state.player);
+  const { activeSong, currentSongs, currentIndex, isActive, isPlaying, volume } = useAppSelector(
+    (state) => state.player,
+  );
 
   const [duration, setDuration] = useState(0);
   const [seekTime, setSeekTime] = useState(0);
@@ -80,7 +71,7 @@ const MusicPlayer = () => {
     return;
   }
   return (
-    <div className='right-1/2 translate-x-1/2 fixed max-lg:bottom-[72px] lg:bottom-5 m-auto rounded-radius_4 lg:rounded-full max-lg:rounded-b-none w-full lg:w-[calc(100%_-_70px)]  flex items-center justify-between  max-w-screen-xl border-gray_a3 p-2 border-2  bg-accent_surface custom-filter shadow-sm max-lg:py-1 max-lg:border-b-0'>
+    <div className="custom-filter fixed right-1/2 m-auto flex w-full max-w-screen-xl translate-x-1/2 items-center justify-between rounded-radius_4  border-2 border-gray_a3 bg-accent_surface  p-2 shadow-sm max-lg:bottom-[72px] max-lg:rounded-b-none  max-lg:border-b-0 max-lg:py-1 lg:bottom-5 lg:w-[calc(100%_-_70px)] lg:rounded-full">
       <LeftControls
         isPlaying={isPlaying}
         repeat={repeat}
@@ -111,7 +102,7 @@ const MusicPlayer = () => {
         onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
         onLoadedData={(event) => setDuration(event.target.duration)}
       />
-      <div className='flex'>
+      <div className="flex">
         {/* <IconButton
           variant='ghost'
           radius='full'
@@ -138,21 +129,22 @@ const MoreOptions = () => {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
         <IconButton
-          variant='ghost'
-          radius='full'
-          size='2'
-          color='gray'
-          className='cursor-pointer p-2 mr-2 hidden lg:block'>
+          variant="ghost"
+          radius="full"
+          size="2"
+          color="gray"
+          className="mr-2 hidden cursor-pointer p-2 lg:block"
+        >
           <PiDotsThreeCircleVerticalBold size={25}>
             <DropdownMenu.Trigger />
           </PiDotsThreeCircleVerticalBold>
         </IconButton>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>
-        <DropdownMenu.Item shortcut='⌘ E'>Edit</DropdownMenu.Item>
-        <DropdownMenu.Item shortcut='⌘ D'>Duplicate</DropdownMenu.Item>
+        <DropdownMenu.Item shortcut="⌘ E">Edit</DropdownMenu.Item>
+        <DropdownMenu.Item shortcut="⌘ D">Duplicate</DropdownMenu.Item>
         <DropdownMenu.Separator />
-        <DropdownMenu.Item shortcut='⌘ N'>Archive</DropdownMenu.Item>
+        <DropdownMenu.Item shortcut="⌘ N">Archive</DropdownMenu.Item>
 
         <DropdownMenu.Sub>
           <DropdownMenu.SubTrigger>More</DropdownMenu.SubTrigger>
@@ -169,7 +161,7 @@ const MoreOptions = () => {
         <DropdownMenu.Item>Share</DropdownMenu.Item>
         <DropdownMenu.Item>Add to favorites</DropdownMenu.Item>
         <DropdownMenu.Separator />
-        <DropdownMenu.Item shortcut='⌘ ⌫' color='red'>
+        <DropdownMenu.Item shortcut="⌘ ⌫" color="red">
           Delete
         </DropdownMenu.Item>
       </DropdownMenu.Content>

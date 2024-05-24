@@ -15,10 +15,7 @@ import { z } from 'zod';
 
 const searchApi = mainApi.injectEndpoints({
   endpoints: (builder) => ({
-    searchByName: builder.query<
-      z.infer<typeof SearchModelApiResponse>,
-      SearchModelApiParameters
-    >({
+    searchByName: builder.query<z.infer<typeof SearchModelApiResponse>, SearchModelApiParameters>({
       query: ({ query }) => `/search${query ? `?query=${query}` : ''}`,
     }),
 

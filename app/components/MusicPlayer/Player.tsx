@@ -44,10 +44,7 @@ const Player = ({
     if (ref.current !== null) ref.current.currentTime = seekTime;
   }, [seekTime]);
 
-  if (
-    Array.isArray(activeSong?.downloadUrl) &&
-    activeSong.downloadUrl.length === 0
-  ) {
+  if (Array.isArray(activeSong?.downloadUrl) && activeSong.downloadUrl.length === 0) {
     return;
   }
   if (activeSong.downloadUrl === undefined) {
@@ -56,7 +53,7 @@ const Player = ({
 
   return (
     <audio
-      className='hidden'
+      className="hidden"
       src={activeSong?.downloadUrl[4]?.url}
       ref={ref}
       loop={repeat}

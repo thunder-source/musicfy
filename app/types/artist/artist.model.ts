@@ -20,7 +20,7 @@ export const ArtistModel = z.object({
         text: z.string().nullable(),
         title: z.string().nullable(),
         sequence: z.number().nullable(),
-      })
+      }),
     )
     .nullable(),
   dob: z.string().nullable(),
@@ -54,10 +54,10 @@ export const ArtistModel = z.object({
             z.object({
               id: z.string(),
               name: z.string(),
-            })
+            }),
           )
           .nullable(),
-      })
+      }),
     )
     .nullable(),
 });

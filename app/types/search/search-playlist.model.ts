@@ -15,7 +15,7 @@ export const SearchPlaylistModel = z.object({
       songCount: z.number().nullable(),
       language: z.string(),
       explicitContent: z.boolean(),
-    })
+    }),
   ),
 });
 

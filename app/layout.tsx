@@ -25,26 +25,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning lang='en'>
-      <body
-        className={
-          (inter.className, Jersey.className, 'bg-accent_8 h-screen relative')
-        }>
+    <html suppressHydrationWarning lang="en">
+      <body className={(inter.className, Jersey.className, 'relative h-screen bg-accent_8')}>
         <Provider store={store}>
           <PersistGate loading={<SimpleTextLoading />} persistor={persistor}>
-            <ThemeProvider attribute='class'>
-              <Theme
-                accentColor='indigo'
-                grayColor='sand'
-                radius='medium'
-                scaling='95%'>
+            <ThemeProvider attribute="class">
+              <Theme accentColor="indigo" grayColor="sand" radius="medium" scaling="95%">
                 {/* <Toaster /> */}
                 <Header />
-                <div className='flex '>
+                <div className="flex ">
                   <Sidebar />
-                  <div
-                    id='scrollableDiv'
-                    className='max-w-screen-2xl w-full p-4 lg:pl-[226px] '>
+                  <div id="scrollableDiv" className="w-full max-w-screen-2xl p-4 lg:pl-[226px] ">
                     {children}
                   </div>
                 </div>

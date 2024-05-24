@@ -18,7 +18,7 @@ export const SearchAlbumModel = z.object({
       artists: z.object(SongModel.shape.artists.shape),
       url: z.string(),
       image: z.array(DownloadLinkModel),
-    })
+    }),
   ),
 });
 

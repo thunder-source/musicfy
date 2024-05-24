@@ -12,7 +12,7 @@ export const SearchArtistModel = z.object({
       type: z.string(),
       image: z.array(DownloadLinkModel),
       url: z.string(),
-    })
+    }),
   ),
 });
 

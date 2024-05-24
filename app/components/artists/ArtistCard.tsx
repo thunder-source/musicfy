@@ -13,28 +13,27 @@ const ArtistCard = (artist: z.infer<typeof TopArtistModelBase>) => {
   return (
     <div>
       <div
-        className='flex transform transition-all duration-500  group relative flex-col w-fit p-4 hover:transition-all bg-accent_a4 bg-opacity-80 custom-filter  cursor-pointer rounded-full hover:border-accent_10 border-transparent border-2'
-        onClick={() => router.push(`/artists/${artist.artistid}`)}>
-        <Avatar
-          className='w-56 h-56 rounded-full'
-          src={artist?.image}
-          fallback={artist?.name}
-        />
-        <div className='w-full h-full absolute rounded-full left-0 top-0 group-hover:bg-accent_3 group-hover:opacity-70'></div>
+        className="custom-filter group relative flex  w-fit transform cursor-pointer flex-col rounded-full border-2 border-transparent bg-accent_a4 bg-opacity-80  p-4 transition-all duration-500 hover:border-accent_10 hover:transition-all"
+        onClick={() => router.push(`/artists/${artist.artistid}`)}
+      >
+        <Avatar className="h-56 w-56 rounded-full" src={artist?.image} fallback={artist?.name} />
+        <div className="absolute left-0 top-0 h-full w-full rounded-full group-hover:bg-accent_3 group-hover:opacity-70"></div>
         <p
           onClick={(e) => {
             e.stopPropagation();
           }}
-          className='group-hover:block  hidden max-w-[200px] break-words text-center font-semibold text-lg text-accent_a9  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100'>
+          className="absolute  left-1/2 top-1/2 hidden max-w-[200px] -translate-x-1/2 -translate-y-1/2 break-words  text-center text-lg font-semibold text-accent_a9 opacity-100 group-hover:block"
+        >
           <PlaySongHandler id={artist.artistid} type={'artist'} />
         </p>
       </div>
       <p
         onClick={() => router.push(`/artists/${artist.artistid}`)}
-        className='max-w-[200px] mx-auto mt-2 break-words text-center font-semibold text-lg text-accent_a9 opacity-100 cursor-pointer'>
+        className="mx-auto mt-2 max-w-[200px] cursor-pointer break-words text-center text-lg font-semibold text-accent_a9 opacity-100"
+      >
         {artist?.name}
       </p>
-      <p className='max-w-[200px] mx-auto break-words text-center font-semibold text-sm text-accent_a7 opacity-100'>
+      <p className="mx-auto max-w-[200px] break-words text-center text-sm font-semibold text-accent_a7 opacity-100">
         {beautifyNumber(artist?.followerCount)} Fans
       </p>
     </div>

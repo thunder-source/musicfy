@@ -26,30 +26,24 @@ export default function BiographyPage({ data }: Props) {
 
   return (
     <>
-      <div className='mb-6 flex justify-between items-center md:w-1/2 '>
+      <div className="mb-6 flex items-center justify-between md:w-1/2 ">
         <div>
-          <h2 className='text-4xl my-1' style={Jersey.style}>
+          <h2 className="my-1 text-4xl" style={Jersey.style}>
             Born
           </h2>
-          <p className='text-base'>{data?.dob ? data?.dob : 'N/A'}</p>
+          <p className="text-base">{data?.dob ? data?.dob : 'N/A'}</p>
         </div>
-        <div className='flex flex-col justify-center gap-2 items-end'>
+        <div className="flex flex-col items-end justify-center gap-2">
           {isWikiLinkAvailable && (
-            <Link
-              prefetch={false}
-              target='_blank'
-              href={data?.wiki ? data?.wiki : ''}>
-              <Button variant='soft' size='2' className='cursor-pointer'>
+            <Link prefetch={false} target="_blank" href={data?.wiki ? data?.wiki : ''}>
+              <Button variant="soft" size="2" className="cursor-pointer">
                 <FaWikipediaW /> Get Info on Wiki
               </Button>
             </Link>
           )}
           {isTwitterLinkAvailable && (
-            <Link
-              prefetch={false}
-              target='_blank'
-              href={data?.twitter ? data?.twitter : ''}>
-              <Button variant='soft' size='2' className='cursor-pointer'>
+            <Link prefetch={false} target="_blank" href={data?.twitter ? data?.twitter : ''}>
+              <Button variant="soft" size="2" className="cursor-pointer">
                 <FaXTwitter /> Twitter
               </Button>
             </Link>
@@ -62,15 +56,15 @@ export default function BiographyPage({ data }: Props) {
           if (typeof text === 'string') {
             paragraphs = text.split(/\n+/).map((paragraph, index) => {
               return (
-                <p className='mb-4' key={index}>
+                <p className="mb-4" key={index}>
                   {paragraph}
                 </p>
               );
             });
           }
           return (
-            <div key={sequence} className='mb-6  md:w-1/2 '>
-              <h2 className='text-5xl my-1' style={Jersey.style}>
+            <div key={sequence} className="mb-6  md:w-1/2 ">
+              <h2 className="my-1 text-5xl" style={Jersey.style}>
                 {title}
               </h2>
               {paragraphs}

@@ -19,36 +19,30 @@ export default function Page({ params }: Props) {
   });
 
   return (
-    <div
-      className='flex flex-col p-4 lg:p-8 relative w-full overflow-y-auto'
-      id='scrollableDiv'>
+    <div className="relative flex w-full flex-col overflow-y-auto p-4 lg:p-8" id="scrollableDiv">
       <SongAlbumArtistHeader
         song={Array.isArray(data?.data) ? data?.data[0] : undefined}
         isLoading={isLoading}
-        type='song'
+        type="song"
       />
-      <Tabs.Root defaultValue='details'>
-        <Tabs.List size='2'>
-          <Tabs.Trigger value='details'>Details</Tabs.Trigger>
+      <Tabs.Root defaultValue="details">
+        <Tabs.List size="2">
+          <Tabs.Trigger value="details">Details</Tabs.Trigger>
           {Array.isArray(data?.data) && data?.data[0].hasLyrics && (
-            <Tabs.Trigger value='lyric'>Lyric</Tabs.Trigger>
+            <Tabs.Trigger value="lyric">Lyric</Tabs.Trigger>
           )}
         </Tabs.List>
 
-        <Box pt='3'>
-          <Tabs.Content value='details' className='outline-none'>
+        <Box pt="3">
+          <Tabs.Content value="details" className="outline-none">
             <SongDetailsPage
               isLoading={isLoading}
               data={Array.isArray(data?.data) ? data.data[0] : undefined}
             />
           </Tabs.Content>
 
-          <Tabs.Content value='lyric' className='outline-none'>
-            {Array.isArray(data?.data) ? (
-              <LyricsPage song={data?.data[0]} />
-            ) : (
-              'No Lyrics Found'
-            )}
+          <Tabs.Content value="lyric" className="outline-none">
+            {Array.isArray(data?.data) ? <LyricsPage song={data?.data[0]} /> : 'No Lyrics Found'}
           </Tabs.Content>
         </Box>
       </Tabs.Root>

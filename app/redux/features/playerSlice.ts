@@ -29,10 +29,7 @@ const playerSlice = createSlice({
   name: 'player',
   initialState,
   reducers: {
-    setActiveSong: (
-      state,
-      { payload }: PayloadAction<setActiveSongPayloadType>
-    ) => {
+    setActiveSong: (state, { payload }: PayloadAction<setActiveSongPayloadType>) => {
       state.activeSong = payload.songs[payload.index];
       state.currentIndex = payload.index;
       state.currentSongs = payload.songs;
@@ -58,7 +55,6 @@ const playerSlice = createSlice({
   },
 });
 
-export const { setActiveSong, nextSong, prevSong, playPause } =
-  playerSlice.actions;
+export const { setActiveSong, nextSong, prevSong, playPause } = playerSlice.actions;
 
 export default playerSlice.reducer;

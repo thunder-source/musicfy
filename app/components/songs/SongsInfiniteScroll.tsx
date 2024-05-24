@@ -39,13 +39,14 @@ const SongsInfiniteScroll = ({ id }: { id: string }) => {
       hasMore={hasMoreTopSongs}
       loader={error ? <Error /> : <SongListLoading times={5} />}
       endMessage={
-        <p style={{ textAlign: 'center' }} className='text-2xl w-full'>
+        <p style={{ textAlign: 'center' }} className="w-full text-2xl">
           <b>Yay! You have seen it all 🤩</b>
         </p>
       }
       // style={{ overflow: 'hidden' }}
-      className='flex flex-wrap sm:justify-start flex-col justify-center mb-8'
-      scrollableTarget='scrollableDiv'>
+      className="mb-8 flex flex-col flex-wrap justify-center sm:justify-start"
+      scrollableTarget="scrollableDiv"
+    >
       {Array.isArray(data?.data.topSongs) && (
         <SongsList key={data?.data.id} songs={data?.data.topSongs} />
       )}

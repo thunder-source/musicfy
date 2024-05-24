@@ -17,7 +17,7 @@ export default function AlbumSongList({ albumId }: Props) {
   if (isFetching) {
     return (
       <>
-        <Skeleton className='w-96 h-16 mb-4' />
+        <Skeleton className="mb-4 h-16 w-96" />
         <SongListLoading times={5} />
       </>
     );
@@ -27,7 +27,7 @@ export default function AlbumSongList({ albumId }: Props) {
     <>
       {Array.isArray(data?.data.songs) && data?.data.songs.length > 1 && (
         <>
-          <h2 className='text-5xl mb-4 text-accent_8' style={Jersey.style}>
+          <h2 className="mb-4 text-5xl text-accent_8" style={Jersey.style}>
             More From {data?.data.name}
           </h2>
           <SongsList songs={data?.data.songs} />

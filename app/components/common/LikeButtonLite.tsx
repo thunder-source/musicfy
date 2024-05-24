@@ -9,14 +9,15 @@ export default function LikeButtonLite({}: Props) {
   const [liked, setLiked] = useState(getRandomBoolean());
   return (
     <IconButton
-      variant='ghost'
-      radius='full'
-      size='2'
+      variant="ghost"
+      radius="full"
+      size="2"
       // color='gray'
-      className='cursor-pointer p-2 hover:scale-110 transform transition duration-500 bg-accent_surface'
+      className="transform cursor-pointer bg-accent_surface p-2 transition duration-500 hover:scale-110"
       onClick={() => {
         setLiked(!liked);
-      }}>
+      }}
+    >
       {liked ? <FcLike size={25} /> : <FcLikePlaceholder size={25} />}
     </IconButton>
   );

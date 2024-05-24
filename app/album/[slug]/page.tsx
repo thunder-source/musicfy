@@ -18,23 +18,17 @@ export default function Page({ params }: Props) {
   });
 
   return (
-    <div className=''>
-      <SongAlbumArtistHeader
-        album={data?.data}
-        isLoading={isLoading}
-        type='album'
-      />
+    <div className="">
+      <SongAlbumArtistHeader album={data?.data} isLoading={isLoading} type="album" />
 
       {isLoading ? (
         <SongListLoading times={5} />
       ) : (
-        Array.isArray(data?.data.songs) && (
-          <SongsList songs={data?.data.songs} />
-        )
+        Array.isArray(data?.data.songs) && <SongsList songs={data?.data.songs} />
       )}
 
       {data?.data.artists.all && (
-        <ArtistCarousel data={data?.data.artists.all} headerName='Artist' />
+        <ArtistCarousel data={data?.data.artists.all} headerName="Artist" />
       )}
 
       <IsPlayerOpenBottomMargin />

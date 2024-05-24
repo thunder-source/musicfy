@@ -15,35 +15,33 @@ export default function ArtistCarouselCard({ data }: Props) {
       <Link
         prefetch={false}
         href={`/artists/${data.id}`}
-        className='flex transform transition-all duration-500  group relative flex-col   hover:transition-all bg-accent_a4 bg-opacity-80 custom-filter  cursor-pointer rounded-full hover:border-accent_10 border-transparent border-2'>
+        className="custom-filter group relative flex  transform cursor-pointer flex-col   rounded-full border-2 border-transparent bg-accent_a4  bg-opacity-80 transition-all duration-500 hover:border-accent_10 hover:transition-all"
+      >
         <AspectRatio ratio={1 / 1}>
           <Avatar
             src={data.image[2]?.url}
             fallback={data.name}
-            className='w-full h-full rounded-full text-center'
+            className="h-full w-full rounded-full text-center"
           />
         </AspectRatio>
-        <div className='w-full h-full absolute rounded-full left-0 top-0 group-hover:bg-accent_3 group-hover:opacity-70'></div>
+        <div className="absolute left-0 top-0 h-full w-full rounded-full group-hover:bg-accent_3 group-hover:opacity-70"></div>
         <p
           onClick={(e) => {
             e.preventDefault();
           }}
-          className='group-hover:block  hidden max-w-[200px] break-words text-center font-semibold text-lg text-accent_a9  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100'>
+          className="absolute  left-1/2 top-1/2 hidden max-w-[200px] -translate-x-1/2 -translate-y-1/2 break-words  text-center text-lg font-semibold text-accent_a9 opacity-100 group-hover:block"
+        >
           <PlaySongHandler id={data.id} type={'artist'} />
         </p>
       </Link>
       <Link prefetch={false} href={`/artists/${data.id}`}>
         <SanitizedText
           value={data.name}
-          as='h4'
-          className='text-center truncate mt-2 hover:text-accent_indicator'
+          as="h4"
+          className="mt-2 truncate text-center hover:text-accent_indicator"
         />
       </Link>
-      <SanitizedText
-        value={data.role}
-        as='h6'
-        className='text-center truncate'
-      />
+      <SanitizedText value={data.role} as="h6" className="truncate text-center" />
     </div>
   );
 }

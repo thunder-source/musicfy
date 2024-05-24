@@ -18,11 +18,7 @@ export default function SongSuggestions({ id }: Props) {
   return (
     data?.data &&
     data?.data.length > 0 && (
-      <SongAlbumCarousel
-        delay='3500'
-        headerName='You May Like'
-        data={data?.data}
-      />
+      <SongAlbumCarousel delay="3500" headerName="You May Like" data={data?.data} />
     )
   );
 }

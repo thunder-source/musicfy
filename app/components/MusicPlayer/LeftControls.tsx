@@ -21,54 +21,36 @@ const LeftControls = ({
   handlePlayPause,
 }: props) => {
   return (
-    <div className='flex items-center gap-4 '>
+    <div className="flex items-center gap-4 ">
       {isPlaying ? (
-        <IconButton
-          variant='solid'
-          radius='full'
-          size='4'
-          className='p-2 max-lg:w-9 max-lg:h-9  '>
-          <BsFillPauseFill
-            size={45}
-            onClick={handlePlayPause}
-            className='cursor-pointer'
-          />
+        <IconButton variant="solid" radius="full" size="4" className="p-2 max-lg:h-9 max-lg:w-9  ">
+          <BsFillPauseFill size={45} onClick={handlePlayPause} className="cursor-pointer" />
         </IconButton>
       ) : (
-        <IconButton
-          variant='solid'
-          radius='full'
-          size='4'
-          className='p-2 max-lg:w-9 max-lg:h-9   '>
-          <BsFillPlayFill
-            size={45}
-            onClick={handlePlayPause}
-            className='cursor-pointer'
-          />
+        <IconButton variant="solid" radius="full" size="4" className="p-2 max-lg:h-9 max-lg:w-9   ">
+          <BsFillPlayFill size={45} onClick={handlePlayPause} className="cursor-pointer" />
         </IconButton>
       )}
-      <Tooltip content='Loop'>
+      <Tooltip content="Loop">
         <IconButton
           onClick={() => setRepeat((prev) => !prev)}
-          variant='ghost'
-          radius='full'
-          color='gray'
-          className={`p-2 mx-1 cursor-pointer hidden lg:block ${
-            repeat && 'bg-gray_a5'
-          }`}>
+          variant="ghost"
+          radius="full"
+          color="gray"
+          className={`mx-1 hidden cursor-pointer p-2 lg:block ${repeat && 'bg-gray_a5'}`}
+        >
           <RxLoop size={20} />
         </IconButton>
       </Tooltip>
-      <Tooltip content='Shuffle' className='fill-transparent '>
+      <Tooltip content="Shuffle" className="fill-transparent ">
         <IconButton
-          variant='ghost'
-          radius='full'
-          size='4'
-          color='gray'
+          variant="ghost"
+          radius="full"
+          size="4"
+          color="gray"
           onClick={() => setShuffle((prev) => !prev)}
-          className={`p-2 cursor-pointer hidden lg:block ${
-            shuffle && 'bg-gray_a5'
-          } `}>
+          className={`hidden cursor-pointer p-2 lg:block ${shuffle && 'bg-gray_a5'} `}
+        >
           <BsShuffle size={20} />
         </IconButton>
       </Tooltip>

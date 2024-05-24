@@ -1,15 +1,7 @@
 import React from 'react';
 import { Jersey } from '@/assets/fonts';
 import LikeDislikeHandler from '@/components/common/LikeDislikeHandler';
-import {
-  Avatar,
-  Box,
-  Button,
-  IconButton,
-  Separator,
-  Skeleton,
-  Tabs,
-} from '@radix-ui/themes';
+import { Avatar, Box, Button, IconButton, Separator, Skeleton, Tabs } from '@radix-ui/themes';
 import { IoMusicalNote } from 'react-icons/io5';
 import { FaFacebookF, FaWikipediaW } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
@@ -18,11 +10,7 @@ import { RiVerifiedBadgeFill } from 'react-icons/ri';
 import { setActiveSong } from '@/redux/features/playerSlice';
 import { z } from 'zod';
 import { AlbumModel, ArtistModel, SongModel } from '@/types';
-import {
-  beautifyNumber,
-  convertSecondsToVisualTime,
-  isLink,
-} from '@/lib/utils';
+import { beautifyNumber, convertSecondsToVisualTime, isLink } from '@/lib/utils';
 import { useAppDispatch } from '@/hooks/reduxHandlers';
 import { BsFillPlayFill } from 'react-icons/bs';
 import SanitizedText from './SanitizedText';
@@ -37,13 +25,7 @@ type Props = {
   type: 'album' | 'artist' | 'song' | undefined;
 };
 
-export default function SongAlbumArtistHeader({
-  song,
-  artist,
-  album,
-  isLoading,
-  type,
-}: Props) {
+export default function SongAlbumArtistHeader({ song, artist, album, isLoading, type }: Props) {
   switch (type) {
     case 'artist':
       return <ArtistHeader data={artist} isLoading={isLoading} />;
@@ -87,107 +69,88 @@ const ArtistHeader = ({ data, isLoading }: artistProps) => {
     isFBLinkAvailable = true;
   }
   return (
-    <div className='flex flex-col lg:flex-row gap-8 mb-8  items-center lg:justify-start'>
-      <div className='flex transform transition-all duration-500  group relative flex-col w-min p-4 bg-accent_a4 bg-opacity-80 custom-filter  cursor-pointer rounded-full border-transparent border-2'>
+    <div className="mb-8 flex flex-col items-center gap-8  lg:flex-row lg:justify-start">
+      <div className="custom-filter group relative flex  w-min transform cursor-pointer flex-col rounded-full border-2 border-transparent bg-accent_a4  bg-opacity-80 p-4 transition-all duration-500">
         <Skeleton loading={isLoading}>
           <Avatar
-            className='w-56 h-56 rounded-full'
+            className="h-56 w-56 rounded-full"
             src={artistImage}
             fallback={data?.name ? data.name : ''}
           />
         </Skeleton>
       </div>
-      <div className='flex items-start justify-center flex-col gap-2'>
-        <Skeleton loading={isLoading} className='h-10 w-56'>
-          <div className='flex items-start lg:items-center gap-2 justify-center w-full'>
+      <div className="flex flex-col items-start justify-center gap-2">
+        <Skeleton loading={isLoading} className="h-10 w-56">
+          <div className="flex w-full items-start justify-center gap-2 lg:items-center">
             <h2
-              className='font-bold text-5xl lg:text-7xl text-accent_10   lg:leading-[3.5rem]'
-              style={Jersey.style}>
+              className="text-5xl font-bold text-accent_10 lg:text-7xl   lg:leading-[3.5rem]"
+              style={Jersey.style}
+            >
               {data?.name}{' '}
             </h2>
-            <div className='text-accent_10'>
+            <div className="text-accent_10">
               {data?.isVerified && <RiVerifiedBadgeFill size={20} />}{' '}
             </div>
           </div>
         </Skeleton>
         <Skeleton loading={isLoading}>
-          <h4 className='font-semibold text-xl  capitalize text-accent_10 w-full justify-center lg:justify-start lg:text-left flex items-center gap-2 text-center'>
-            {data?.type}{' '}
-            <Separator
-              orientation='vertical'
-              className='font-bold text-xl'
-              size='1'
-            />{' '}
+          <h4 className="flex w-full  items-center justify-center gap-2 text-center text-xl font-semibold capitalize text-accent_10 lg:justify-start lg:text-left">
+            {data?.type} <Separator orientation="vertical" className="text-xl font-bold" size="1" />{' '}
             {data?.fanCount && beautifyNumber(data?.fanCount)} Listeners
           </h4>
         </Skeleton>
         <Skeleton loading={isLoading}>
-          <div className='flex mt-4 items-center gap-4 justify-center lg:justify-start w-full '>
+          <div className="mt-4 flex w-full items-center justify-center gap-4 lg:justify-start ">
             <Button
               onClick={() => {
                 if (Array.isArray(data?.topSongs))
                   dispatch(setActiveSong({ songs: data?.topSongs, index: 0 }));
               }}
-              variant='soft'
-              size='4'
-              className='hidden lg:flex'
-              highContrast>
+              variant="soft"
+              size="4"
+              className="hidden lg:flex"
+              highContrast
+            >
               <IoMusicalNote /> Play Songs
             </Button>
             <IconButton
-              size='4'
+              size="4"
               onClick={() => {
                 if (Array.isArray(data?.topSongs))
                   dispatch(setActiveSong({ songs: data?.topSongs, index: 0 }));
               }}
-              variant='soft'
-              className='rounded-full cursor-pointer lg:hidden'>
+              variant="soft"
+              className="cursor-pointer rounded-full lg:hidden"
+            >
               <BsFillPlayFill size={35} />
             </IconButton>
-            <div className=''>
+            <div className="">
               <IconButton
-                variant='soft'
-                size='4'
-                color='gray'
-                className='rounded-full cursor-pointer'>
+                variant="soft"
+                size="4"
+                color="gray"
+                className="cursor-pointer rounded-full"
+              >
                 <LikeDislikeHandler />
               </IconButton>
             </div>
             {isWikiLinkAvailable && (
-              <Link
-                prefetch={false}
-                target='_blank'
-                href={data?.wiki ? data?.wiki : ''}>
-                <IconButton
-                  variant='soft'
-                  size='4'
-                  className='rounded-full cursor-pointer'>
+              <Link prefetch={false} target="_blank" href={data?.wiki ? data?.wiki : ''}>
+                <IconButton variant="soft" size="4" className="cursor-pointer rounded-full">
                   <FaWikipediaW />
                 </IconButton>
               </Link>
             )}
             {isTwitterLinkAvailable && (
-              <Link
-                prefetch={false}
-                target='_blank'
-                href={data?.twitter ? data?.twitter : ''}>
-                <IconButton
-                  variant='soft'
-                  size='4'
-                  className='cursor-pointer rounded-full'>
+              <Link prefetch={false} target="_blank" href={data?.twitter ? data?.twitter : ''}>
+                <IconButton variant="soft" size="4" className="cursor-pointer rounded-full">
                   <FaXTwitter />
                 </IconButton>
               </Link>
             )}
             {isFBLinkAvailable && (
-              <Link
-                prefetch={false}
-                target='_blank'
-                href={data?.fb ? data?.fb : ''}>
-                <IconButton
-                  variant='soft'
-                  size='4'
-                  className='cursor-pointer rounded-full'>
+              <Link prefetch={false} target="_blank" href={data?.fb ? data?.fb : ''}>
+                <IconButton variant="soft" size="4" className="cursor-pointer rounded-full">
                   <FaFacebookF />
                 </IconButton>
               </Link>
@@ -208,36 +171,34 @@ const SongHeader = ({ data, isLoading }: songProps) => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className='flex flex-col lg:flex-row gap-8 mb-8  items-center lg:justify-start '>
-      <div className='flex transform transition-all duration-500  group relative flex-col w-min p-4 bg-accent_surface shadow-lg bg-opacity-80 custom-filter  cursor-pointer rounded-radius_4 border-transparent border-2'>
+    <div className="mb-8 flex flex-col items-center gap-8  lg:flex-row lg:justify-start ">
+      <div className="custom-filter group relative flex  w-min transform cursor-pointer flex-col rounded-radius_4 border-2 border-transparent bg-accent_surface bg-opacity-80  p-4 shadow-lg transition-all duration-500">
         <Skeleton loading={isLoading}>
           <Avatar
-            className='w-56 h-56 rounded-radius_4'
+            className="h-56 w-56 rounded-radius_4"
             src={Array.isArray(data?.image) ? data?.image[2].url : ''}
             fallback={data?.name ? data.name : ''}
           />
         </Skeleton>
       </div>
-      <div className='flex lg:items-start items-center justify-center flex-col gap-2'>
-        <Skeleton loading={isLoading} className='h-10 w-96'>
+      <div className="flex flex-col items-center justify-center gap-2 lg:items-start">
+        <Skeleton loading={isLoading} className="h-10 w-96">
           <h2
-            className='font-bold text-5xl lg:text-7xl text-accent_10  text-center flex items-center  gap-2'
-            style={Jersey.style}>
+            className="flex items-center gap-2 text-center  text-5xl font-bold text-accent_10  lg:text-7xl"
+            style={Jersey.style}
+          >
             {data?.name}
           </h2>
         </Skeleton>
-        <Skeleton loading={isLoading} className='h-10 w-60'>
-          <h4 className='font-semibold text-xl  capitalize text-accent_10 text-left flex items-center gap-2 flex-col lg:flex-row flex-wrap'>
+        <Skeleton loading={isLoading} className="h-10 w-60">
+          <h4 className="flex flex-col  flex-wrap items-center gap-2 text-left text-xl font-semibold capitalize text-accent_10 lg:flex-row">
             By
             {Array.isArray(data?.artists?.primary) &&
               data?.artists.primary.slice(0, 5).map((ele, index) => {
                 return (
-                  <Link
-                    prefetch={false}
-                    href={`/artists/${ele.id}`}
-                    key={ele.id}>
+                  <Link prefetch={false} href={`/artists/${ele.id}`} key={ele.id}>
                     <span>{ele.name}</span>
-                    <span className='text-accent_8'>
+                    <span className="text-accent_8">
                       {index + 1 !== data?.artists.primary.length && ','}
                     </span>
                   </Link>
@@ -245,46 +206,47 @@ const SongHeader = ({ data, isLoading }: songProps) => {
               })}
           </h4>
         </Skeleton>
-        <Skeleton loading={isLoading} className='h-10 w-96'>
-          <h4 className='font-semibold text-xl  capitalize text-accent_10 flex items-center gap-2 text-center lg:text-left '>
-            {data?.type} | {data?.playCount && beautifyNumber(data?.playCount)}{' '}
-            Plays |{' '}
-            {data?.duration && convertSecondsToVisualTime(data?.duration)} |{' '}
-            {data?.language}
+        <Skeleton loading={isLoading} className="h-10 w-96">
+          <h4 className="flex items-center  gap-2 text-center text-xl font-semibold capitalize text-accent_10 lg:text-left ">
+            {data?.type} | {data?.playCount && beautifyNumber(data?.playCount)} Plays |{' '}
+            {data?.duration && convertSecondsToVisualTime(data?.duration)} | {data?.language}
           </h4>
         </Skeleton>
-        <Skeleton loading={isLoading} className='h-10 w-72'>
-          <h4 className='font-semibold text-xl  capitalize text-accent_10 text-left flex items-center gap-2'>
+        <Skeleton loading={isLoading} className="h-10 w-72">
+          <h4 className="flex items-center  gap-2 text-left text-xl font-semibold capitalize text-accent_10">
             {data?.copyright}
           </h4>
         </Skeleton>
-        <Skeleton loading={isLoading} className='h-10 w-80'>
-          <div className='flex mt-4 items-center gap-4 '>
+        <Skeleton loading={isLoading} className="h-10 w-80">
+          <div className="mt-4 flex items-center gap-4 ">
             <Button
               onClick={() => {
                 if (data) dispatch(setActiveSong({ songs: [data], index: 0 }));
               }}
-              variant='soft'
-              size='4'
-              className='hidden lg:flex'
-              highContrast>
+              variant="soft"
+              size="4"
+              className="hidden lg:flex"
+              highContrast
+            >
               <IoMusicalNote /> Play Songs
             </Button>
             <IconButton
-              size='4'
+              size="4"
               onClick={() => {
                 if (data) dispatch(setActiveSong({ songs: [data], index: 0 }));
               }}
-              variant='soft'
-              className='rounded-full cursor-pointer lg:hidden'>
+              variant="soft"
+              className="cursor-pointer rounded-full lg:hidden"
+            >
               <BsFillPlayFill size={35} />
             </IconButton>
-            <div className=''>
+            <div className="">
               <IconButton
-                variant='soft'
-                size='4'
-                color='gray'
-                className='rounded-full cursor-pointer'>
+                variant="soft"
+                size="4"
+                color="gray"
+                className="cursor-pointer rounded-full"
+              >
                 <LikeDislikeHandler />
               </IconButton>
             </div>
@@ -304,36 +266,34 @@ const AlbumHeader = ({ data, isLoading }: AlbumProps) => {
   const dispatch = useAppDispatch();
   console.log(data);
   return (
-    <div className='flex flex-col lg:flex-row gap-8 mb-8  items-center lg:justify-start '>
-      <div className='flex transform transition-all duration-500  group relative flex-col w-min p-4 bg-accent_surface shadow-lg bg-opacity-80 custom-filter  cursor-pointer rounded-radius_4 border-transparent border-2'>
+    <div className="mb-8 flex flex-col items-center gap-8  lg:flex-row lg:justify-start ">
+      <div className="custom-filter group relative flex  w-min transform cursor-pointer flex-col rounded-radius_4 border-2 border-transparent bg-accent_surface bg-opacity-80  p-4 shadow-lg transition-all duration-500">
         <Skeleton loading={isLoading}>
           <Avatar
-            className='w-56 h-56 rounded-radius_4'
+            className="h-56 w-56 rounded-radius_4"
             src={Array.isArray(data?.image) ? data?.image[2].url : ''}
             fallback={data?.name ? data.name : ''}
           />
         </Skeleton>
       </div>
-      <div className='flex lg:items-start items-center justify-center flex-col gap-2'>
-        <Skeleton loading={isLoading} className='h-10 w-96'>
+      <div className="flex flex-col items-center justify-center gap-2 lg:items-start">
+        <Skeleton loading={isLoading} className="h-10 w-96">
           <h2
-            className='font-bold text-5xl lg:text-6xl text-accent_10  max-lg:text-center flex items-center  gap-2'
-            style={Jersey.style}>
+            className="flex items-center gap-2 text-5xl  font-bold text-accent_10 max-lg:text-center  lg:text-6xl"
+            style={Jersey.style}
+          >
             {data?.name}
           </h2>
         </Skeleton>
-        <Skeleton loading={isLoading} className='h-10 w-60'>
-          <h4 className='font-semibold text-xl  capitalize text-accent_10 text-left flex items-center gap-2 flex-col lg:flex-row flex-wrap'>
+        <Skeleton loading={isLoading} className="h-10 w-60">
+          <h4 className="flex flex-col  flex-wrap items-center gap-2 text-left text-xl font-semibold capitalize text-accent_10 lg:flex-row">
             By
             {Array.isArray(data?.artists?.primary) &&
               data?.artists.primary.slice(0, 5).map((ele, index) => {
                 return (
-                  <Link
-                    prefetch={false}
-                    href={`/artists/${ele.id}`}
-                    key={ele.id}>
+                  <Link prefetch={false} href={`/artists/${ele.id}`} key={ele.id}>
                     <span>{ele.name}</span>
-                    <span className='text-accent_8'>
+                    <span className="text-accent_8">
                       {index + 1 !== data?.artists.primary.length && ','}
                     </span>
                   </Link>
@@ -341,46 +301,45 @@ const AlbumHeader = ({ data, isLoading }: AlbumProps) => {
               })}
           </h4>
         </Skeleton>
-        <Skeleton loading={isLoading} className='h-10 w-96'>
-          <h4 className='font-semibold text-xl  capitalize text-accent_10 flex items-center gap-2 text-center lg:text-left '>
-            {data?.type} |{' '}
-            {data?.playCount && (
-              <> {beautifyNumber(data?.playCount)} Plays | </>
-            )}{' '}
-            {data?.songCount && <> {data?.songCount} Songs </>} |{' '}
-            {data?.language}
+        <Skeleton loading={isLoading} className="h-10 w-96">
+          <h4 className="flex items-center  gap-2 text-center text-xl font-semibold capitalize text-accent_10 lg:text-left ">
+            {data?.type} | {data?.playCount && <> {beautifyNumber(data?.playCount)} Plays | </>}{' '}
+            {data?.songCount && <> {data?.songCount} Songs </>} | {data?.language}
           </h4>
         </Skeleton>
 
-        <Skeleton loading={isLoading} className='h-10 w-80'>
-          <div className='flex mt-4 items-center gap-4 '>
+        <Skeleton loading={isLoading} className="h-10 w-80">
+          <div className="mt-4 flex items-center gap-4 ">
             <Button
               onClick={() => {
                 if (Array.isArray(data?.songs))
                   dispatch(setActiveSong({ songs: data.songs, index: 0 }));
               }}
-              variant='soft'
-              size='4'
-              className='hidden lg:flex'
-              highContrast>
+              variant="soft"
+              size="4"
+              className="hidden lg:flex"
+              highContrast
+            >
               <IoMusicalNote /> Play Songs
             </Button>
             <IconButton
-              size='4'
+              size="4"
               onClick={() => {
                 if (Array.isArray(data?.songs))
                   dispatch(setActiveSong({ songs: data.songs, index: 0 }));
               }}
-              variant='soft'
-              className='rounded-full cursor-pointer lg:hidden'>
+              variant="soft"
+              className="cursor-pointer rounded-full lg:hidden"
+            >
               <BsFillPlayFill size={35} />
             </IconButton>
-            <div className=''>
+            <div className="">
               <IconButton
-                variant='soft'
-                size='4'
-                color='gray'
-                className='rounded-full cursor-pointer'>
+                variant="soft"
+                size="4"
+                color="gray"
+                className="cursor-pointer rounded-full"
+              >
                 <LikeDislikeHandler />
               </IconButton>
             </div>

@@ -26,33 +26,29 @@ export default function Page({ params }: Props) {
   }
 
   return (
-    <div
-      className='flex flex-col relative w-full overflow-y-auto'
-      id='scrollableDiv'>
+    <div className="relative flex w-full flex-col overflow-y-auto" id="scrollableDiv">
       <SongAlbumArtistHeader
         artist={data?.data && data?.data}
         isLoading={isLoading}
         type={'artist'}
       />
 
-      <Tabs.Root defaultValue='overview'>
-        <Tabs.List size='2'>
-          <Tabs.Trigger value='overview'>Overview</Tabs.Trigger>
-          <Tabs.Trigger value='songs'>Songs</Tabs.Trigger>
-          <Tabs.Trigger value='albums'>Albums</Tabs.Trigger>
-          {isBioAvailable && (
-            <Tabs.Trigger value='biography'>Biography</Tabs.Trigger>
-          )}
+      <Tabs.Root defaultValue="overview">
+        <Tabs.List size="2">
+          <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+          <Tabs.Trigger value="songs">Songs</Tabs.Trigger>
+          <Tabs.Trigger value="albums">Albums</Tabs.Trigger>
+          {isBioAvailable && <Tabs.Trigger value="biography">Biography</Tabs.Trigger>}
         </Tabs.List>
 
-        <Box pt='3'>
-          <Tabs.Content value='overview' className='outline-none'>
+        <Box pt="3">
+          <Tabs.Content value="overview" className="outline-none">
             <ArtistOverViewPage data={data} isLoading={isLoading} />
           </Tabs.Content>
 
-          <Tabs.Content value='songs' className='outline-none'>
+          <Tabs.Content value="songs" className="outline-none">
             {data?.data.id ? (
-              <div className='w-full '>
+              <div className="w-full ">
                 <SongsInfiniteScroll id={data?.data.id} />
               </div>
             ) : (
@@ -60,9 +56,9 @@ export default function Page({ params }: Props) {
             )}
           </Tabs.Content>
 
-          <Tabs.Content value='albums' className='outline-none py-4'>
+          <Tabs.Content value="albums" className="py-4 outline-none">
             {data?.data.id ? (
-              <div className=''>
+              <div className="">
                 <AlbumsInfiniteScroll id={data?.data.id} />
               </div>
             ) : (
@@ -71,14 +67,8 @@ export default function Page({ params }: Props) {
           </Tabs.Content>
 
           {isBioAvailable && (
-            <Tabs.Content
-              value='biography'
-              className='outline-none select-text'>
-              {data?.data ? (
-                <BiographyPage data={data?.data} />
-              ) : (
-                'Something went wrong'
-              )}
+            <Tabs.Content value="biography" className="select-text outline-none">
+              {data?.data ? <BiographyPage data={data?.data} /> : 'Something went wrong'}
             </Tabs.Content>
           )}
         </Box>

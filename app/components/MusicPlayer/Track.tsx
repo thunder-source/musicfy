@@ -40,48 +40,42 @@ const Track = ({
   }
 
   return (
-    <div className='flex  flex-1 items-center justify-start  lg:mx-16 '>
+    <div className="flex  flex-1 items-center justify-start  lg:mx-16 ">
       <IconButton
-        variant='ghost'
-        radius='full'
-        size='2'
-        color='gray'
+        variant="ghost"
+        radius="full"
+        size="2"
+        color="gray"
         disabled={playPrevSongDisabled}
         onClick={handlePrevSong}
-        className={`p-2 cursor-pointer hidden lg:block  `}>
+        className={`hidden cursor-pointer p-2 lg:block  `}
+      >
         <TbPlayerTrackPrev size={25} />
       </IconButton>
-      <div className='flex gap-2 w-full mx-1 lg:mx-4 flex-row-reverse lg:flex-row '>
+      <div className="mx-1 flex w-full flex-row-reverse gap-2 lg:mx-4 lg:flex-row ">
         <Avatar
           fallback={activeSong?.name?.slice(0, 2)}
           src={Array.isArray(activeSong?.image) ? activeSong?.image[1].url : ''}
-          alt='cover art'
-          className='  w-11 h-11 lg:w-14 lg:h-14  rounded-full lg:rounded-radius_2'
+          alt="cover art"
+          className="  h-11 w-11 rounded-full lg:h-14  lg:w-14 lg:rounded-radius_2"
         />
-        <div className='mx-1 flex flex-col w-full max-w-[calc(100vw_-_130px)] justify-evenly  lg:text-left text-center '>
-          <p className='truncate  font-bold text-xs'>
-            {activeSong?.name
-              ? parseHtmlToText(activeSong?.name)
-              : 'No active Song'}
+        <div className="mx-1 flex w-full max-w-[calc(100vw_-_130px)] flex-col justify-evenly  text-center lg:text-left ">
+          <p className="truncate  text-xs font-bold">
+            {activeSong?.name ? parseHtmlToText(activeSong?.name) : 'No active Song'}
           </p>
-          <div className='flex text-xs justify-center lg:justify-between'>
-            <p className='truncate text-gray_11 '>
+          <div className="flex justify-center text-xs lg:justify-between">
+            <p className="truncate text-gray_11 ">
               {activeSong?.artists?.all[0].name
                 ? activeSong?.artists?.all[0].name
                 : 'No active Song'}
             </p>
-            <div className='hidden lg:block'>
-              <span className=''>
-                {value === 0 ? '0:00' : convertSecondsToVisualTime(value)}
-              </span>{' '}
-              /{' '}
-              <span className=''>
-                {max === 0 ? '0:00' : convertSecondsToVisualTime(max)}
-              </span>
+            <div className="hidden lg:block">
+              <span className="">{value === 0 ? '0:00' : convertSecondsToVisualTime(value)}</span> /{' '}
+              <span className="">{max === 0 ? '0:00' : convertSecondsToVisualTime(max)}</span>
             </div>
           </div>
           <Slider.Root
-            className='relative  items-center select-none touch-none w-full h-5 hidden  lg:flex'
+            className="relative  hidden h-5 w-full touch-none select-none items-center  lg:flex"
             defaultValue={[0]}
             value={[value]}
             min={0}
@@ -89,25 +83,27 @@ const Track = ({
             onValueChange={(e) => {
               setSeekTime(e[0]);
             }}
-            step={5}>
-            <Slider.Track className='bg-blackA7 relative grow rounded-full h-[3px]'>
-              <Slider.Range className='absolute bg-accent_10 rounded-full h-full' />
+            step={5}
+          >
+            <Slider.Track className="relative h-[3px] grow rounded-full bg-blackA7">
+              <Slider.Range className="absolute h-full rounded-full bg-accent_10" />
             </Slider.Track>
             <Slider.Thumb
-              className='block w-3 h-3 bg-accent_10 shadow-[0_2px_10px] shadow-blackA4 rounded-[10px] hover:bg-accent_12 focus:outline-none focus:shadow-[0_0_0_5px] focus:shadow-blackA5'
-              aria-label='Volume'
+              className="block h-3 w-3 rounded-[10px] bg-accent_10 shadow-[0_2px_10px] shadow-blackA4 hover:bg-accent_12 focus:shadow-[0_0_0_5px] focus:shadow-blackA5 focus:outline-none"
+              aria-label="Volume"
             />
           </Slider.Root>
         </div>
       </div>
       <IconButton
-        variant='ghost'
-        radius='full'
-        size='2'
-        color='gray'
+        variant="ghost"
+        radius="full"
+        size="2"
+        color="gray"
         disabled={playNextSongDisabled}
         onClick={handleNextSong}
-        className='cursor-pointer p-2 hidden lg:block'>
+        className="hidden cursor-pointer p-2 lg:block"
+      >
         <TbPlayerTrackNext size={25} />
       </IconButton>
     </div>

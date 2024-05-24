@@ -1,10 +1,5 @@
 import { HiOutlineUserGroup, HiUserGroup } from 'react-icons/hi';
-import {
-  RiHomeSmileFill,
-  RiHomeSmileLine,
-  RiSearchLine,
-  RiSearchFill,
-} from 'react-icons/ri';
+import { RiHomeSmileFill, RiHomeSmileLine, RiSearchLine, RiSearchFill } from 'react-icons/ri';
 import { TbPhoto } from 'react-icons/tb';
 
 export const genres = [

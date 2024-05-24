@@ -29,10 +29,7 @@ export const mainApi = createApi({
   }),
 
   endpoints: (builder) => ({
-    getNewReleases: builder.query<
-      z.infer<typeof NewReleasesAPIResponseModel>,
-      NewReleases
-    >({
+    getNewReleases: builder.query<z.infer<typeof NewReleasesAPIResponseModel>, NewReleases>({
       query: ({ language, page, limit }) =>
         `newReleases?language=${language}&page=${page}&limit=${limit}`,
 
@@ -53,18 +50,13 @@ export const mainApi = createApi({
       forceRefetch({ currentArg, previousArg, endpointState }) {
         return currentArg !== previousArg;
       },
-      transformResponse(
-        response: z.infer<typeof NewReleasesMainAPIResponseModel>
-      ) {
+      transformResponse(response: z.infer<typeof NewReleasesMainAPIResponseModel>) {
         NewReleasesMainAPIResponseModel.parse(response);
         return response.data;
       },
     }),
 
-    getArtistById: builder.query<
-      z.infer<typeof ArtistModelApiResponse>,
-      ArtistModelApiParameters
-    >({
+    getArtistById: builder.query<z.infer<typeof ArtistModelApiResponse>, ArtistModelApiParameters>({
       query: ({ artistId, page, songCount, albumCount, sortBy, sortOrder }) =>
         `artists?id=${artistId}${page ? `&page=${page}` : ''}${
           songCount ? `&songCount=${songCount}` : ''
@@ -120,25 +112,19 @@ export const mainApi = createApi({
       query: () => `top-artists`,
     }),
 
-    getSongById: builder.query<
-      z.infer<typeof SongByIdApiResponse>,
-      SongByIdApiParameters
-    >({
-      query: ({ songId, lyrics }) =>
-        `songs/${songId}${lyrics ? `?lyrics=${lyrics}` : ''}`,
+    getSongById: builder.query<z.infer<typeof SongByIdApiResponse>, SongByIdApiParameters>({
+      query: ({ songId, lyrics }) => `songs/${songId}${lyrics ? `?lyrics=${lyrics}` : ''}`,
     }),
 
-    getAlbumById: builder.query<
-      z.infer<typeof AlbumModelApiResponse>,
-      AlbumByIdApiParameters
-    >({ query: ({ albumId }) => `albums?id=${albumId}` }),
+    getAlbumById: builder.query<z.infer<typeof AlbumModelApiResponse>, AlbumByIdApiParameters>({
+      query: ({ albumId }) => `albums?id=${albumId}`,
+    }),
 
     getSongSuggestionById: builder.query<
       z.infer<typeof SongByIdApiResponse>,
       SongSuggestionByIdApiParameters
     >({
-      query: ({ id, limit }) =>
-        `songs/${id}/suggestions${limit ? `?limit=${limit}` : ''}`,
+      query: ({ id, limit }) => `songs/${id}/suggestions${limit ? `?limit=${limit}` : ''}`,
     }),
   }),
 });
