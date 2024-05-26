@@ -20,11 +20,13 @@ export default function TopArtist() {
         Top artists
       </h2>
       <div className="flex flex-wrap justify-center gap-8 lg:justify-start">
-        {isFetching
-          ? Array.apply(0, new Array(20)).map((_, i) => <ArtistCardLoading key={i} />)
-          : data?.data?.results?.map((artist: z.infer<typeof TopArtistModelBase>) => (
-              <ArtistCard key={artist.artistid} {...artist} />
-            ))}
+        {isFetching ? (
+          <ArtistCardLoading quantity={20} />
+        ) : (
+          data?.data?.results?.map((artist: z.infer<typeof TopArtistModelBase>) => (
+            <ArtistCard key={artist.artistid} {...artist} />
+          ))
+        )}
       </div>
       <IsPlayerOpenBottomMargin />
     </div>

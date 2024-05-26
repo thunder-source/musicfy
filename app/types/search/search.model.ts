@@ -88,6 +88,8 @@ export const SearchModelApiResponse = z.object({
   data: SearchModel,
 });
 
+export const SearchModelApiRedux = SearchModel;
+
 export type SearchModelApiParameters = {
   query: string;
 };

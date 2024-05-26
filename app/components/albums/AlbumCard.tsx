@@ -4,8 +4,9 @@ import Link from 'next/link';
 import { AlbumModel, NewReleasesItem } from '@/types';
 import { Avatar } from '@radix-ui/themes';
 import { z } from 'zod';
-import { PlaySongHandler } from '../common';
+
 import LikeButtonLite from '../common/LikeButtonLite';
+import { PlaySongHandler } from '../common/PlaySongHandler';
 
 const AlbumCard = (album: z.infer<typeof NewReleasesItem> | z.infer<typeof AlbumModel>) => {
   // const cleanedName = album.name.replace(/\(From\s"[^"]+"\)/g, '');

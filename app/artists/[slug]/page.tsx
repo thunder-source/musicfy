@@ -26,7 +26,7 @@ export default function Page({ params }: Props) {
   }
 
   return (
-    <div className="relative flex w-full flex-col overflow-y-auto" id="scrollableDiv">
+    <div className="relative">
       <SongAlbumArtistHeader
         artist={data?.data && data?.data}
         isLoading={isLoading}
@@ -41,37 +41,23 @@ export default function Page({ params }: Props) {
           {isBioAvailable && <Tabs.Trigger value="biography">Biography</Tabs.Trigger>}
         </Tabs.List>
 
-        <Box pt="3">
-          <Tabs.Content value="overview" className="outline-none">
-            <ArtistOverViewPage data={data} isLoading={isLoading} />
-          </Tabs.Content>
+        <Tabs.Content value="overview" className="outline-none">
+          <ArtistOverViewPage data={data} isLoading={isLoading} />
+        </Tabs.Content>
 
-          <Tabs.Content value="songs" className="outline-none">
-            {data?.data.id ? (
-              <div className="w-full ">
-                <SongsInfiniteScroll id={data?.data.id} />
-              </div>
-            ) : (
-              'Something went wrong'
-            )}
-          </Tabs.Content>
+        <Tabs.Content value="songs" className="outline-none">
+          {data?.data.id ? <SongsInfiniteScroll id={data?.data.id} /> : 'Something went wrong'}
+        </Tabs.Content>
 
-          <Tabs.Content value="albums" className="py-4 outline-none">
-            {data?.data.id ? (
-              <div className="">
-                <AlbumsInfiniteScroll id={data?.data.id} />
-              </div>
-            ) : (
-              'Something went wrong'
-            )}
-          </Tabs.Content>
+        <Tabs.Content value="albums" className="py-4 outline-none">
+          {data?.data.id ? <AlbumsInfiniteScroll id={data?.data.id} /> : 'Something went wrong'}
+        </Tabs.Content>
 
-          {isBioAvailable && (
-            <Tabs.Content value="biography" className="select-text outline-none">
-              {data?.data ? <BiographyPage data={data?.data} /> : 'Something went wrong'}
-            </Tabs.Content>
-          )}
-        </Box>
+        {isBioAvailable && (
+          <Tabs.Content value="biography" className="select-text outline-none">
+            {data?.data ? <BiographyPage data={data?.data} /> : 'Something went wrong'}
+          </Tabs.Content>
+        )}
       </Tabs.Root>
       <IsPlayerOpenBottomMargin />
     </div>

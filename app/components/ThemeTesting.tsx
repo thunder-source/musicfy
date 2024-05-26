@@ -1,5 +1,5 @@
 'use client';
-import { Flex, Select, Skeleton } from '@radix-ui/themes';
+import { Flex } from '@radix-ui/themes';
 
 let colors = [
   'bg-accent_1',

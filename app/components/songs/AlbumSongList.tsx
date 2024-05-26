@@ -1,7 +1,7 @@
 import { useGetAlbumByIdQuery } from '@/redux/services/main';
 import React from 'react';
 import SongListLoading from '../SkeletonLoading/SongListLoading';
-import SongsList from '../common/SongsList';
+import SongsList from './SongsList';
 import { Jersey } from '@/assets/fonts';
 import { Skeleton } from '@radix-ui/themes';
 
@@ -18,7 +18,7 @@ export default function AlbumSongList({ albumId }: Props) {
     return (
       <>
         <Skeleton className="mb-4 h-16 w-96" />
-        <SongListLoading times={5} />
+        <SongListLoading quantity={5} />
       </>
     );
   }

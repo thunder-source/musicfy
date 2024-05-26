@@ -3,7 +3,7 @@ import SongListLoading from '@/components/SkeletonLoading/SongListLoading';
 import ArtistCarousel from '@/components/carousel/ArtistCarousel';
 import IsPlayerOpenBottomMargin from '@/components/common/IsPlayerOpenBottomMargin';
 import SongAlbumArtistHeader from '@/components/common/SongAlbumArtistHeader';
-import SongsList from '@/components/common/SongsList';
+import SongsList from '@/components/songs/SongsList';
 import { useGetAlbumByIdQuery } from '@/redux/services/main';
 import React from 'react';
 
@@ -22,7 +22,7 @@ export default function Page({ params }: Props) {
       <SongAlbumArtistHeader album={data?.data} isLoading={isLoading} type="album" />
 
       {isLoading ? (
-        <SongListLoading times={5} />
+        <SongListLoading quantity={5} />
       ) : (
         Array.isArray(data?.data.songs) && <SongsList songs={data?.data.songs} />
       )}

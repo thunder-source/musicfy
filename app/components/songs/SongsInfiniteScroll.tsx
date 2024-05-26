@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Error from '../Error';
 import SongListLoading from '../SkeletonLoading/SongListLoading';
-import SongsList from '../common/SongsList';
+import SongsList from './SongsList';
 
 const SongsInfiniteScroll = ({ id }: { id: string }) => {
   const [page, setPage] = useState(0);
@@ -37,7 +37,7 @@ const SongsInfiniteScroll = ({ id }: { id: string }) => {
         setPage(page + 1);
       }}
       hasMore={hasMoreTopSongs}
-      loader={error ? <Error /> : <SongListLoading times={5} />}
+      loader={error ? <Error /> : <SongListLoading quantity={5} />}
       endMessage={
         <p style={{ textAlign: 'center' }} className="w-full text-2xl">
           <b>Yay! You have seen it all 🤩</b>
@@ -47,9 +47,7 @@ const SongsInfiniteScroll = ({ id }: { id: string }) => {
       className="mb-8 flex flex-col flex-wrap justify-center sm:justify-start"
       scrollableTarget="scrollableDiv"
     >
-      {Array.isArray(data?.data.topSongs) && (
-        <SongsList key={data?.data.id} songs={data?.data.topSongs} />
-      )}
+      {Array.isArray(data?.data.topSongs) && <SongsList songs={data?.data.topSongs} />}
     </InfiniteScroll>
   );
 };

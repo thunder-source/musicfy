@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { FaPlayCircle } from 'react-icons/fa';
 import { useAppDispatch } from '@/hooks/reduxHandlers';
 import { setActiveSong } from '@/redux/features/playerSlice';
-import LikeButtonLite from './LikeButtonLite';
+import LikeButtonLite from '../common/LikeButtonLite';
 import { Avatar, Box, Text } from '@radix-ui/themes';
 
 type Props = {
@@ -19,7 +19,7 @@ export default function SongsList({ songs }: Props) {
     return (
       <Box
         key={song.id + index}
-        className="group flex items-center  justify-start rounded-radius_2 px-2 py-2 hover:bg-accent_a4"
+        className="group flex w-full items-center justify-start rounded-radius_2 px-2 py-2 hover:bg-accent_a4"
       >
         <div className=" hidden w-14 truncate px-2 text-center text-sm lg:block">{index + 1}</div>
         <div className="relative ml-2 h-[44px] min-h-[44px] w-[44px] min-w-[44px] overflow-hidden rounded-radius_2 lg:ml-0">
@@ -68,7 +68,7 @@ export default function SongsList({ songs }: Props) {
         {/* <div className='px-4 h-full'>
           <LikeButtonLite />
         </div> */}
-        <div className="min-w-20 px-4 text-right">
+        <div className="min-w-20 px-4 text-center">
           {song.duration && convertSecondsToVisualTime(song.duration)}
         </div>
       </Box>

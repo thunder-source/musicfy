@@ -12,6 +12,12 @@ export const SearchSongModelApiResponse = z.object({
   data: SearchSongModel,
 });
 
+export const SearchSongModelApiRedux = z.object({
+  total: z.number(),
+  start: z.number(),
+  results: z.array(SongModel),
+});
+
 export type SearchSongModelApiParameters = {
   query: string;
   page?: number;

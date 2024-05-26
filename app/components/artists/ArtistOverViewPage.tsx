@@ -2,7 +2,7 @@ import { ArtistModelApiResponse } from '@/types';
 import React from 'react';
 import { z } from 'zod';
 import SongListLoading from '../SkeletonLoading/SongListLoading';
-import SongsList from '../common/SongsList';
+import SongsList from '../songs/SongsList';
 import { Jersey } from '@/assets/fonts';
 import SongAlbumCarousel from '../carousel/SongAlbumCarousel';
 import { Skeleton } from '@radix-ui/themes';
@@ -21,7 +21,7 @@ export default function ArtistOverViewPage({ isLoading, data }: Props) {
         </h2>
       </Skeleton>
       {isLoading ? (
-        <SongListLoading times={10} />
+        <SongListLoading quantity={10} />
       ) : (
         <SongsList songs={data?.data.topSongs ? data?.data.topSongs.slice(0, 10) : []} />
       )}

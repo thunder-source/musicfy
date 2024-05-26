@@ -15,7 +15,7 @@ export default function SongDetailsPage({ isLoading, data }: Props) {
   return (
     <div className="">
       {isLoading ? (
-        <SongListLoading times={5} />
+        <SongListLoading quantity={5} />
       ) : (
         typeof data?.album.id == 'string' && (
           <AlbumSongList albumId={data?.album.id && data?.album.id} />

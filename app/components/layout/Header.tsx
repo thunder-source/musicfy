@@ -26,7 +26,7 @@ export default function Header() {
           </Flex>
         </Link>
       </Flex>
-      <SearchBox />
+      {/* <SearchBox /> */}
       <Flex gap={'4'} className="items-center">
         <MusicLanguage />
         {/* <AuthHandlers /> */}

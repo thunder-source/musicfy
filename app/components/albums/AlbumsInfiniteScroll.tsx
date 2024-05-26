@@ -39,7 +39,7 @@ export default function AlbumsInfiniteScroll({ id }: { id: string }) {
         setPage(page + 1);
       }}
       hasMore={hasMoreTopAlbums}
-      loader={error ? <Error /> : <AlbumCardLoading />}
+      loader={error ? <Error /> : <AlbumCardLoading quantity={10} />}
       endMessage={
         <p style={{ textAlign: 'center' }} className="w-full text-2xl">
           <b>Yay! You have seen it all 🤩</b>

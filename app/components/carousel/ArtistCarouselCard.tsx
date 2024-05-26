@@ -5,7 +5,7 @@ import React from 'react';
 import { z } from 'zod';
 import SanitizedText from '../common/SanitizedText';
 import Link from 'next/link';
-import { PlaySongHandler } from '../common';
+import { PlaySongHandler } from '../common/PlaySongHandler';
 
 type Props = { data: z.infer<typeof ArtistMapModel> };
 
