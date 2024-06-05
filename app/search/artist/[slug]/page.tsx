@@ -6,6 +6,7 @@ import ArtistCardLoading from '@/components/SkeletonLoading/ArtistCardLoading';
 import React, { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ArtistCard from '@/components/artists/ArtistCard';
+import ArtistCardSearch from '../ArtistCardSearch';
 
 type Props = {
   params: { slug: string };
@@ -14,8 +15,10 @@ type Props = {
 
 export default function Page({ params }: Props) {
   const [page, setPage] = useState(0);
-  const { data, isLoading } = useSearchArtistByNameQuery({
+  const { data, isLoading, isError } = useSearchArtistByNameQuery({
     query: params.slug,
+    limit: 50,
+    page: page,
   });
 
   let hasMoreSongs = true;
@@ -52,7 +55,7 @@ export default function Page({ params }: Props) {
       >
         {Array.isArray(data?.results) &&
           data.results.map((result) => {
-            return <ArtistCard key={result.id} {...result} />;
+            return <ArtistCardSearch key={result.id} {...result} />;
           })}
       </InfiniteScroll>
     </div>

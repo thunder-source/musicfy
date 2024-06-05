@@ -58,7 +58,7 @@ export default function SongsList({ songs }: Props) {
             )}{' '}
           </div>
           <div className="w-full min-w-[50px] flex-1 overflow-hidden   truncate text-ellipsis px-4 lg:w-[100px] lg:max-w-xl ">
-            {song.artists.primary.slice(0, 10).map((ele, index) => {
+            {song?.artists.primary.slice(0, 10).map((ele, index) => {
               return (
                 <Link prefetch={false} href={`/artists/${ele.id}`} key={ele.id}>
                   <span>{ele.name}</span>
@@ -72,7 +72,7 @@ export default function SongsList({ songs }: Props) {
         </div>
 
         <div className="hidden w-[100px] min-w-[50px] max-w-xl flex-1 overflow-hidden truncate text-ellipsis px-4 lg:block">
-          {song.album.name}
+          {song?.album?.name}
         </div>
         {/* <div className='px-4 h-full'>
           <LikeButtonLite />
