@@ -17,13 +17,19 @@ export const NewReleasesItem = z.object({
   image: z.array(DownloadLinkModel),
 });
 
-export const NewReleasesAPIResponseModel = z.object({
+export const NewReleasesModelApiBase = z.object({
   total: z.number(),
   lastPage: z.boolean(),
   result: z.array(NewReleasesItem),
 });
 
-export const NewReleasesMainAPIResponseModel = z.object({
+export const NewReleasesApiResponseModel = z.object({
   success: z.boolean(),
-  data: NewReleasesAPIResponseModel,
+  data: NewReleasesModelApiBase,
 });
+
+export interface NewReleasesApiParameters {
+  language: string;
+  limit: number;
+  page: number;
+}

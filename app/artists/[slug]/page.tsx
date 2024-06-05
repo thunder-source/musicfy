@@ -1,6 +1,6 @@
 'use client';
 import { useGetArtistByIdQuery } from '@/redux/services/main';
-import { Box, Tabs } from '@radix-ui/themes';
+import { Tabs } from '@radix-ui/themes';
 import React from 'react';
 import SongsInfiniteScroll from '@/components/songs/SongsInfiniteScroll';
 import ArtistOverViewPage from '@/components/artists/ArtistOverViewPage';
@@ -41,11 +41,11 @@ export default function Page({ params }: Props) {
           {isBioAvailable && <Tabs.Trigger value="biography">Biography</Tabs.Trigger>}
         </Tabs.List>
 
-        <Tabs.Content value="overview" className="outline-none">
+        <Tabs.Content value="overview" className="py-4 outline-none">
           <ArtistOverViewPage data={data} isLoading={isLoading} />
         </Tabs.Content>
 
-        <Tabs.Content value="songs" className="outline-none">
+        <Tabs.Content value="songs" className="py-4 outline-none">
           {data?.data.id ? <SongsInfiniteScroll id={data?.data.id} /> : 'Something went wrong'}
         </Tabs.Content>
 
@@ -54,7 +54,7 @@ export default function Page({ params }: Props) {
         </Tabs.Content>
 
         {isBioAvailable && (
-          <Tabs.Content value="biography" className="select-text outline-none">
+          <Tabs.Content value="biography" className="select-text py-4 outline-none">
             {data?.data ? <BiographyPage data={data?.data} /> : 'Something went wrong'}
           </Tabs.Content>
         )}

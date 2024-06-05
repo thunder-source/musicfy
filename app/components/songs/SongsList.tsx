@@ -14,8 +14,10 @@ type Props = {
 };
 
 export default function SongsList({ songs }: Props) {
+  // console.log(songs);
   const dispatch = useAppDispatch();
   return songs.map((song: z.infer<typeof SongModel>, index: number) => {
+    console.log('song.type', song.type);
     return (
       <Box
         key={song.id + index}
@@ -44,9 +46,16 @@ export default function SongsList({ songs }: Props) {
         </div>
         <div className="w-[calc(100vw_-_180px)] lg:flex  lg:flex-[1_1_50%]">
           <div className="w-full min-w-[50px] flex-1  overflow-hidden   truncate text-ellipsis px-4 lg:w-[100px] lg:max-w-xl ">
-            <Link prefetch={false} href={`/song/${song.id}`}>
-              {song.name}
-            </Link>
+            {song.type === 'song' && (
+              <Link prefetch={false} href={`/song/${song.id}`}>
+                {song.name}
+              </Link>
+            )}
+            {song.type === 'album' && (
+              <Link prefetch={false} href={`/album/${song.id}`}>
+                {song.name}
+              </Link>
+            )}{' '}
           </div>
           <div className="w-full min-w-[50px] flex-1 overflow-hidden   truncate text-ellipsis px-4 lg:w-[100px] lg:max-w-xl ">
             {song.artists.primary.slice(0, 10).map((ele, index) => {

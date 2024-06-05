@@ -12,7 +12,7 @@ type navTypes = {
 
 const Sidebar = () => {
   return (
-    <div className="fixed left-0 top-16 hidden h-[calc(100vh_-_64px)] w-[210px] min-w-[210px] flex-col  gap-1 p-1 lg:flex ">
+    <div className="fixed left-0 top-16 z-50 hidden h-[calc(100vh_-_64px)] w-[210px] min-w-[210px]  flex-col gap-1 p-1 lg:flex">
       <div className="flex h-full flex-col rounded-lg border-2 border-gray_a5 bg-accent_a2 px-4 py-2 pb-4 ">
         <div className="text-2xl text-accent_10" style={Jersey.style}>
           BROWSE

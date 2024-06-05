@@ -15,7 +15,7 @@ type Props = {
 export default function ArtistOverViewPage({ isLoading, data }: Props) {
   return (
     <>
-      <Skeleton loading={isLoading}>
+      <Skeleton loading={isLoading} className="h-3rem  w-48">
         <h2 className="mb-2 w-full text-5xl text-accent_8 " style={Jersey.style}>
           Top Songs
         </h2>

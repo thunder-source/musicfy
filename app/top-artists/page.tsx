@@ -23,7 +23,7 @@ export default function TopArtist() {
         {isFetching ? (
           <ArtistCardLoading quantity={20} />
         ) : (
-          data?.data?.results?.map((artist: z.infer<typeof TopArtistModelBase>) => (
+          data?.results?.map((artist: z.infer<typeof TopArtistModelBase>) => (
             <ArtistCard key={artist.artistid} {...artist} />
           ))
         )}

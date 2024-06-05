@@ -41,13 +41,12 @@ export default function AlbumsInfiniteScroll({ id }: { id: string }) {
       hasMore={hasMoreTopAlbums}
       loader={error ? <Error /> : <AlbumCardLoading quantity={10} />}
       endMessage={
-        <p style={{ textAlign: 'center' }} className="w-full text-2xl">
+        <p style={{ textAlign: 'center' }} className="mt-8 w-full overflow-hidden text-2xl">
           <b>Yay! You have seen it all 🤩</b>
         </p>
       }
       style={{ overflow: 'hidden' }}
-      className="flex flex-wrap justify-center gap-8 overflow-hidden sm:justify-start"
-      scrollableTarget="scrollableDiv"
+      className=" flex flex-wrap justify-center gap-8 overflow-hidden sm:justify-start"
     >
       {Array.isArray(data?.data.topAlbums) &&
         data?.data.topAlbums?.map((album: z.infer<typeof AlbumModel>) => {

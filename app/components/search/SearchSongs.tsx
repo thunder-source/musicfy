@@ -39,7 +39,7 @@ export default function SearchSongs({ search }: Props) {
       hasMore={hasMoreSongs}
       loader={error ? <Error /> : <SongListLoading quantity={10} />}
       endMessage={
-        <p style={{ textAlign: 'center' }} className="w-full text-2xl">
+        <p style={{ textAlign: 'center' }} className="mt-8 w-full overflow-hidden text-2xl">
           {Array.isArray(data?.results) && data.results.length > 50 && (
             <b>Yay! You have seen it all 🤩</b>
           )}
@@ -47,7 +47,7 @@ export default function SearchSongs({ search }: Props) {
       }
       style={{ overflow: 'hidden' }}
       className="mb-8 flex w-full flex-col justify-center sm:justify-start"
-      // scrollableTarget="scrollableDiv"
+      //
     >
       {Array.isArray(data?.results) && <SongsList songs={data?.results} />}
     </InfiniteScroll>

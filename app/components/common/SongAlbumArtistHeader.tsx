@@ -184,7 +184,7 @@ const SongHeader = ({ data, isLoading }: songProps) => {
       <div className="flex flex-col items-center justify-center gap-2 lg:items-start">
         <Skeleton loading={isLoading} className="h-10 w-96">
           <h2
-            className="flex items-center gap-2 text-center  text-5xl font-bold text-accent_10  lg:text-7xl"
+            className="flex items-center gap-2 text-center text-5xl  font-bold text-accent_10 lg:text-left  lg:text-7xl"
             style={Jersey.style}
           >
             {data?.name}
@@ -264,7 +264,6 @@ type AlbumProps = {
 
 const AlbumHeader = ({ data, isLoading }: AlbumProps) => {
   const dispatch = useAppDispatch();
-  console.log(data);
   return (
     <div className="mb-8 flex flex-col items-center gap-8  lg:flex-row lg:justify-start ">
       <div className="custom-filter group relative flex  w-min transform cursor-pointer flex-col rounded-radius_4 border-2 border-transparent bg-accent_surface bg-opacity-80  p-4 shadow-lg transition-all duration-500">

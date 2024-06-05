@@ -71,13 +71,13 @@ export const SearchModel = z.object({
         id: z.string(),
         title: z.string(),
         image: z.array(DownloadLinkModel),
-        album: z.string(),
-        url: z.string(),
         type: z.string(),
         description: z.string(),
-        primaryArtists: z.string(),
-        singers: z.string(),
-        language: z.string(),
+        album: z.string().optional(),
+        url: z.string().optional(),
+        primaryArtists: z.string().optional(),
+        singers: z.string().optional(),
+        language: z.string().optional(),
       }),
     ),
   ),
@@ -88,7 +88,7 @@ export const SearchModelApiResponse = z.object({
   data: SearchModel,
 });
 
-export const SearchModelApiRedux = SearchModel;
+export type SearchModelTypes = z.infer<typeof SearchModel>;
 
 export type SearchModelApiParameters = {
   query: string;

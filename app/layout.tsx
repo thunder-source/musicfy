@@ -40,7 +40,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Header />
                 <div className="flex">
                   <Sidebar />
-                  <div className="w-full max-w-screen-2xl p-4 lg:pl-[226px]">{children}</div>
+                  <div className="relative min-h-[calc(100vh_-_80px)] w-full max-w-screen-2xl  p-4 lg:pl-[226px]">
+                    {children}
+                  </div>
                 </div>
                 <MusicPlayer />
                 <MobileBottomNavigation />

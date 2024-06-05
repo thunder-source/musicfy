@@ -1,18 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import Link from 'next/link';
-import { AlbumModel, NewReleasesItem } from '@/types';
+import { AlbumModel, NewReleasesItem, SearchAlbumModelBase } from '@/types';
 import { Avatar } from '@radix-ui/themes';
 import { z } from 'zod';
 
 import LikeButtonLite from '../common/LikeButtonLite';
 import { PlaySongHandler } from '../common/PlaySongHandler';
 
-const AlbumCard = (album: z.infer<typeof NewReleasesItem> | z.infer<typeof AlbumModel>) => {
-  // const cleanedName = album.name.replace(/\(From\s"[^"]+"\)/g, '');
-
+const AlbumCard = (
+  album:
+    | z.infer<typeof NewReleasesItem>
+    | z.infer<typeof AlbumModel>
+    | z.infer<typeof SearchAlbumModelBase>,
+) => {
   return (
-    <div className="group relative overflow-hidden  rounded-radius_6 shadow-sm">
+    <div className="group relative max-w-fit overflow-hidden rounded-radius_6 shadow-sm">
       {/* <img
         src={album.image[0].url}
         alt='das'
@@ -28,9 +31,11 @@ const AlbumCard = (album: z.infer<typeof NewReleasesItem> | z.infer<typeof Album
             alt="Album Image"
           />
           <div className="absolute left-0  top-0 h-full w-full rounded-radius_6 group-hover:bg-accent_a3 "></div>
-          <p className="absolute  left-1/2 top-1/2 hidden max-w-[200px] -translate-x-1/2 -translate-y-1/2 break-words  text-center text-lg font-semibold text-accent_a9 opacity-100 group-hover:block">
-            <PlaySongHandler id={album.id} type={album.type} />
-          </p>
+          {(album.type === 'album' || album.type === 'song' || album.type === 'artist') && (
+            <p className="absolute  left-1/2 top-1/2 hidden max-w-[200px] -translate-x-1/2 -translate-y-1/2 break-words  text-center text-lg font-semibold text-accent_a9 opacity-100 group-hover:block">
+              <PlaySongHandler id={album.id} type={album.type} />
+            </p>
+          )}
         </div>
         <div className="flex items-center justify-between gap-2 ">
           <div className="mt-4 flex-col">

@@ -3,55 +3,47 @@ import {
   AlbumModelApiResponse,
   ArtistModelApiParameters,
   ArtistModelApiResponse,
-  NewReleasesAPIResponseModel,
-  NewReleasesMainAPIResponseModel,
+  NewReleasesModelApiBase,
+  NewReleasesApiParameters,
+  NewReleasesApiResponseModel,
   SongByIdApiParameters,
   SongByIdApiResponse,
   SongSuggestionByIdApiParameters,
   TopArtistAPIResponseModel,
+  TopArtistModelApiBase,
 } from '@/types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { z } from 'zod';
-
-interface NewReleases {
-  language: string;
-  limit: number;
-  page: number;
-}
 
 export const mainApi = createApi({
   reducerPath: 'mainApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://music-api.pradityamanjhi.site/api/',
-    // process.env.NODE_ENV == 'development'
-    //   ? 'http://localhost:3000/api/'
-    //   : 'https://music-api.pradityamanjhi.site/api/',
   }),
 
   endpoints: (builder) => ({
-    getNewReleases: builder.query<z.infer<typeof NewReleasesAPIResponseModel>, NewReleases>({
+    getNewReleases: builder.query<
+      z.infer<typeof NewReleasesModelApiBase>,
+      NewReleasesApiParameters
+    >({
       query: ({ language, page, limit }) =>
         `newReleases?language=${language}&page=${page}&limit=${limit}`,
 
-      serializeQueryArgs: ({ queryArgs, endpointDefinition, endpointName }) => {
-        const { language } = queryArgs;
-        return language;
-      },
+      serializeQueryArgs: ({ queryArgs }) => queryArgs.language,
 
-      // Always merge incoming data to the cache entry
-      merge: (currentCache, newItems, args) => {
+      merge: (currentCache, newItems) => {
         currentCache.lastPage = newItems.lastPage;
-        if (currentCache.result && newItems.result) {
+        if (currentCache.result) {
           currentCache.result.push(...newItems.result);
+        } else {
+          currentCache.result = newItems.result;
         }
       },
 
-      // Refetch when the page arg changes
-      forceRefetch({ currentArg, previousArg, endpointState }) {
-        return currentArg !== previousArg;
-      },
-      transformResponse(response: z.infer<typeof NewReleasesMainAPIResponseModel>) {
-        NewReleasesMainAPIResponseModel.parse(response);
+      forceRefetch: ({ currentArg, previousArg }) => currentArg !== previousArg,
+
+      transformResponse(response: z.infer<typeof NewReleasesApiResponseModel>) {
+        // NewReleasesApiResponseModel.parse(response);
         return response.data;
       },
     }),
@@ -64,15 +56,11 @@ export const mainApi = createApi({
           sortBy ? `&sortBy=${sortBy}` : ''
         }${sortOrder ? `&sortOrder=${sortOrder}` : ''}`,
 
-      serializeQueryArgs: ({ queryArgs, endpointDefinition, endpointName }) => {
-        const { artistId } = queryArgs;
-        return 'artists' + artistId;
-      },
+      serializeQueryArgs: ({ queryArgs }) => `artists${queryArgs.artistId}`,
 
-      // Always merge incoming data to the cache entry
-      merge: (currentCache, newItems, args) => {
-        if (args.arg.songCount === 100) {
-          if (args.arg.page === 0) {
+      merge: (currentCache, newItems, { arg }) => {
+        if (arg.songCount === 100) {
+          if (arg.page === 0) {
             return (currentCache = newItems);
           }
           if (newItems.data.topSongs?.length === 0) {
@@ -85,8 +73,8 @@ export const mainApi = createApi({
             return;
           }
         }
-        if (args.arg.albumCount === 50) {
-          if (args.arg.page === 0) {
+        if (arg.albumCount === 50) {
+          if (arg.page === 0) {
             return (currentCache = newItems);
           }
           if (newItems.data.topAlbums?.length === 0) {
@@ -99,25 +87,40 @@ export const mainApi = createApi({
             return;
           }
         }
-        // currentCache = newItems;
       },
 
-      // Refetch when the page arg changes
-      forceRefetch({ currentArg, previousArg, endpointState }) {
-        return currentArg !== previousArg;
+      forceRefetch: ({ currentArg, previousArg }) => currentArg !== previousArg,
+
+      transformResponse: (response: z.infer<typeof ArtistModelApiResponse>) => {
+        // ArtistModelApiResponse.parse(response);
+        return response;
       },
     }),
 
-    getTopArtist: builder.query<z.infer<typeof TopArtistAPIResponseModel>, {}>({
+    getTopArtist: builder.query<z.infer<typeof TopArtistModelApiBase>, {}>({
       query: () => `top-artists`,
+
+      transformResponse: (response: z.infer<typeof TopArtistAPIResponseModel>) => {
+        // TopArtistAPIResponseModel.parse(response);
+        return response.data;
+      },
     }),
 
     getSongById: builder.query<z.infer<typeof SongByIdApiResponse>, SongByIdApiParameters>({
       query: ({ songId, lyrics }) => `songs/${songId}${lyrics ? `?lyrics=${lyrics}` : ''}`,
+
+      transformResponse: (response: z.infer<typeof SongByIdApiResponse>) => {
+        // SongByIdApiResponse.parse(response);
+        return response;
+      },
     }),
 
     getAlbumById: builder.query<z.infer<typeof AlbumModelApiResponse>, AlbumByIdApiParameters>({
       query: ({ albumId }) => `albums?id=${albumId}`,
+      transformResponse: (response: z.infer<typeof AlbumModelApiResponse>) => {
+        // AlbumModelApiResponse.parse(response);
+        return response;
+      },
     }),
 
     getSongSuggestionById: builder.query<
@@ -125,6 +128,10 @@ export const mainApi = createApi({
       SongSuggestionByIdApiParameters
     >({
       query: ({ id, limit }) => `songs/${id}/suggestions${limit ? `?limit=${limit}` : ''}`,
+      transformResponse: (response: z.infer<typeof SongByIdApiResponse>) => {
+        // SongByIdApiResponse.parse(response);
+        return response;
+      },
     }),
   }),
 });

@@ -8,6 +8,6 @@ export default function IsPlayerOpenBottomMargin({}: Props) {
   return isActive ? (
     <div className="block h-28">&nbsp;</div>
   ) : (
-    <div className="max-lg:h-16 lg:hidden ">&nbsp;</div>
+    <div className="max-lg:h-16 lg:hidden">&nbsp;</div>
   );
 }

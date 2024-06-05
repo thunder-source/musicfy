@@ -22,7 +22,7 @@ export default function Discover() {
   const [page, setPage] = useState(1);
   const [language, setLanguage] = useState(DEFAULT_LANGUAGE);
 
-  const { data, error, isLoading, isFetching, currentData } = useGetNewReleasesQuery({
+  const { data, error, currentData } = useGetNewReleasesQuery({
     language: language === DEFAULT_LANGUAGE ? musicLanguage.join(',') : language,
     page,
     limit: PAGE_LIMIT,
@@ -68,7 +68,7 @@ export default function Discover() {
           hasMore={data?.lastPage !== true}
           loader={error ? <Error /> : <AlbumCardLoading quantity={10} />}
           endMessage={
-            <p style={{ textAlign: 'center' }} className="w-full text-2xl">
+            <p style={{ textAlign: 'center' }} className="mt-8 w-full overflow-hidden text-2xl">
               <b>Yay! You have seen it all 🤩</b>
             </p>
           }
@@ -79,7 +79,7 @@ export default function Discover() {
         </InfiniteScroll>
       ) : (
         <div className="flex flex-wrap justify-center gap-8 lg:justify-start">
-          <AlbumCardLoading />
+          <AlbumCardLoading quantity={20} />
         </div>
       )}
       <IsPlayerOpenBottomMargin />

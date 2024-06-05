@@ -1,5 +1,5 @@
 'use client';
-import { TopArtistModelBase } from '@/types';
+import { SearchArtistModelBase, TopArtistModelBase } from '@/types';
 import { Avatar } from '@radix-ui/themes';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -8,14 +8,21 @@ import { z } from 'zod';
 import { beautifyNumber } from '@/lib/utils';
 import { PlaySongHandler } from '../common/PlaySongHandler';
 
-const ArtistCard = (artist: z.infer<typeof TopArtistModelBase>) => {
+const ArtistCard = (
+  artist: z.infer<typeof TopArtistModelBase> | z.infer<typeof SearchArtistModelBase>,
+) => {
   const router = useRouter();
+
+  let artistId = undefined;
+
+  if (artist?.id) {
+  }
 
   return (
     <div>
       <div
         className="custom-filter group relative flex  w-fit transform cursor-pointer flex-col rounded-full border-2 border-transparent bg-accent_a4 bg-opacity-80  p-4 transition-all duration-500 hover:border-accent_10 hover:transition-all"
-        onClick={() => router.push(`/artists/${artist.artistid}`)}
+        onClick={() => router.push(`/artists/${artist?.artistid}`)}
       >
         <Avatar className="h-56 w-56 rounded-full" src={artist?.image} fallback={artist?.name} />
         <div className="absolute left-0 top-0 h-full w-full rounded-full group-hover:bg-accent_3 group-hover:opacity-70"></div>
