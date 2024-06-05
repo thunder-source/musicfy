@@ -71,7 +71,7 @@ const MusicPlayer = () => {
     return;
   }
   return (
-    <div className="custom-filter fixed right-1/2 m-auto flex w-full max-w-screen-xl translate-x-1/2 items-center justify-between rounded-radius_4  border-2 border-gray_a3 bg-accent_surface  p-2 shadow-sm max-lg:bottom-[72px] max-lg:rounded-b-none  max-lg:border-b-0 max-lg:py-1 lg:bottom-5 lg:w-[calc(100%_-_70px)] lg:rounded-full">
+    <div className="custom-filter fixed right-1/2 z-50 m-auto flex w-full max-w-screen-xl translate-x-1/2 items-center justify-between rounded-radius_4  border-2 border-gray_a3 bg-accent_surface  p-2 shadow-sm max-lg:bottom-[72px] max-lg:rounded-b-none  max-lg:border-b-0 max-lg:py-1 lg:bottom-5 lg:w-[calc(100%_-_70px)] lg:rounded-full">
       <LeftControls
         isPlaying={isPlaying}
         repeat={repeat}
