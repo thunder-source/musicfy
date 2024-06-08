@@ -42,9 +42,17 @@ export default function SongAlbumCarouselCard({ data }: Props) {
 
         <div className="mt-4 flex-col px-2 pb-4 text-center">
           <p className="w-full truncate text-sm font-semibold">
-            <Link prefetch={false} href={`/song/${data.id}`}>
-              {data.name}
-            </Link>
+            {data.type === 'song' && (
+              <Link prefetch={false} href={`/song/${data.id}`}>
+                {data.name}
+              </Link>
+            )}
+            {data.type === 'album' && (
+              <Link prefetch={false} href={`/album/${data.id}`}>
+                {data.name}
+              </Link>
+            )}
+            {data.type !== 'album' && data.type !== 'song' && <div>{data.name}</div>}
           </p>
           <p className="mt-1 truncate text-sm">
             {Array.isArray(data?.artists.primary) && data.artists.primary.length > 0 && (
