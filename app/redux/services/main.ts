@@ -18,7 +18,7 @@ import { z } from 'zod';
 export const mainApi = createApi({
   reducerPath: 'mainApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://music-api.pradityamanjhi.site/api/',
+    baseUrl: 'https://music-api.pradityamanjhi.in/api/',
   }),
 
   endpoints: (builder) => ({
